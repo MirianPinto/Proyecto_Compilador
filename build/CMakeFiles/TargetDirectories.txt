@@ -1,0 +1,3 @@
+/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles/Compilador.dir
+/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles/edit_cache.dir
+/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles/rebuild_cache.dir

@@ -71,22 +71,29 @@ include CMakeFiles/Compilador.dir/flags.make
 
 CompiLexerImpl.cpp: ../CompiLexerImpl.l
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "[FLEX][CompiLexer] Building scanner with flex 2.6.4"
-	cd /home/mirian/Compiladores_2/Proyecto_Compilador && /usr/bin/flex --header-file=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.h -o/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp CompiLexerImpl.l
+	cd /home/mirian/Compiladores_2/Proyecto_Compilador && /usr/bin/flex --header-file=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.hpp -o/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp CompiLexerImpl.l
 
-CompiLexerImpl.h: CompiLexerImpl.cpp
-	@$(CMAKE_COMMAND) -E touch_nocreate CompiLexerImpl.h
+CompiLexerImpl.hpp: CompiLexerImpl.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate CompiLexerImpl.hpp
 
 CompiParserImpl.cpp: ../CompiParserImpl.y
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "[BISON][CompiParser] Building parser with bison 3.8.2"
-	/usr/bin/bison --defines=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.h -o /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp /home/mirian/Compiladores_2/Proyecto_Compilador/CompiParserImpl.y
+	cd /home/mirian/Compiladores_2/Proyecto_Compilador && /usr/bin/bison --defines=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.hpp -o /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp CompiParserImpl.y
 
-CompiParserImpl.h: CompiParserImpl.cpp
-	@$(CMAKE_COMMAND) -E touch_nocreate CompiParserImpl.h
+CompiParserImpl.hpp: CompiParserImpl.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate CompiParserImpl.hpp
+
+CompiAst.cpp: ../CompiAst.tc
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Generating CompiAst.cpp, CompiAst.hpp"
+	/usr/local/bin/treecc -o CompiAst.cpp -h CompiAst.hpp /home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc
+
+CompiAst.hpp: CompiAst.cpp
+	@$(CMAKE_COMMAND) -E touch_nocreate CompiAst.hpp
 
 CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o: CMakeFiles/Compilador.dir/flags.make
 CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o: CompiLexerImpl.cpp
 CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o: CMakeFiles/Compilador.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o -MF CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o.d -o CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp
 
 CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.i: cmake_force
@@ -100,7 +107,7 @@ CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.s: cmake_force
 CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o: CMakeFiles/Compilador.dir/flags.make
 CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o: CompiParserImpl.cpp
 CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o: CMakeFiles/Compilador.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o -MF CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o.d -o CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp
 
 CMakeFiles/Compilador.dir/CompiParserImpl.cpp.i: cmake_force
@@ -114,7 +121,7 @@ CMakeFiles/Compilador.dir/CompiParserImpl.cpp.s: cmake_force
 CMakeFiles/Compilador.dir/CompiParser.cpp.o: CMakeFiles/Compilador.dir/flags.make
 CMakeFiles/Compilador.dir/CompiParser.cpp.o: ../CompiParser.cpp
 CMakeFiles/Compilador.dir/CompiParser.cpp.o: CMakeFiles/Compilador.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/Compilador.dir/CompiParser.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Compilador.dir/CompiParser.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Compilador.dir/CompiParser.cpp.o -MF CMakeFiles/Compilador.dir/CompiParser.cpp.o.d -o CMakeFiles/Compilador.dir/CompiParser.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/CompiParser.cpp
 
 CMakeFiles/Compilador.dir/CompiParser.cpp.i: cmake_force
@@ -128,7 +135,7 @@ CMakeFiles/Compilador.dir/CompiParser.cpp.s: cmake_force
 CMakeFiles/Compilador.dir/CompiLexer.cpp.o: CMakeFiles/Compilador.dir/flags.make
 CMakeFiles/Compilador.dir/CompiLexer.cpp.o: ../CompiLexer.cpp
 CMakeFiles/Compilador.dir/CompiLexer.cpp.o: CMakeFiles/Compilador.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/Compilador.dir/CompiLexer.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Compilador.dir/CompiLexer.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Compilador.dir/CompiLexer.cpp.o -MF CMakeFiles/Compilador.dir/CompiLexer.cpp.o.d -o CMakeFiles/Compilador.dir/CompiLexer.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/CompiLexer.cpp
 
 CMakeFiles/Compilador.dir/CompiLexer.cpp.i: cmake_force
@@ -139,10 +146,24 @@ CMakeFiles/Compilador.dir/CompiLexer.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Compilador.dir/CompiLexer.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mirian/Compiladores_2/Proyecto_Compilador/CompiLexer.cpp -o CMakeFiles/Compilador.dir/CompiLexer.cpp.s
 
+CMakeFiles/Compilador.dir/CompiAst.cpp.o: CMakeFiles/Compilador.dir/flags.make
+CMakeFiles/Compilador.dir/CompiAst.cpp.o: CompiAst.cpp
+CMakeFiles/Compilador.dir/CompiAst.cpp.o: CMakeFiles/Compilador.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/Compilador.dir/CompiAst.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Compilador.dir/CompiAst.cpp.o -MF CMakeFiles/Compilador.dir/CompiAst.cpp.o.d -o CMakeFiles/Compilador.dir/CompiAst.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiAst.cpp
+
+CMakeFiles/Compilador.dir/CompiAst.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Compilador.dir/CompiAst.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiAst.cpp > CMakeFiles/Compilador.dir/CompiAst.cpp.i
+
+CMakeFiles/Compilador.dir/CompiAst.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Compilador.dir/CompiAst.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiAst.cpp -o CMakeFiles/Compilador.dir/CompiAst.cpp.s
+
 CMakeFiles/Compilador.dir/main.cpp.o: CMakeFiles/Compilador.dir/flags.make
 CMakeFiles/Compilador.dir/main.cpp.o: ../main.cpp
 CMakeFiles/Compilador.dir/main.cpp.o: CMakeFiles/Compilador.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/Compilador.dir/main.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/Compilador.dir/main.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Compilador.dir/main.cpp.o -MF CMakeFiles/Compilador.dir/main.cpp.o.d -o CMakeFiles/Compilador.dir/main.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/main.cpp
 
 CMakeFiles/Compilador.dir/main.cpp.i: cmake_force
@@ -159,6 +180,7 @@ Compilador_OBJECTS = \
 "CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o" \
 "CMakeFiles/Compilador.dir/CompiParser.cpp.o" \
 "CMakeFiles/Compilador.dir/CompiLexer.cpp.o" \
+"CMakeFiles/Compilador.dir/CompiAst.cpp.o" \
 "CMakeFiles/Compilador.dir/main.cpp.o"
 
 # External object files for target Compilador
@@ -168,10 +190,11 @@ Compilador: CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o
 Compilador: CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o
 Compilador: CMakeFiles/Compilador.dir/CompiParser.cpp.o
 Compilador: CMakeFiles/Compilador.dir/CompiLexer.cpp.o
+Compilador: CMakeFiles/Compilador.dir/CompiAst.cpp.o
 Compilador: CMakeFiles/Compilador.dir/main.cpp.o
 Compilador: CMakeFiles/Compilador.dir/build.make
 Compilador: CMakeFiles/Compilador.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Linking CXX executable Compilador"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable Compilador"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Compilador.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -182,10 +205,12 @@ CMakeFiles/Compilador.dir/clean:
 	$(CMAKE_COMMAND) -P CMakeFiles/Compilador.dir/cmake_clean.cmake
 .PHONY : CMakeFiles/Compilador.dir/clean
 
+CMakeFiles/Compilador.dir/depend: CompiAst.cpp
+CMakeFiles/Compilador.dir/depend: CompiAst.hpp
 CMakeFiles/Compilador.dir/depend: CompiLexerImpl.cpp
-CMakeFiles/Compilador.dir/depend: CompiLexerImpl.h
+CMakeFiles/Compilador.dir/depend: CompiLexerImpl.hpp
 CMakeFiles/Compilador.dir/depend: CompiParserImpl.cpp
-CMakeFiles/Compilador.dir/depend: CompiParserImpl.h
+CMakeFiles/Compilador.dir/depend: CompiParserImpl.hpp
 	cd /home/mirian/Compiladores_2/Proyecto_Compilador/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/mirian/Compiladores_2/Proyecto_Compilador /home/mirian/Compiladores_2/Proyecto_Compilador /home/mirian/Compiladores_2/Proyecto_Compilador/build /home/mirian/Compiladores_2/Proyecto_Compilador/build /home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles/Compilador.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Compilador.dir/depend
 

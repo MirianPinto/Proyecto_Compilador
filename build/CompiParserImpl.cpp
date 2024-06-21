@@ -64,27 +64,28 @@
 #define YYPULL 1
 
 /* "%code top" blocks.  */
-#line 7 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiParserImpl.y"
+#line 7 "CompiParserImpl.y"
 
-#include <iostream>
-#include <stdexcept>
-#include "CompiLexerImpl.h"
-#include "CompiLexer.hpp"
-#include "CompiParser.hpp"
-#include "CompiParserImpl.h"
+      
+      #include <iostream>
+      #include <stdexcept>
+      #include "CompiLexer.hpp"
+      #include "CompiParser.hpp"
+      #include "CompiAst.hpp"
+      
+      #define yylex(v) static_cast<int>(parse.getLexer().nextToken(v))
 
-#define yylex(v) static_cast<int>(parse.getLexer().nextToken(v))
+      void yyerror(const CompiParser& parse, const char *msg)\
+      {\
+            std::string complemento = " at the line ";
+            std::string msgcompleto  = msg + complemento + std::to_string(parse.getLexer().line());
 
-void yyerror(const CompiParser& parse, const char *msg)\
-{\
-    std::string complemento = " at the line ";
-    std::string msgcompleto  = msg + complemento + std::to_string(parse.getLexer().line());
+            throw std::runtime_error(msgcompleto.c_str());\
+            }\
 
-    throw std::runtime_error(msgcompleto.c_str());\
-}\
+      
 
-
-#line 88 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 89 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
 
 
 
@@ -110,7 +111,7 @@ void yyerror(const CompiParser& parse, const char *msg)\
 #  endif
 # endif
 
-#include "CompiParserImpl.h"
+#include "CompiParserImpl.hpp"
 /* Symbol kind.  */
 enum yysymbol_kind_t
 {
@@ -621,18 +622,18 @@ static const yytype_int8 yytranslate[] =
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,   118,   118,   121,   124,   125,   126,   130,   131,   132,
-     135,   136,   139,   140,   141,   145,   146,   147,   151,   152,
-     153,   157,   158,   162,   167,   171,   172,   176,   177,   182,
-     183,   184,   185,   186,   187,   192,   196,   197,   201,   202,
-     203,   204,   205,   206,   207,   208,   209,   210,   217,   221,
-     225,   229,   230,   233,   234,   238,   242,   245,   248,   251,
-     252,   253,   255,   256,   257,   261,   265,   268,   269,   270,
-     273,   274,   281,   282,   285,   286,   287,   288,   289,   293,
-     294,   295,   296,   297,   301,   302,   307,   308,   309,   312,
-     313,   314,   315,   318,   319,   320,   321,   322,   323,   324,
-     325,   326,   327,   330,   331,   332,   333,   334,   335,   336,
-     337,   340,   341
+       0,   120,   120,   123,   127,   128,   129,   133,   134,   135,
+     138,   139,   142,   143,   144,   148,   149,   150,   154,   155,
+     156,   160,   161,   165,   170,   174,   175,   179,   180,   185,
+     186,   187,   188,   189,   190,   195,   199,   200,   204,   205,
+     206,   207,   208,   209,   210,   211,   212,   213,   220,   224,
+     228,   232,   233,   236,   237,   241,   245,   248,   251,   254,
+     255,   256,   258,   259,   260,   264,   268,   271,   272,   273,
+     276,   277,   284,   285,   288,   289,   290,   291,   292,   296,
+     297,   298,   299,   300,   304,   305,   309,   310,   311,   314,
+     315,   316,   317,   320,   321,   322,   323,   324,   325,   326,
+     327,   328,   329,   332,   333,   334,   335,   336,   337,   338,
+     339,   342,   343
 };
 #endif
 
@@ -1688,8 +1689,116 @@ yyreduce:
   YY_REDUCE_PRINT (yyn);
   switch (yyn)
     {
+  case 2: /* input: program  */
+#line 120 "CompiParserImpl.y"
+               { parse.setRoot(new Program(new BlockStmts(new Declaracionvariable(new DeclaracionStmt(new IdentExpr("a"), new IdentExpr("y")), new IdentExpr("x")) , new BlockStmts(new AddExpr(new IdentExpr("x"), new IdentExpr("y")), new EscribaStmt(new NumExpr(5)))))); }
+#line 1696 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
 
-#line 1693 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+  case 3: /* program: subtypes-section decl_Var block_decl main  */
+#line 123 "CompiParserImpl.y"
+                                                   {  }
+#line 1702 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 5: /* subtypes-section: "Tipo" "Ident" "Es" type-subtypes  */
+#line 128 "CompiParserImpl.y"
+                                                {}
+#line 1708 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 7: /* decl_Var: decl_Var tipos_variables  */
+#line 133 "CompiParserImpl.y"
+                                   { }
+#line 1714 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 8: /* decl_Var: tipos_variables  */
+#line 134 "CompiParserImpl.y"
+                        { }
+#line 1720 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 13: /* tipos_variables: tipo "Ident" more_iden  */
+#line 143 "CompiParserImpl.y"
+                                   {  }
+#line 1726 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 14: /* tipos_variables: "Ident" "Ident"  */
+#line 144 "CompiParserImpl.y"
+                          {}
+#line 1732 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 15: /* more_iden: more_iden "," "Ident"  */
+#line 148 "CompiParserImpl.y"
+                                { }
+#line 1738 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 16: /* more_iden: "," "Ident"  */
+#line 149 "CompiParserImpl.y"
+                   { yyval = yyvsp[0]; }
+#line 1744 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 17: /* more_iden: %empty  */
+#line 150 "CompiParserImpl.y"
+                   { }
+#line 1750 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 49: /* llamar_arreglo: "Ident" "[" expr "]"  */
+#line 224 "CompiParserImpl.y"
+                                                { }
+#line 1756 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 51: /* asign_Var: asign_Var asignar "<-" valores  */
+#line 232 "CompiParserImpl.y"
+                                               { }
+#line 1762 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 104: /* factor: enteros  */
+#line 333 "CompiParserImpl.y"
+                 {  }
+#line 1768 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 105: /* factor: "Ident"  */
+#line 334 "CompiParserImpl.y"
+               { }
+#line 1774 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 107: /* factor: "Verdadero"  */
+#line 336 "CompiParserImpl.y"
+                  {  }
+#line 1780 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 108: /* factor: "Falso"  */
+#line 337 "CompiParserImpl.y"
+                  { }
+#line 1786 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 111: /* enteros: "Number"  */
+#line 342 "CompiParserImpl.y"
+                {  }
+#line 1792 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 112: /* enteros: "-" "Number"  */
+#line 343 "CompiParserImpl.y"
+                     {  }
+#line 1798 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+
+#line 1802 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
 
       default: break;
     }

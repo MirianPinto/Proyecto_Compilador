@@ -1,4 +1,6 @@
+Tipo carro_t Es Entero
 Entero x, _y, z
+
 
 Inicio
     x <- 65

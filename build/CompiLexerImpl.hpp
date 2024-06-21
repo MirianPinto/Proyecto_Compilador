@@ -2,9 +2,9 @@
 #define yyHEADER_H 1
 #define yyIN_HEADER 1
 
-#line 6 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.h"
+#line 6 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.hpp"
 
-#line 8 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.h"
+#line 8 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.hpp"
 
 #define  YY_INT_ALIGNED short int
 
@@ -483,9 +483,9 @@ extern int yylex (yyscan_t yyscanner);
 #undef yyTABLES_NAME
 #endif
 
-#line 113 "CompiLexerImpl.l"
+#line 115 "CompiLexerImpl.l"
 
 
-#line 490 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.h"
+#line 490 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.hpp"
 #undef yyIN_HEADER
 #endif /* yyHEADER_H */

@@ -5,33 +5,35 @@
 %parse-param {CompiParser& parse}
 
 %code top {
-#include <iostream>
-#include <stdexcept>
-#include "CompiLexerImpl.h"
-#include "CompiLexer.hpp"
-#include "CompiParser.hpp"
-#include "CompiParserImpl.h"
+      
+      #include <iostream>
+      #include <stdexcept>
+      #include "CompiLexer.hpp"
+      #include "CompiParser.hpp"
+      #include "CompiAst.hpp"
+      
+      #define yylex(v) static_cast<int>(parse.getLexer().nextToken(v))
 
-#define yylex(v) static_cast<int>(parse.getLexer().nextToken(v))
+      void yyerror(const CompiParser& parse, const char *msg)\
+      {\
+            std::string complemento = " at the line ";
+            std::string msgcompleto  = msg + complemento + std::to_string(parse.getLexer().line());
 
-void yyerror(const CompiParser& parse, const char *msg)\
-{\
-    std::string complemento = " at the line ";
-    std::string msgcompleto  = msg + complemento + std::to_string(parse.getLexer().line());
+            throw std::runtime_error(msgcompleto.c_str());\
+            }\
 
-    throw std::runtime_error(msgcompleto.c_str());\
-}\
-
-}
+      }
 
 %code requires
 {
       
-      #include <variant>
+      #include <string>
+      #include "CompiAst.hpp"
 
       class CompiParser;
 
-      using ParserValueType = std::variant<std::string, double>;
+      using ParserValueType = AstNode *;
+
       #define YYSTYPE ParserValueType
       #define YYSTYPE_IS_DECLARED 1
 }
@@ -115,20 +117,21 @@ void yyerror(const CompiParser& parse, const char *msg)\
 %token String           "String"
 %%
 
-input: program
+input: program { parse.setRoot(new Program(new BlockStmts(new Declaracionvariable(new DeclaracionStmt(new IdentExpr("a"), new IdentExpr("y")), new IdentExpr("x")) , new BlockStmts(new AddExpr(new IdentExpr("x"), new IdentExpr("y")), new EscribaStmt(new NumExpr(5)))))); }
 ;
 
-program: subtypes-section decl_Var block_decl main
+program: subtypes-section decl_Var block_decl main {  }
 ;
 
+//no generara ningun nodo
 subtypes-section: subtypes-section Tipo Ident Es type-subtypes
-                  | Tipo Ident Es type-subtypes
+                  | Tipo Ident Es type-subtypes {}
                   | 
 ;
 
 //estructura con recursion de declaracion de variables
-decl_Var: decl_Var tipos_variables
-      | tipos_variables
+decl_Var: decl_Var tipos_variables { }
+      | tipos_variables { }
       | 
 ;   
 
@@ -137,14 +140,14 @@ type-subtypes: tipo
 ;
 
 tipos_variables: Arreglo OpenCorch Number CloseCorch De tipo Ident
-            | tipo Ident more_iden
-            | Ident Ident 
+            | tipo Ident more_iden {  }
+            | Ident Ident {}
 ;
 
 //estrucutra para crear mas varibels del mismo tipo
-more_iden: more_iden Coma Ident
-      | Coma Ident
-      | 
+more_iden: more_iden Coma Ident { }
+      | Coma Ident { $$ = $2; }
+      |            { }
 ;
 
 //block de declaracion de variables
@@ -198,15 +201,15 @@ block_actions: block_actions actions
 ;
 
 //acciones del main
-actions: asign_Var
-      | f_escriba
-      | cliclo_for
-      | retorne
-      | estructura_llamar
-      | cliclo_While
-      | cliclo_Repeat
-      | struct_lea
-      | si_statement
+actions: asign_Var //ya
+      | f_escriba //ya
+      | cliclo_for 
+      | retorne //retornara por el ecx
+      | estructura_llamar // 
+      | cliclo_While //
+      | cliclo_Repeat // 
+      | struct_lea //
+      | si_statement //
       | %empty
 ;
 
@@ -218,7 +221,7 @@ struct_lea: Lea asignar
 ;
 
 //llamado de arreglo
-llamar_arreglo: Ident OpenCorch expr CloseCorch 
+llamar_arreglo: Ident OpenCorch expr CloseCorch { }
 ;
 
 //estructura de funcion llamar
@@ -226,7 +229,7 @@ estructura_llamar: Llamar funcion_llamado
 ;
 
 //asignacion de variables
-asign_Var: asign_Var asignar OpPuntero valores
+asign_Var: asign_Var asignar OpPuntero valores { }
         |  asignar OpPuntero valores
 ;
 
@@ -303,7 +306,6 @@ valores_ciclos: enteros
             
 ;
 
-
 expr:   expr OpAdd term 
     |   expr OpSub term 
     |   term      
@@ -323,20 +325,20 @@ condi: condi OpMayor factor
       | condi OpSombrero factor
       | condi C_O factor
       | condi C_Y factor
-      | condi Asignar factor
+      | condi OpIgual factor
       | factor
 ;
 
 factor: OpenPar expr ClosePar
-    |   enteros
-    |   Ident 
+    |   enteros  {  }
+    |   Ident  { }
     |   C_No Ident     
-    |   Verdadero
-    |   Falso
+    |   Verdadero {  }
+    |   Falso     { }
     |   llamar_arreglo
     |   funcion_llamado 
 ;
 
-enteros: Number
-      | OpSub Number
+enteros: Number {  }
+      | OpSub Number {  }
 ;

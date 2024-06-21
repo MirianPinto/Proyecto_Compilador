@@ -146,16 +146,6 @@ CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o: \
  /usr/include/c++/11/bits/basic_ios.tcc \
  /usr/include/c++/11/bits/ostream.tcc /usr/include/c++/11/istream \
  /usr/include/c++/11/bits/istream.tcc \
- /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.h \
- /usr/include/string.h /usr/include/strings.h \
- /usr/include/c++/11/stdlib.h /usr/include/unistd.h \
- /usr/include/x86_64-linux-gnu/bits/posix_opt.h \
- /usr/include/x86_64-linux-gnu/bits/environments.h \
- /usr/include/x86_64-linux-gnu/bits/confname.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_posix.h \
- /usr/include/x86_64-linux-gnu/bits/getopt_core.h \
- /usr/include/x86_64-linux-gnu/bits/unistd_ext.h \
- /usr/include/linux/close_range.h \
  /home/mirian/Compiladores_2/Proyecto_Compilador/CompiLexer.hpp \
  /usr/include/c++/11/unordered_map \
  /usr/include/c++/11/ext/aligned_buffer.h \
@@ -173,7 +163,19 @@ CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o: \
  /usr/include/c++/11/bits/stl_bvector.h \
  /usr/include/c++/11/bits/vector.tcc /usr/include/c++/11/variant \
  /usr/include/c++/11/bits/parse_numbers.h \
+ /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiAst.hpp \
+ /usr/include/c++/11/iomanip /usr/include/c++/11/locale \
+ /usr/include/c++/11/bits/locale_facets_nonio.h /usr/include/c++/11/ctime \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/time_members.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/messages_members.h \
+ /usr/include/libintl.h /usr/include/c++/11/bits/codecvt.h \
+ /usr/include/c++/11/bits/locale_facets_nonio.tcc \
+ /usr/include/c++/11/bits/locale_conv.h \
+ /usr/include/c++/11/bits/unique_ptr.h \
+ /usr/include/c++/11/bits/quoted_string.h /usr/include/c++/11/sstream \
+ /usr/include/c++/11/bits/sstream.tcc \
  /home/mirian/Compiladores_2/Proyecto_Compilador/CompiParser.hpp \
  /home/mirian/Compiladores_2/Proyecto_Compilador/CompiLexer.hpp \
- /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.h \
- /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.h
+ /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.hpp \
+ /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiAst.hpp \
+ /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.hpp

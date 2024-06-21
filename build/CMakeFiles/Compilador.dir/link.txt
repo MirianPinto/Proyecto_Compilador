@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o CMakeFiles/Compilador.dir/CompiParser.cpp.o CMakeFiles/Compilador.dir/CompiLexer.cpp.o CMakeFiles/Compilador.dir/main.cpp.o -o Compilador 
+/usr/bin/c++ -rdynamic CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o CMakeFiles/Compilador.dir/CompiParser.cpp.o CMakeFiles/Compilador.dir/CompiLexer.cpp.o CMakeFiles/Compilador.dir/CompiAst.cpp.o CMakeFiles/Compilador.dir/main.cpp.o -o Compilador 

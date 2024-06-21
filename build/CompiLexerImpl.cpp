@@ -656,11 +656,13 @@ static const flex_int32_t yy_rule_can_match_eol[78] =
 #define YY_RESTORE_YY_MORE_OFFSET
 #line 1 "CompiLexerImpl.l"
 #line 7 "CompiLexerImpl.l"
+    
     #include <iostream>
     #include <cstdlib>
     #include "CompiLexer.hpp"
+    #include "CompiAst.hpp"
 
-    #define YY_DECL Token CompiLexer::nextTokenHelper(yyscan_t yyscanner, CompiLexer::ParserValueType *lval)
+    #define YY_DECL Token CompiLexer::nextTokenHelper(yyscan_t yyscanner, ParserValueType *lval)
     #define yyterminate() return Token::Eof
 
     #define YY_INPUT(buf, result, max_size) \
@@ -670,9 +672,9 @@ static const flex_int32_t yy_rule_can_match_eol[78] =
             result = in->gcount(); \
         }
 
-#line 674 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp"
-
 #line 676 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp"
+
+#line 678 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp"
 
 #define INITIAL 0
 #define comment 1
@@ -931,10 +933,10 @@ YY_DECL
 		}
 
 	{
-#line 25 "CompiLexerImpl.l"
+#line 27 "CompiLexerImpl.l"
 
 
-#line 938 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp"
+#line 940 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp"
 
 	while ( /*CONSTCOND*/1 )		/* loops until end-of-file is reached */
 		{
@@ -1006,397 +1008,397 @@ do_action:	/* This label is used only to access EOF actions. */
 case 1:
 /* rule 1 can match eol */
 YY_RULE_SETUP
-#line 27 "CompiLexerImpl.l"
+#line 29 "CompiLexerImpl.l"
 {  }
 	YY_BREAK
 case 2:
 /* rule 2 can match eol */
 YY_RULE_SETUP
-#line 28 "CompiLexerImpl.l"
+#line 30 "CompiLexerImpl.l"
 { }
 	YY_BREAK
 case 3:
 YY_RULE_SETUP
-#line 29 "CompiLexerImpl.l"
+#line 31 "CompiLexerImpl.l"
 { BEGIN(comment); }
 	YY_BREAK
 case 4:
 /* rule 4 can match eol */
 YY_RULE_SETUP
-#line 30 "CompiLexerImpl.l"
+#line 32 "CompiLexerImpl.l"
 {  }
 	YY_BREAK
 case 5:
 YY_RULE_SETUP
-#line 31 "CompiLexerImpl.l"
+#line 33 "CompiLexerImpl.l"
 { return Token::Entero; }
 	YY_BREAK
 case 6:
 YY_RULE_SETUP
-#line 32 "CompiLexerImpl.l"
+#line 34 "CompiLexerImpl.l"
 { return Token::Real; }
 	YY_BREAK
 case 7:
 YY_RULE_SETUP
-#line 33 "CompiLexerImpl.l"
+#line 35 "CompiLexerImpl.l"
 { return Token::Cadena; }
 	YY_BREAK
 case 8:
 YY_RULE_SETUP
-#line 34 "CompiLexerImpl.l"
+#line 36 "CompiLexerImpl.l"
 { return Token::Booleano; }
 	YY_BREAK
 case 9:
 YY_RULE_SETUP
-#line 35 "CompiLexerImpl.l"
+#line 37 "CompiLexerImpl.l"
 { return Token::Caracter; }
 	YY_BREAK
 case 10:
 YY_RULE_SETUP
-#line 36 "CompiLexerImpl.l"
+#line 38 "CompiLexerImpl.l"
 { return Token::Arreglo; }
 	YY_BREAK
 case 11:
 YY_RULE_SETUP
-#line 37 "CompiLexerImpl.l"
+#line 39 "CompiLexerImpl.l"
 { return Token::Var; }
 	YY_BREAK
 case 12:
 YY_RULE_SETUP
-#line 39 "CompiLexerImpl.l"
+#line 41 "CompiLexerImpl.l"
 { return Token::Funcion; }
 	YY_BREAK
 case 13:
 YY_RULE_SETUP
-#line 40 "CompiLexerImpl.l"
+#line 42 "CompiLexerImpl.l"
 { return Token::Procedimiento; }
 	YY_BREAK
 case 14:
 YY_RULE_SETUP
-#line 41 "CompiLexerImpl.l"
+#line 43 "CompiLexerImpl.l"
 { return Token::Repita; }
 	YY_BREAK
 case 15:
 YY_RULE_SETUP
-#line 42 "CompiLexerImpl.l"
+#line 44 "CompiLexerImpl.l"
 { return Token::Escriba; }
 	YY_BREAK
 case 16:
 YY_RULE_SETUP
-#line 43 "CompiLexerImpl.l"
+#line 45 "CompiLexerImpl.l"
 { return Token::Llamar; }
 	YY_BREAK
 case 17:
 YY_RULE_SETUP
-#line 44 "CompiLexerImpl.l"
+#line 46 "CompiLexerImpl.l"
 { return Token::Lectura; }
 	YY_BREAK
 case 18:
 YY_RULE_SETUP
-#line 45 "CompiLexerImpl.l"
+#line 47 "CompiLexerImpl.l"
 { return Token::Escritura; }
 	YY_BREAK
 case 19:
 YY_RULE_SETUP
-#line 46 "CompiLexerImpl.l"
+#line 48 "CompiLexerImpl.l"
 { return Token::Leer; }
 	YY_BREAK
 case 20:
 YY_RULE_SETUP
-#line 47 "CompiLexerImpl.l"
+#line 49 "CompiLexerImpl.l"
 { return Token::Escribir; }
 	YY_BREAK
 case 21:
 YY_RULE_SETUP
-#line 48 "CompiLexerImpl.l"
+#line 50 "CompiLexerImpl.l"
 { return Token::Tipo; }
 	YY_BREAK
 case 22:
 YY_RULE_SETUP
-#line 49 "CompiLexerImpl.l"
+#line 51 "CompiLexerImpl.l"
 { return Token::Registro; }
 	YY_BREAK
 case 23:
 YY_RULE_SETUP
-#line 50 "CompiLexerImpl.l"
+#line 52 "CompiLexerImpl.l"
 { return Token::Cerrar; }
 	YY_BREAK
 case 24:
 YY_RULE_SETUP
-#line 51 "CompiLexerImpl.l"
+#line 53 "CompiLexerImpl.l"
 { return Token::Archivo; }
 	YY_BREAK
 case 25:
 YY_RULE_SETUP
-#line 52 "CompiLexerImpl.l"
+#line 54 "CompiLexerImpl.l"
 { return Token::Abrir; }
 	YY_BREAK
 case 26:
 YY_RULE_SETUP
-#line 53 "CompiLexerImpl.l"
+#line 55 "CompiLexerImpl.l"
 { return Token::Como; }
 	YY_BREAK
 case 27:
 YY_RULE_SETUP
-#line 54 "CompiLexerImpl.l"
+#line 56 "CompiLexerImpl.l"
 { return Token::Lea; }
 	YY_BREAK
 case 28:
 YY_RULE_SETUP
-#line 56 "CompiLexerImpl.l"
+#line 58 "CompiLexerImpl.l"
 { return Token::Para; }
 	YY_BREAK
 case 29:
 YY_RULE_SETUP
-#line 57 "CompiLexerImpl.l"
+#line 59 "CompiLexerImpl.l"
 { return Token::Mientras; }
 	YY_BREAK
 case 30:
 YY_RULE_SETUP
-#line 58 "CompiLexerImpl.l"
+#line 60 "CompiLexerImpl.l"
 { return Token::Haga; }
 	YY_BREAK
 case 31:
 YY_RULE_SETUP
-#line 59 "CompiLexerImpl.l"
+#line 61 "CompiLexerImpl.l"
 { return Token::Hasta; }
 	YY_BREAK
 case 32:
 YY_RULE_SETUP
-#line 60 "CompiLexerImpl.l"
+#line 62 "CompiLexerImpl.l"
 { return Token::Secuencial; }
 	YY_BREAK
 case 33:
 YY_RULE_SETUP
-#line 62 "CompiLexerImpl.l"
+#line 64 "CompiLexerImpl.l"
 { return Token::Si; }
 	YY_BREAK
 case 34:
 YY_RULE_SETUP
-#line 63 "CompiLexerImpl.l"
+#line 65 "CompiLexerImpl.l"
 { return Token::SiNoSi; }
 	YY_BREAK
 case 35:
 YY_RULE_SETUP
-#line 64 "CompiLexerImpl.l"
+#line 66 "CompiLexerImpl.l"
 { return Token::Entonces; }
 	YY_BREAK
 case 36:
 YY_RULE_SETUP
-#line 65 "CompiLexerImpl.l"
+#line 67 "CompiLexerImpl.l"
 { return Token::Sino; }
 	YY_BREAK
 case 37:
 YY_RULE_SETUP
-#line 66 "CompiLexerImpl.l"
+#line 68 "CompiLexerImpl.l"
 { return Token::Retorne; }
 	YY_BREAK
 case 38:
 YY_RULE_SETUP
-#line 67 "CompiLexerImpl.l"
+#line 69 "CompiLexerImpl.l"
 { return Token::Caso; }
 	YY_BREAK
 case 39:
 YY_RULE_SETUP
-#line 68 "CompiLexerImpl.l"
+#line 70 "CompiLexerImpl.l"
 { return Token::C_O; }
 	YY_BREAK
 case 40:
 YY_RULE_SETUP
-#line 69 "CompiLexerImpl.l"
+#line 71 "CompiLexerImpl.l"
 { return Token::C_Y; }
 	YY_BREAK
 case 41:
 YY_RULE_SETUP
-#line 70 "CompiLexerImpl.l"
+#line 72 "CompiLexerImpl.l"
 { return Token::C_No; }
 	YY_BREAK
 case 42:
 YY_RULE_SETUP
-#line 71 "CompiLexerImpl.l"
+#line 73 "CompiLexerImpl.l"
 { return Token::Div; }
 	YY_BREAK
 case 43:
 YY_RULE_SETUP
-#line 72 "CompiLexerImpl.l"
+#line 74 "CompiLexerImpl.l"
 { return Token::Mod; }
 	YY_BREAK
 case 44:
 YY_RULE_SETUP
-#line 73 "CompiLexerImpl.l"
+#line 75 "CompiLexerImpl.l"
 { return Token::Verdadero; }
 	YY_BREAK
 case 45:
 YY_RULE_SETUP
-#line 74 "CompiLexerImpl.l"
+#line 76 "CompiLexerImpl.l"
 { return Token::Falso; }
 	YY_BREAK
 case 46:
 YY_RULE_SETUP
-#line 76 "CompiLexerImpl.l"
+#line 78 "CompiLexerImpl.l"
 { return Token::Inicio; }
 	YY_BREAK
 case 47:
 YY_RULE_SETUP
-#line 77 "CompiLexerImpl.l"
+#line 79 "CompiLexerImpl.l"
 { return Token::Final; }
 	YY_BREAK
 case 48:
 YY_RULE_SETUP
-#line 78 "CompiLexerImpl.l"
+#line 80 "CompiLexerImpl.l"
 { return Token::Fin; }
 	YY_BREAK
 case 49:
 YY_RULE_SETUP
-#line 80 "CompiLexerImpl.l"
+#line 82 "CompiLexerImpl.l"
 { return Token::Es; }
 	YY_BREAK
 case 50:
 YY_RULE_SETUP
-#line 81 "CompiLexerImpl.l"
+#line 83 "CompiLexerImpl.l"
 { return Token::De; }
 	YY_BREAK
 case 51:
 YY_RULE_SETUP
-#line 83 "CompiLexerImpl.l"
+#line 85 "CompiLexerImpl.l"
 { return Token::OpenCorch; }
 	YY_BREAK
 case 52:
 YY_RULE_SETUP
-#line 84 "CompiLexerImpl.l"
+#line 86 "CompiLexerImpl.l"
 { return Token::CloseCorch; }
 	YY_BREAK
 case 53:
 YY_RULE_SETUP
-#line 85 "CompiLexerImpl.l"
+#line 87 "CompiLexerImpl.l"
 { return Token::Coma; }
 	YY_BREAK
 case 54:
 YY_RULE_SETUP
-#line 86 "CompiLexerImpl.l"
+#line 88 "CompiLexerImpl.l"
 { return Token::Colon; }
 	YY_BREAK
 case 55:
 YY_RULE_SETUP
-#line 87 "CompiLexerImpl.l"
+#line 89 "CompiLexerImpl.l"
 { return Token::OpenPar; }
 	YY_BREAK
 case 56:
 YY_RULE_SETUP
-#line 88 "CompiLexerImpl.l"
+#line 90 "CompiLexerImpl.l"
 { return Token::ClosePar; }
 	YY_BREAK
 case 57:
 YY_RULE_SETUP
-#line 89 "CompiLexerImpl.l"
+#line 91 "CompiLexerImpl.l"
 { return Token::OpPuntero; }
 	YY_BREAK
 case 58:
 YY_RULE_SETUP
-#line 90 "CompiLexerImpl.l"
+#line 92 "CompiLexerImpl.l"
 { return Token::OpAdd; }
 	YY_BREAK
 case 59:
 YY_RULE_SETUP
-#line 91 "CompiLexerImpl.l"
+#line 93 "CompiLexerImpl.l"
 { return Token::OpSub; }
 	YY_BREAK
 case 60:
 YY_RULE_SETUP
-#line 92 "CompiLexerImpl.l"
+#line 94 "CompiLexerImpl.l"
 { return Token::OpMult; }
 	YY_BREAK
 case 61:
 YY_RULE_SETUP
-#line 93 "CompiLexerImpl.l"
+#line 95 "CompiLexerImpl.l"
 { return Token::OpSombrero; }
 	YY_BREAK
 case 62:
 YY_RULE_SETUP
-#line 94 "CompiLexerImpl.l"
+#line 96 "CompiLexerImpl.l"
 { return Token::OpMenor; }
 	YY_BREAK
 case 63:
 YY_RULE_SETUP
-#line 95 "CompiLexerImpl.l"
+#line 97 "CompiLexerImpl.l"
 { return Token::OpMayor; }
 	YY_BREAK
 case 64:
 YY_RULE_SETUP
-#line 96 "CompiLexerImpl.l"
+#line 98 "CompiLexerImpl.l"
 { return Token::OpIgual; }
 	YY_BREAK
 case 65:
 YY_RULE_SETUP
-#line 97 "CompiLexerImpl.l"
+#line 99 "CompiLexerImpl.l"
 { return Token::OpDiple; }
 	YY_BREAK
 case 66:
 YY_RULE_SETUP
-#line 98 "CompiLexerImpl.l"
+#line 100 "CompiLexerImpl.l"
 { return Token::OpMenorI; }
 	YY_BREAK
 case 67:
 YY_RULE_SETUP
-#line 99 "CompiLexerImpl.l"
+#line 101 "CompiLexerImpl.l"
 { return Token::OpMayorI; }
 	YY_BREAK
 case 68:
 YY_RULE_SETUP
-#line 100 "CompiLexerImpl.l"
+#line 102 "CompiLexerImpl.l"
 { return Token::SemiColon; }
 	YY_BREAK
 case 69:
 YY_RULE_SETUP
-#line 101 "CompiLexerImpl.l"
+#line 103 "CompiLexerImpl.l"
 { return Token::Asignar; }
 	YY_BREAK
 case 70:
 YY_RULE_SETUP
-#line 103 "CompiLexerImpl.l"
-{ *lval = std::string(yytext); return Token::Character; }
+#line 105 "CompiLexerImpl.l"
+{   return Token::Character; }
 	YY_BREAK
 case 71:
 YY_RULE_SETUP
-#line 104 "CompiLexerImpl.l"
-{ *lval = std::string(yytext); return Token::String; }
+#line 106 "CompiLexerImpl.l"
+{  return Token::String; }
 	YY_BREAK
 case 72:
 YY_RULE_SETUP
-#line 105 "CompiLexerImpl.l"
-{ *lval = std::atof(yytext); return Token::Number; }
+#line 107 "CompiLexerImpl.l"
+{ *lval = new NumExpr(std::atof(yytext)); return Token::Number; }
 	YY_BREAK
 case 73:
 YY_RULE_SETUP
-#line 106 "CompiLexerImpl.l"
-{ *lval = std::string(yytext); return Token::Ident; }
+#line 108 "CompiLexerImpl.l"
+{ *lval = new IdentExpr(std::string(yytext)); return Token::Ident; }
 	YY_BREAK
 case 74:
 YY_RULE_SETUP
-#line 108 "CompiLexerImpl.l"
+#line 110 "CompiLexerImpl.l"
 { std::cerr << "Invalid symbol\n"; std::cout<< yytext; return Token::Error; }
 	YY_BREAK
 case 75:
 YY_RULE_SETUP
-#line 110 "CompiLexerImpl.l"
+#line 112 "CompiLexerImpl.l"
 { BEGIN(INITIAL); }
 	YY_BREAK
 case 76:
 /* rule 76 can match eol */
 YY_RULE_SETUP
-#line 111 "CompiLexerImpl.l"
+#line 113 "CompiLexerImpl.l"
 { /* Nothing */ }
 	YY_BREAK
 case YY_STATE_EOF(comment):
-#line 112 "CompiLexerImpl.l"
+#line 114 "CompiLexerImpl.l"
 { std::cerr << "Warning: Block comment without close\n";  }
 	YY_BREAK
 case 77:
 YY_RULE_SETUP
-#line 113 "CompiLexerImpl.l"
+#line 115 "CompiLexerImpl.l"
 ECHO;
 	YY_BREAK
-#line 1400 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp"
+#line 1402 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -2576,5 +2578,5 @@ void yyfree (void * ptr , yyscan_t yyscanner)
 
 #define YYTABLES_NAME "yytables"
 
-#line 113 "CompiLexerImpl.l"
+#line 115 "CompiLexerImpl.l"
 

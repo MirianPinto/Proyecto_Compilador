@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/Compilador.dir/CompiAst.cpp.o"
+  "CMakeFiles/Compilador.dir/CompiAst.cpp.o.d"
   "CMakeFiles/Compilador.dir/CompiLexer.cpp.o"
   "CMakeFiles/Compilador.dir/CompiLexer.cpp.o.d"
   "CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o"
@@ -9,10 +11,12 @@ file(REMOVE_RECURSE
   "CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o.d"
   "CMakeFiles/Compilador.dir/main.cpp.o"
   "CMakeFiles/Compilador.dir/main.cpp.o.d"
+  "CompiAst.cpp"
+  "CompiAst.hpp"
   "CompiLexerImpl.cpp"
-  "CompiLexerImpl.h"
+  "CompiLexerImpl.hpp"
   "CompiParserImpl.cpp"
-  "CompiParserImpl.h"
+  "CompiParserImpl.hpp"
   "Compilador"
   "Compilador.pdb"
 )

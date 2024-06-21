@@ -35,8 +35,8 @@
    especially those whose name start with YY_ or yy_.  They are
    private implementation details that can be changed or removed.  */
 
-#ifndef YY_YY_HOME_MIRIAN_COMPILADORES_2_PROYECTO_COMPILADOR_BUILD_COMPIPARSERIMPL_H_INCLUDED
-# define YY_YY_HOME_MIRIAN_COMPILADORES_2_PROYECTO_COMPILADOR_BUILD_COMPIPARSERIMPL_H_INCLUDED
+#ifndef YY_YY_HOME_MIRIAN_COMPILADORES_2_PROYECTO_COMPILADOR_BUILD_COMPIPARSERIMPL_HPP_INCLUDED
+# define YY_YY_HOME_MIRIAN_COMPILADORES_2_PROYECTO_COMPILADOR_BUILD_COMPIPARSERIMPL_HPP_INCLUDED
 /* Debug traces.  */
 #ifndef YYDEBUG
 # define YYDEBUG 0
@@ -45,18 +45,20 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 28 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiParserImpl.y"
+#line 28 "CompiParserImpl.y"
 
       
-      #include <variant>
+      #include <string>
+      #include "CompiAst.hpp"
 
       class CompiParser;
 
-      using ParserValueType = std::variant<std::string, double>;
+      using ParserValueType = AstNode *;
+
       #define YYSTYPE ParserValueType
       #define YYSTYPE_IS_DECLARED 1
 
-#line 60 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.h"
+#line 62 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.hpp"
 
 /* Token kinds.  */
 #ifndef YYTOKENTYPE
@@ -153,4 +155,4 @@ typedef int YYSTYPE;
 int yyparse (CompiParser& parse);
 
 
-#endif /* !YY_YY_HOME_MIRIAN_COMPILADORES_2_PROYECTO_COMPILADOR_BUILD_COMPIPARSERIMPL_H_INCLUDED  */
+#endif /* !YY_YY_HOME_MIRIAN_COMPILADORES_2_PROYECTO_COMPILADOR_BUILD_COMPIPARSERIMPL_HPP_INCLUDED  */

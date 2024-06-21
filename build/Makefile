@@ -129,6 +129,30 @@ Compilador/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/build
 .PHONY : Compilador/fast
 
+CompiAst.o: CompiAst.cpp.o
+.PHONY : CompiAst.o
+
+# target to build an object file
+CompiAst.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiAst.cpp.o
+.PHONY : CompiAst.cpp.o
+
+CompiAst.i: CompiAst.cpp.i
+.PHONY : CompiAst.i
+
+# target to preprocess a source file
+CompiAst.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiAst.cpp.i
+.PHONY : CompiAst.cpp.i
+
+CompiAst.s: CompiAst.cpp.s
+.PHONY : CompiAst.s
+
+# target to generate assembly for a file
+CompiAst.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiAst.cpp.s
+.PHONY : CompiAst.cpp.s
+
 CompiLexer.o: CompiLexer.cpp.o
 .PHONY : CompiLexer.o
 
@@ -258,6 +282,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... Compilador"
+	@echo "... CompiAst.o"
+	@echo "... CompiAst.i"
+	@echo "... CompiAst.s"
 	@echo "... CompiLexer.o"
 	@echo "... CompiLexer.i"
 	@echo "... CompiLexer.s"

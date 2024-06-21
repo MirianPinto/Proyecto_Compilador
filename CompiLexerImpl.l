@@ -4,11 +4,13 @@
 %option case-insensitive
 %option extra-type = "std::istream *"
 %{
+    
     #include <iostream>
     #include <cstdlib>
     #include "CompiLexer.hpp"
+    #include "CompiAst.hpp"
 
-    #define YY_DECL Token CompiLexer::nextTokenHelper(yyscan_t yyscanner, CompiLexer::ParserValueType *lval)
+    #define YY_DECL Token CompiLexer::nextTokenHelper(yyscan_t yyscanner, ParserValueType *lval)
     #define yyterminate() return Token::Eof
 
     #define YY_INPUT(buf, result, max_size) \
@@ -100,10 +102,10 @@
 ";"                 { return Token::SemiColon; }
 "="                 { return Token::Asignar; }
 
-\'[^\n]\' { *lval = std::string(yytext); return Token::Character; }
-\"[0-9a-zA-Z_ ]*[^\n]*\" { *lval = std::string(yytext); return Token::String; }
-[0-9]+	            { *lval = std::atof(yytext); return Token::Number; }
-[a-zA-Z_][0-9a-zA-Z_]* { *lval = std::string(yytext); return Token::Ident; }
+\'[^\n]\' {   return Token::Character; }
+\"[0-9a-zA-Z_ ]*[^\n]*\" {  return Token::String; }
+[0-9]+	            { *lval = new NumExpr(std::atof(yytext)); return Token::Number; }
+[a-zA-Z_][0-9a-zA-Z_]* { *lval = new IdentExpr(std::string(yytext)); return Token::Ident; }
 
 .		{ std::cerr << "Invalid symbol\n"; std::cout<< yytext; return Token::Error; }
 

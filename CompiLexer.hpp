@@ -6,6 +6,8 @@
 #include <unordered_map>
 #include <vector>
 #include <variant>
+#include "CompiAst.hpp"
+
 
 enum class Token: int {
     Eof = 0,
@@ -105,8 +107,8 @@ class CompiLexer
 {
 public:
     using yyscan_t = void*;
-    using ParserValueType = std::variant<std::string, double>;
-
+    using ParserValueType = AstNode *;
+    
 public:
     CompiLexer(std::istream& _in);
     ~CompiLexer();
@@ -117,9 +119,6 @@ public:
     std::string text() const;
 
     const int line() const;
-    //yyget_lineno
-    const char *tokenString(Token tk);
-
    
 private:
     Token nextTokenHelper(yyscan_t yyscanner, ParserValueType *lval);

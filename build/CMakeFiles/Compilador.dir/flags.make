@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/mirian/Compiladores_2/Proyecto_Compilador/build -I/home/mirian/Compiladores_2/Proyecto_Compilador
 
-CXX_FLAGS = 
+CXX_FLAGS = -std=gnu++17
 

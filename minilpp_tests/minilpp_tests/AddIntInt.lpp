@@ -4,6 +4,6 @@ Caracter c
 Inicio
     x <- 65
     _y <- 27
-    z <- x + c
+    z <- x + _y
     Escriba z
 Fin

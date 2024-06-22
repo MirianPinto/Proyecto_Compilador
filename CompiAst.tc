@@ -243,6 +243,10 @@
     AstNode *retorno;
 }
 
+%node LeaStmt Stmt = {
+    AstNode *leer;
+}
+
 
 
 //%operation stdstring toString(AstNode *expr) = {""}
@@ -424,6 +428,8 @@ semantica(BoolExpr) {
     return 0.0;
 }
 
+
+
 semantica(RetorneStmt) {
     return 0.0;
 }
@@ -432,6 +438,10 @@ semantica(WhileStmt) {
     return 0.0;
 }
 semantica(ArregloExpr) {
+    return 0.0;
+}
+
+semantica(LeaStmt) {
     return 0.0;
 }
 
@@ -796,8 +806,8 @@ Gencode(EscribaStmt) {
         }   
 
         if (!encontrado) {
-            std::cout<<"no  declarada el =";
-            //thow std::runtime_error("Variable no declarada");
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());
         }
         code += expr1->code;
         if(tipo == "Entero")
@@ -1035,6 +1045,7 @@ Gencode(IfStmt) {
 }
 
 Gencode(RetorneStmt) {
+
     retorno->Gencode(tipos);
     code += retorno->code;
     code += "\tmov ecx, " + getPlace(retorno) + "\n";
@@ -1046,6 +1057,17 @@ Gencode(RetorneStmt) {
 Gencode(Vacio) {
     place = "";
     code = "";
+    return "";
+}
+
+
+Gencode(LeaStmt) {
+    leer->Gencode(tipos);
+
+    code += "\tmov eax, 5\n";
+    code += "\tint 0x80\n";
+    code += "\tmov "+getPlace(leer)+", eax\n";
+
     return "";
 }
 

@@ -117,24 +117,24 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Compilador
+# Target rules for targets named lpp
 
 # Build rule for target.
-Compilador: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Compilador
-.PHONY : Compilador
+lpp: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 lpp
+.PHONY : lpp
 
 # fast build rule for target.
-Compilador/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/build
-.PHONY : Compilador/fast
+lpp/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/build
+.PHONY : lpp/fast
 
 CompiAst.o: CompiAst.cpp.o
 .PHONY : CompiAst.o
 
 # target to build an object file
 CompiAst.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiAst.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiAst.cpp.o
 .PHONY : CompiAst.cpp.o
 
 CompiAst.i: CompiAst.cpp.i
@@ -142,7 +142,7 @@ CompiAst.i: CompiAst.cpp.i
 
 # target to preprocess a source file
 CompiAst.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiAst.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiAst.cpp.i
 .PHONY : CompiAst.cpp.i
 
 CompiAst.s: CompiAst.cpp.s
@@ -150,7 +150,7 @@ CompiAst.s: CompiAst.cpp.s
 
 # target to generate assembly for a file
 CompiAst.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiAst.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiAst.cpp.s
 .PHONY : CompiAst.cpp.s
 
 CompiLexer.o: CompiLexer.cpp.o
@@ -158,7 +158,7 @@ CompiLexer.o: CompiLexer.cpp.o
 
 # target to build an object file
 CompiLexer.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiLexer.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiLexer.cpp.o
 .PHONY : CompiLexer.cpp.o
 
 CompiLexer.i: CompiLexer.cpp.i
@@ -166,7 +166,7 @@ CompiLexer.i: CompiLexer.cpp.i
 
 # target to preprocess a source file
 CompiLexer.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiLexer.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiLexer.cpp.i
 .PHONY : CompiLexer.cpp.i
 
 CompiLexer.s: CompiLexer.cpp.s
@@ -174,7 +174,7 @@ CompiLexer.s: CompiLexer.cpp.s
 
 # target to generate assembly for a file
 CompiLexer.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiLexer.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiLexer.cpp.s
 .PHONY : CompiLexer.cpp.s
 
 CompiLexerImpl.o: CompiLexerImpl.cpp.o
@@ -182,7 +182,7 @@ CompiLexerImpl.o: CompiLexerImpl.cpp.o
 
 # target to build an object file
 CompiLexerImpl.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiLexerImpl.cpp.o
 .PHONY : CompiLexerImpl.cpp.o
 
 CompiLexerImpl.i: CompiLexerImpl.cpp.i
@@ -190,7 +190,7 @@ CompiLexerImpl.i: CompiLexerImpl.cpp.i
 
 # target to preprocess a source file
 CompiLexerImpl.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiLexerImpl.cpp.i
 .PHONY : CompiLexerImpl.cpp.i
 
 CompiLexerImpl.s: CompiLexerImpl.cpp.s
@@ -198,7 +198,7 @@ CompiLexerImpl.s: CompiLexerImpl.cpp.s
 
 # target to generate assembly for a file
 CompiLexerImpl.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiLexerImpl.cpp.s
 .PHONY : CompiLexerImpl.cpp.s
 
 CompiParser.o: CompiParser.cpp.o
@@ -206,7 +206,7 @@ CompiParser.o: CompiParser.cpp.o
 
 # target to build an object file
 CompiParser.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiParser.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiParser.cpp.o
 .PHONY : CompiParser.cpp.o
 
 CompiParser.i: CompiParser.cpp.i
@@ -214,7 +214,7 @@ CompiParser.i: CompiParser.cpp.i
 
 # target to preprocess a source file
 CompiParser.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiParser.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiParser.cpp.i
 .PHONY : CompiParser.cpp.i
 
 CompiParser.s: CompiParser.cpp.s
@@ -222,7 +222,7 @@ CompiParser.s: CompiParser.cpp.s
 
 # target to generate assembly for a file
 CompiParser.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiParser.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiParser.cpp.s
 .PHONY : CompiParser.cpp.s
 
 CompiParserImpl.o: CompiParserImpl.cpp.o
@@ -230,7 +230,7 @@ CompiParserImpl.o: CompiParserImpl.cpp.o
 
 # target to build an object file
 CompiParserImpl.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiParserImpl.cpp.o
 .PHONY : CompiParserImpl.cpp.o
 
 CompiParserImpl.i: CompiParserImpl.cpp.i
@@ -238,7 +238,7 @@ CompiParserImpl.i: CompiParserImpl.cpp.i
 
 # target to preprocess a source file
 CompiParserImpl.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiParserImpl.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiParserImpl.cpp.i
 .PHONY : CompiParserImpl.cpp.i
 
 CompiParserImpl.s: CompiParserImpl.cpp.s
@@ -246,7 +246,7 @@ CompiParserImpl.s: CompiParserImpl.cpp.s
 
 # target to generate assembly for a file
 CompiParserImpl.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/CompiParserImpl.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/CompiParserImpl.cpp.s
 .PHONY : CompiParserImpl.cpp.s
 
 main.o: main.cpp.o
@@ -254,7 +254,7 @@ main.o: main.cpp.o
 
 # target to build an object file
 main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/main.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/main.cpp.o
 .PHONY : main.cpp.o
 
 main.i: main.cpp.i
@@ -262,7 +262,7 @@ main.i: main.cpp.i
 
 # target to preprocess a source file
 main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/main.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/main.cpp.i
 .PHONY : main.cpp.i
 
 main.s: main.cpp.s
@@ -270,7 +270,7 @@ main.s: main.cpp.s
 
 # target to generate assembly for a file
 main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/main.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/main.cpp.s
 .PHONY : main.cpp.s
 
 # Help Target
@@ -281,7 +281,7 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Compilador"
+	@echo "... lpp"
 	@echo "... CompiAst.o"
 	@echo "... CompiAst.i"
 	@echo "... CompiAst.s"

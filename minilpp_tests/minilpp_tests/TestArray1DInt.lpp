@@ -13,3 +13,14 @@ Inicio
     Escriba x[4]
     Escriba x[5]
 Fin
+
+
+
+push 0x100000000
+push 0x100000004
+push 0x100000008
+
+
+
+main:
+

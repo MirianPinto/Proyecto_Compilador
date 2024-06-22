@@ -1838,278 +1838,284 @@ yyreduce:
 #line 1839 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
+  case 48: /* struct_lea: "Lea" asignar  */
+#line 219 "CompiParserImpl.y"
+                        { yyval = new LeaStmt(yyvsp[0]); }
+#line 1845 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
   case 49: /* llamar_arreglo: "Ident" "[" expr "]"  */
 #line 223 "CompiParserImpl.y"
                                                 { }
-#line 1845 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1851 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 51: /* asign_Var: asignar "<-" valores  */
 #line 231 "CompiParserImpl.y"
                                      {yyval = new AsignarStmt((IdentExpr*)yyvsp[-2],yyvsp[0]); }
-#line 1851 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1857 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 52: /* asignar: "Ident"  */
 #line 234 "CompiParserImpl.y"
                { yyval = yyvsp[0]; }
-#line 1857 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1863 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 54: /* f_escriba: "Escriba" escriba_list  */
 #line 239 "CompiParserImpl.y"
                                 {yyval = new EscribaStmt(yyvsp[0]); }
-#line 1863 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1869 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 55: /* cliclo_for: "Para" asignar "<-" valores_ciclos "Hasta" expr "Haga" block_actions "Fin" "Para"  */
 #line 243 "CompiParserImpl.y"
                                                                                          { yyval = new ForStmt(new AsignarStmt((IdentExpr*)yyvsp[-8],yyvsp[-7]),(Expr*)yyvsp[-4],yyvsp[-2] ); }
-#line 1869 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1875 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 56: /* cliclo_While: "Mientras" condi "Haga" block_actions "Fin" "Mientras"  */
 #line 246 "CompiParserImpl.y"
                                                              { yyval = new WhileStmt(yyvsp[-4],yyvsp[-2]); }
-#line 1875 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1881 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 58: /* si_statement: "Si" expr "Entonces" block_actions "Sino Si" si2_statement  */
 #line 252 "CompiParserImpl.y"
                                                                   { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],yyvsp[0]); }
-#line 1881 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1887 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 59: /* si_statement: "Si" expr "Entonces" block_actions "Sino" block_actions "Fin" "Si"  */
 #line 253 "CompiParserImpl.y"
                                                                         { yyval = new IfStmt(yyvsp[-6],yyvsp[-4],yyvsp[-2]); }
-#line 1887 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1893 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 60: /* si_statement: "Si" expr "Entonces" block_actions "Fin" "Si"  */
 #line 254 "CompiParserImpl.y"
                                                      { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],new Vacio()); }
-#line 1893 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1899 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 61: /* si2_statement: expr "Entonces" block_actions "Sino Si" si2_statement  */
 #line 256 "CompiParserImpl.y"
                                                                   { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],yyvsp[0]); }
-#line 1899 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1905 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 62: /* si2_statement: expr "Entonces" block_actions "Sino" block_actions "Fin" "Si"  */
 #line 257 "CompiParserImpl.y"
                                                                      { yyval = new IfStmt(yyvsp[-6],yyvsp[-4],yyvsp[-2]); }
-#line 1905 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1911 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 63: /* si2_statement: expr "Entonces" block_actions "Fin" "Si"  */
 #line 258 "CompiParserImpl.y"
                                                    { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],new Vacio()); }
-#line 1911 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1917 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 72: /* escriba_list: valores  */
 #line 283 "CompiParserImpl.y"
                       {yyval = yyvsp[0];}
-#line 1917 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1923 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 73: /* valores: expr  */
 #line 286 "CompiParserImpl.y"
               {yyval = yyvsp[0];}
-#line 1923 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1929 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 74: /* valores: "Verdadero"  */
 #line 287 "CompiParserImpl.y"
                     {yyval = new BoolExpr(1);}
-#line 1929 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1935 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 75: /* valores: "Falso"  */
 #line 288 "CompiParserImpl.y"
                   {yyval = new BoolExpr(0);}
-#line 1935 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1941 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 76: /* valores: "Character"  */
 #line 289 "CompiParserImpl.y"
                     {yyval = yyvsp[0];}
-#line 1941 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1947 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 77: /* valores: "String"  */
 #line 290 "CompiParserImpl.y"
                   {yyval = yyvsp[0];}
-#line 1947 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1953 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 78: /* tipo: "Entero"  */
 #line 294 "CompiParserImpl.y"
              { yyval = new IdentExpr("Entero"); }
-#line 1953 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1959 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 79: /* tipo: "Real"  */
 #line 295 "CompiParserImpl.y"
               { yyval = new IdentExpr("Real"); }
-#line 1959 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1965 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 81: /* tipo: "Booleano"  */
 #line 297 "CompiParserImpl.y"
                  { yyval = new IdentExpr("Booleano"); }
-#line 1965 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1971 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 82: /* tipo: "Caracter"  */
 #line 298 "CompiParserImpl.y"
                  { yyval = new IdentExpr("Caracter"); }
-#line 1971 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1977 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 83: /* valores_ciclos: enteros  */
 #line 302 "CompiParserImpl.y"
                         { yyval = yyvsp[0]; }
-#line 1977 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1983 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 84: /* valores_ciclos: expr  */
 #line 303 "CompiParserImpl.y"
                    { yyval = yyvsp[0]; }
-#line 1983 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1989 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 85: /* expr: expr "+" term  */
 #line 307 "CompiParserImpl.y"
                         { yyval = new AddExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
-#line 1989 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1995 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 86: /* expr: expr "-" term  */
 #line 308 "CompiParserImpl.y"
                         { yyval = new SubExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
-#line 1995 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2001 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 87: /* expr: term  */
 #line 309 "CompiParserImpl.y"
              { yyval = yyvsp[0]; }
-#line 2001 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2007 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 88: /* term: term "*" condi  */
 #line 312 "CompiParserImpl.y"
                           { yyval = new MulExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
-#line 2007 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2013 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 89: /* term: term "div" condi  */
 #line 313 "CompiParserImpl.y"
                        { yyval = new DivExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
-#line 2013 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2019 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 90: /* term: term "mod" condi  */
 #line 314 "CompiParserImpl.y"
                        { yyval = new ModExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
-#line 2019 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2025 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 91: /* term: condi  */
 #line 315 "CompiParserImpl.y"
               { yyval = yyvsp[0];}
-#line 2025 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2031 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 92: /* condi: condi ">" factor  */
 #line 318 "CompiParserImpl.y"
                             {yyval = new MayorExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
-#line 2031 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2037 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 93: /* condi: condi "<" factor  */
 #line 319 "CompiParserImpl.y"
                              {yyval = new MenorExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
-#line 2037 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2043 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 94: /* condi: condi ">=" factor  */
 #line 320 "CompiParserImpl.y"
                               {yyval = new MayorIExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
-#line 2043 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2049 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 95: /* condi: condi "<=" factor  */
 #line 321 "CompiParserImpl.y"
                               {yyval = new MenorIExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
-#line 2049 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2055 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 96: /* condi: condi "<>" factor  */
 #line 322 "CompiParserImpl.y"
                              {yyval = new DesigualExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
-#line 2055 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2061 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 100: /* condi: condi "=" factor  */
 #line 326 "CompiParserImpl.y"
                              {yyval = new IgualExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
-#line 2061 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2067 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 101: /* condi: factor  */
 #line 327 "CompiParserImpl.y"
                {yyval = yyvsp[0]; }
-#line 2067 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2073 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 103: /* factor: enteros  */
 #line 331 "CompiParserImpl.y"
                  { yyval = yyvsp[0]; }
-#line 2073 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2079 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 104: /* factor: "Ident"  */
 #line 332 "CompiParserImpl.y"
                { yyval = yyvsp[0]; }
-#line 2079 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2085 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 105: /* factor: "no" "Ident"  */
 #line 333 "CompiParserImpl.y"
                     { }
-#line 2085 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2091 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 106: /* factor: "Verdadero"  */
 #line 334 "CompiParserImpl.y"
                   {yyval = new BoolExpr(1);}
-#line 2091 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2097 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 107: /* factor: "Falso"  */
 #line 335 "CompiParserImpl.y"
                   {yyval = new BoolExpr(0);}
-#line 2097 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2103 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 110: /* enteros: "Number"  */
 #line 340 "CompiParserImpl.y"
                 { yyval = yyvsp[0]; }
-#line 2103 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2109 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 111: /* enteros: "-" "Number"  */
 #line 341 "CompiParserImpl.y"
                      { yyval = yyvsp[-1]; }
-#line 2109 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2115 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
 
-#line 2113 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 2119 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
 
       default: break;
     }

@@ -71,6 +71,7 @@ const int EscribaStmt_kind = 31;
 const int IfStmt_kind = 32;
 const int WhileStmt_kind = 33;
 const int RetorneStmt_kind = 34;
+const int LeaStmt_kind = 35;
 
 class AstNode;
 class Expr;
@@ -106,6 +107,7 @@ class EscribaStmt;
 class IfStmt;
 class WhileStmt;
 class RetorneStmt;
+class LeaStmt;
 
 class YYNODESTATE
 {
@@ -120,7 +122,7 @@ private:
 	struct YYNODESTATE_block *blocks__;
 	struct YYNODESTATE_push *push_stack__;
 	int used__;
-#line 124 "CompiAst.hpp"
+#line 126 "CompiAst.hpp"
 private:
 
 	static YYNODESTATE *state__;
@@ -890,6 +892,28 @@ public:
 protected:
 
 	virtual ~RetorneStmt();
+
+};
+
+class LeaStmt : public Stmt
+{
+public:
+
+	LeaStmt(AstNode * leer);
+
+public:
+
+	AstNode * leer;
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~LeaStmt();
 
 };
 

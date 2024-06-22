@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/mirian/Compiladores_2/Proyecto_Compilador/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/Compilador.dir/all
+all: CMakeFiles/lpp.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/Compilador.dir/clean
+clean: CMakeFiles/lpp.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Compilador.dir
+# Target rules for target CMakeFiles/lpp.dir
 
 # All Build rule for target.
-CMakeFiles/Compilador.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target Compilador"
-.PHONY : CMakeFiles/Compilador.dir/all
+CMakeFiles/lpp.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8,9,10 "Built target lpp"
+.PHONY : CMakeFiles/lpp.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Compilador.dir/rule: cmake_check_build_system
+CMakeFiles/lpp.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles 10
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Compilador.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/lpp.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/mirian/Compiladores_2/Proyecto_Compilador/build/CMakeFiles 0
-.PHONY : CMakeFiles/Compilador.dir/rule
+.PHONY : CMakeFiles/lpp.dir/rule
 
 # Convenience name for target.
-Compilador: CMakeFiles/Compilador.dir/rule
-.PHONY : Compilador
+lpp: CMakeFiles/lpp.dir/rule
+.PHONY : lpp
 
 # clean rule for target.
-CMakeFiles/Compilador.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Compilador.dir/build.make CMakeFiles/Compilador.dir/clean
-.PHONY : CMakeFiles/Compilador.dir/clean
+CMakeFiles/lpp.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/lpp.dir/build.make CMakeFiles/lpp.dir/clean
+.PHONY : CMakeFiles/lpp.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

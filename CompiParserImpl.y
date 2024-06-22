@@ -200,15 +200,15 @@ block_actions: block_actions actions {$$ = new BlockStmts($1,$2);}
 ;
 
 //acciones del main
-actions: asign_Var { $$ = $1;}
-      | f_escriba { $$ = $1;}
-      | cliclo_for { $$ = $1;}
-      | retorne { $$ = $1;}
-      | estructura_llamar { $$ = $1;}
-      | cliclo_While { $$ = $1;}
-      | cliclo_Repeat { $$ = $1;}
-      | struct_lea { $$ = $1;}
-      | si_statement { $$ = $1;}
+actions: asign_Var { $$ = $1;} //si
+      | f_escriba { $$ = $1;} //si
+      | cliclo_for { $$ = $1;} //si
+      | retorne { $$ = $1;} //si
+      | estructura_llamar { $$ = $1;} 
+      | cliclo_While { $$ = $1;} //si
+      | cliclo_Repeat { $$ = $1;} //si
+      | struct_lea { $$ = $1;} //si
+      | si_statement { $$ = $1;} //si
       | %empty { $$ = new Vacio();}
 ;
 
@@ -216,7 +216,7 @@ actions: asign_Var { $$ = $1;}
 
 
 //estructura Lea - sirve para leer un dato del usuario
-struct_lea: Lea asignar
+struct_lea: Lea asignar { $$ = new LeaStmt($2); }
 ;
 
 //llamado de arreglo

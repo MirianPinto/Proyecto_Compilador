@@ -263,10 +263,119 @@ Gencode(AddExpr) {
 
     expr1->Gencode(tipos);
     expr2->Gencode(tipos);
-    code += expr1->code + expr2->code;
-    code += "\tmov eax, " + getPlace(expr1) + "\n";
-    code += "\tadd eax, " + getPlace(expr2) + "\n";
-    code += "\tmov [" + place + "], eax\n";
+
+    if(expr1->isA(NumExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        code += expr1->code + expr2->code;
+        code += "\tmov eax, " + getPlace(expr1) + "\n";
+        code += "\tadd eax, " + getPlace(expr2) + "\n";
+        code += "\tmov [" + place + "], eax\n";
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo1 = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::string tipo2 = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo1 == "Entero" && tipo2 == "Entero")
+        {
+            code += expr1->code + expr2->code;
+            code += "\tmov eax, " + getPlace(expr1) + "\n";
+            code += "\tadd eax, " + getPlace(expr2) + "\n";
+            code += "\tmov [" + place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: tipos de datos icorrectos " + static_cast<IdentExpr *>(expr1)->text + " " + static_cast<IdentExpr *>(expr2)->text;;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+
+        if(tipo == "Entero")
+        {
+            code += expr1->code + expr2->code;
+            code += "\tmov eax, " + getPlace(expr1) + "\n";
+            code += "\tadd eax, " + getPlace(expr2) + "\n";
+            code += "\tmov [" + place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else if (expr1->isA(NumExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo == "Entero")
+        {
+            code += expr1->code + expr2->code;
+            code += "\tmov eax, " + getPlace(expr1) + "\n";
+            code += "\tadd eax, " + getPlace(expr2) + "\n";
+            code += "\tmov [" + place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else
+    {
+        std::string msgcompleto = "Error: Tipos ded datos incorrectos " ;
+        throw std::runtime_error(msgcompleto.c_str());
+    }
+    
     return code;
 }
 
@@ -275,10 +384,119 @@ Gencode(MulExpr) {
 	
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
-    code += expr1->code + expr2->code;
-	code += "\tmov eax, " + getPlace(expr1) +"\n";
-    code += "\timul eax, " + getPlace(expr2) + "\n";
-	code += "\tmov ["+ place + "], eax\n";
+    
+
+    if(expr1->isA(NumExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        code += expr1->code + expr2->code;
+        code += "\tmov eax, " + getPlace(expr1) +"\n";
+        code += "\timul eax, " + getPlace(expr2) + "\n";
+        code += "\tmov ["+ place + "], eax\n";
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo1 = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::string tipo2 = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo1 == "Entero" && tipo2 == "Entero")
+        {
+            code += expr1->code + expr2->code;
+            code += "\tmov eax, " + getPlace(expr1) +"\n";
+            code += "\timul eax, " + getPlace(expr2) + "\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: tipos de datos icorrectos " + static_cast<IdentExpr *>(expr1)->text + " " + static_cast<IdentExpr *>(expr2)->text;;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+
+        if(tipo == "Entero")
+        {
+            code += expr1->code + expr2->code;
+            code += "\tmov eax, " + getPlace(expr1) +"\n";
+            code += "\timul eax, " + getPlace(expr2) + "\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else if (expr1->isA(NumExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo == "Entero")
+        {
+            code += expr1->code + expr2->code;
+            code += "\tmov eax, " + getPlace(expr1) +"\n";
+            code += "\timul eax, " + getPlace(expr2) + "\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else
+    {
+        std::string msgcompleto = "Error: Tipos ded datos incorrectos " ;
+        throw std::runtime_error(msgcompleto.c_str());
+    }
 	return code;
 }
 
@@ -287,10 +505,119 @@ Gencode(SubExpr) {
 
     expr1->Gencode(tipos);
     expr2->Gencode(tipos);
-    code += expr1->code + expr2->code;
-    code += "\tmov eax, " + getPlace(expr1) + "\n";
-    code += "\tsub eax, " + getPlace(expr2) + "\n";
-    code += "\tmov [" + place + "], eax\n";
+    
+    
+    if(expr1->isA(NumExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        code += expr1->code + expr2->code;
+        code += "\tmov eax, " + getPlace(expr1) + "\n";
+        code += "\tsub eax, " + getPlace(expr2) + "\n";
+        code += "\tmov [" + place + "], eax\n";
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo1 = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::string tipo2 = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo1 == "Entero" && tipo2 == "Entero")
+        {
+            code += expr1->code + expr2->code;
+            code += "\tmov eax, " + getPlace(expr1) + "\n";
+            code += "\tsub eax, " + getPlace(expr2) + "\n";
+            code += "\tmov [" + place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: tipos de datos icorrectos " + static_cast<IdentExpr *>(expr1)->text + " " + static_cast<IdentExpr *>(expr2)->text;;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+
+        if(tipo == "Entero")
+        {
+           code += expr1->code + expr2->code;
+            code += "\tmov eax, " + getPlace(expr1) + "\n";
+            code += "\tsub eax, " + getPlace(expr2) + "\n";
+            code += "\tmov [" + place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else if (expr1->isA(NumExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo == "Entero")
+        {
+            code += expr1->code + expr2->code;
+            code += "\tmov eax, " + getPlace(expr1) + "\n";
+            code += "\tsub eax, " + getPlace(expr2) + "\n";
+            code += "\tmov [" + place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else
+    {
+        std::string msgcompleto = "Error: Tipos ded datos incorrectos " ;
+        throw std::runtime_error(msgcompleto.c_str());
+    }
     return code;
 }
 
@@ -317,14 +644,137 @@ Gencode(MayorExpr) {
     code += expr1->code + expr2->code;
     std::string Etiqueta_mayor = newLabel();
 	std::string Etiqueta_Fin = newLabel();
-	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	code += "\tjle "+ Etiqueta_mayor +"\n";
-	code += "\tmov eax, 1\n";
-    code += "\tjmp "+Etiqueta_Fin+"\n";
-    code += Etiqueta_mayor + ": \n";
-    code += "\t mov eax, 0\n";
-    code += Etiqueta_Fin + ":\n";
-	code += "\tmov ["+ place + "], eax\n";
+	
+    
+    
+    if(expr1->isA(NumExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+        code += "\tjle "+ Etiqueta_mayor +"\n";
+        code += "\tmov eax, 1\n";
+        code += "\tjmp "+Etiqueta_Fin+"\n";
+        code += Etiqueta_mayor + ": \n";
+        code += "\t mov eax, 0\n";
+        code += Etiqueta_Fin + ":\n";
+        code += "\tmov ["+ place + "], eax\n";
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo1 = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::string tipo2 = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo1 == "Entero" && tipo2 == "Entero")
+        {
+            code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjle "+ Etiqueta_mayor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_mayor + ": \n";
+            code += "\t mov eax, 0\n";
+            code += Etiqueta_Fin + ":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: tipos de datos icorrectos " + static_cast<IdentExpr *>(expr1)->text + " " + static_cast<IdentExpr *>(expr2)->text;;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        
+        if(tipo == "Entero")
+        {
+           code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjle "+ Etiqueta_mayor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_mayor + ": \n";
+            code += "\t mov eax, 0\n";
+            code += Etiqueta_Fin + ":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else if (expr1->isA(NumExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo == "Entero")
+        {
+            code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjle "+ Etiqueta_mayor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_mayor + ": \n";
+            code += "\t mov eax, 0\n";
+            code += Etiqueta_Fin + ":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else
+    {
+        std::string msgcompleto = "Error: Tipos ded datos incorrectos " ;
+        throw std::runtime_error(msgcompleto.c_str());
+    }
+
 	return code;
 }
 
@@ -335,14 +785,137 @@ Gencode(MenorExpr) {
     code += expr1->code + expr2->code;
     std::string Etiqueta_menor = newLabel();
 	std::string Etiqueta_Fin = newLabel();
-	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	code += "\tjge "+ Etiqueta_menor +"\n";
-	code += "\tmov eax, 1\n";
-    code += "\tjmp "+Etiqueta_Fin+"\n";
-    code += Etiqueta_menor + ": \n";
-    code += "\t mov eax, 0\n";
-    code += Etiqueta_Fin+":\n";
-	code += "\tmov ["+ place + "], eax\n";
+
+    
+    
+    if(expr1->isA(NumExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+        code += "\tjge "+ Etiqueta_menor +"\n";
+        code += "\tmov eax, 1\n";
+        code += "\tjmp "+Etiqueta_Fin+"\n";
+        code += Etiqueta_menor + ": \n";
+        code += "\t mov eax, 0\n";
+        code += Etiqueta_Fin+":\n";
+        code += "\tmov ["+ place + "], eax\n";
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo1 = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::string tipo2 = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo1 == "Entero" && tipo2 == "Entero")
+        {
+            code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjge "+ Etiqueta_menor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_menor + ": \n";
+            code += "\t mov eax, 0\n";
+            code += Etiqueta_Fin+":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: tipos de datos icorrectos " + static_cast<IdentExpr *>(expr1)->text + " " + static_cast<IdentExpr *>(expr2)->text;;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        //std::cout<< tipo;
+        if(tipo == "Entero")
+        {
+           code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjge "+ Etiqueta_menor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_menor + ": \n";
+            code += "\t mov eax, 0\n";
+            code += Etiqueta_Fin+":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else if (expr1->isA(NumExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo == "Entero")
+        {
+            code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjge "+ Etiqueta_menor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_menor + ": \n";
+            code += "\t mov eax, 0\n";
+            code += Etiqueta_Fin+":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else
+    {
+        std::string msgcompleto = "Error: Tipos ded datos incorrectos " ;
+        throw std::runtime_error(msgcompleto.c_str());
+    }
+
 	return code;
 }
 
@@ -353,14 +926,134 @@ Gencode(MayorIExpr) {
     code += expr1->code + expr2->code;
     std::string Etiqueta_mayor = newLabel();
 	std::string Etiqueta_Fin = newLabel();
-	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	code += "\tjl " + Etiqueta_mayor +"\n";
-	code += "\tmov eax, 1\n";
-    code += "\tjmp " + Etiqueta_Fin + "\n";
-    code += Etiqueta_mayor + ": \n";
-    code += "\t mov eax, 0\n" ;
-    code += Etiqueta_Fin + ":\n";
-	code += "\tmov ["+ place + "], eax\n";
+    
+    if(expr1->isA(NumExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+        code += "\tjl " + Etiqueta_mayor +"\n";
+        code += "\tmov eax, 1\n";
+        code += "\tjmp " + Etiqueta_Fin + "\n";
+        code += Etiqueta_mayor + ": \n";
+        code += "\t mov eax, 0\n" ;
+        code += Etiqueta_Fin + ":\n";
+        code += "\tmov ["+ place + "], eax\n";
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo1 = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::string tipo2 = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo1 == "Entero" && tipo2 == "Entero")
+        {
+           code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjl " + Etiqueta_mayor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp " + Etiqueta_Fin + "\n";
+            code += Etiqueta_mayor + ": \n";
+            code += "\t mov eax, 0\n" ;
+            code += Etiqueta_Fin + ":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: tipos de datos icorrectos " + static_cast<IdentExpr *>(expr1)->text + " " + static_cast<IdentExpr *>(expr2)->text;;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::cout<< tipo;
+        if(tipo == "Entero")
+        {
+           code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjl " + Etiqueta_mayor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp " + Etiqueta_Fin + "\n";
+            code += Etiqueta_mayor + ": \n";
+            code += "\t mov eax, 0\n" ;
+            code += Etiqueta_Fin + ":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else if (expr1->isA(NumExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo == "Entero")
+        {
+            code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjl " + Etiqueta_mayor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp " + Etiqueta_Fin + "\n";
+            code += Etiqueta_mayor + ": \n";
+            code += "\t mov eax, 0\n" ;
+            code += Etiqueta_Fin + ":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else
+    {
+        std::string msgcompleto = "Error: Tipos ded datos incorrectos " ;
+        throw std::runtime_error(msgcompleto.c_str());
+    }
 	return code;
 }
 
@@ -371,13 +1064,131 @@ Gencode(MenorIExpr) {
     code += expr1->code + expr2->code;
     std::string Etiqueta_menor = newLabel();
 	std::string Etiqueta_Fin = newLabel();
-	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	code += "\tjg "+ Etiqueta_menor +"\n";
-	code += "\tmov eax, 1\n";
-    code += "\tjmp "+Etiqueta_Fin+"\n";
-    code += Etiqueta_menor+": \n";
-    code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
-	code += "\tmov ["+ place + "], eax\n";
+	
+
+    if(expr1->isA(NumExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+       code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+        code += "\tjg "+ Etiqueta_menor +"\n";
+        code += "\tmov eax, 1\n";
+        code += "\tjmp "+Etiqueta_Fin+"\n";
+        code += Etiqueta_menor+": \n";
+        code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
+        code += "\tmov ["+ place + "], eax\n";
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo1 = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::string tipo2 = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo1 == "Entero" && tipo2 == "Entero")
+        {
+           code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjg "+ Etiqueta_menor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_menor+": \n";
+            code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: tipos de datos icorrectos " + static_cast<IdentExpr *>(expr1)->text + " " + static_cast<IdentExpr *>(expr2)->text;;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::cout<< tipo;
+        if(tipo == "Entero")
+        {
+           code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjg "+ Etiqueta_menor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_menor+": \n";
+            code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else if (expr1->isA(NumExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo == "Entero")
+        {
+            code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjg "+ Etiqueta_menor +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_menor+": \n";
+            code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else
+    {
+        std::string msgcompleto = "Error: Tipos ded datos incorrectos " ;
+        throw std::runtime_error(msgcompleto.c_str());
+    }
 	return code;
 }
 
@@ -388,13 +1199,131 @@ Gencode(IgualExpr) {
     code += expr1->code + expr2->code;
     std::string Etiqueta_igual = newLabel();
 	std::string Etiqueta_Fin = newLabel();
-	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	code += "\tjne "+ Etiqueta_igual +"\n";
-	code += "\tmov eax, 1\n";
-    code += "\tjmp "+Etiqueta_Fin+"\n"; 
-    code += Etiqueta_igual+": \n";
-    code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
-	code += "\tmov ["+ place + "], eax\n";
+	
+    std::cout<< expr1->getKind();
+    if(expr1->isA(NumExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+       code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+        code += "\tjne "+ Etiqueta_igual +"\n";
+        code += "\tmov eax, 1\n";
+        code += "\tjmp "+Etiqueta_Fin+"\n"; 
+        code += Etiqueta_igual+": \n";
+        code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
+        code += "\tmov ["+ place + "], eax\n";
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = ",Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = ";Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo1 = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::string tipo2 = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo1 == "Entero" && tipo2 == "Entero")
+        {
+          code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjne "+ Etiqueta_igual +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n"; 
+            code += Etiqueta_igual+": \n";
+            code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "lError: tipos de datos icorrectos " + static_cast<IdentExpr *>(expr1)->text + " " + static_cast<IdentExpr *>(expr2)->text;;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "kError:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        //std::cout<< tipo;
+        if(tipo == "Entero")
+        {
+            code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjne "+ Etiqueta_igual +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n"; 
+            code += Etiqueta_igual+": \n";
+            code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
+            code +=  "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "aError: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else if (expr1->isA(NumExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "hError:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo == "Entero")
+        {
+            code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tjne "+ Etiqueta_igual +"\n";
+            code += "\tmov eax, 1\n";
+            code += "\tjmp "+Etiqueta_Fin+"\n"; 
+            code += Etiqueta_igual+": \n";
+            code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "dError: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else
+    {
+        std::string msgcompleto = "bError: Tipos ded datos incorrectos " ;
+        throw std::runtime_error(msgcompleto.c_str());
+    }
 	return code;
 }
 
@@ -405,14 +1334,135 @@ Gencode(DesigualExpr) {
     code += expr1->code + expr2->code;
     std::string Etiqueta_desigual = newLabel();
 	std::string Etiqueta_Fin = newLabel();
-	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	code += "\tje "+ Etiqueta_desigual +"\n";
-	code += "\tmov eax, 1\n"; 
-    code += "\tjmp "+Etiqueta_Fin+"\n";
-    code += Etiqueta_desigual + ": \n"; 
-    code += "\t mov eax, 0\n";
-    code += Etiqueta_Fin +":\n";
-	code += "\tmov ["+ place + "], eax\n";
+	
+    
+    if(expr1->isA(NumExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+      code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+        code += "\tje "+ Etiqueta_desigual +"\n";
+        code += "\tmov eax, 1\n"; 
+        code += "\tjmp "+Etiqueta_Fin+"\n";
+        code += Etiqueta_desigual + ": \n"; 
+        code += "\t mov eax, 0\n";
+        code += Etiqueta_Fin +":\n";
+        code += "\tmov ["+ place + "], eax\n";
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo1 = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::string tipo2 = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo1 == "Entero" && tipo2 == "Entero")
+        {
+          code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tje "+ Etiqueta_desigual +"\n";
+            code += "\tmov eax, 1\n"; 
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_desigual + ": \n"; 
+            code += "\t mov eax, 0\n";
+            code += Etiqueta_Fin +":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: tipos de datos icorrectos " + static_cast<IdentExpr *>(expr1)->text + " " + static_cast<IdentExpr *>(expr2)->text;;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::cout<< tipo;
+        if(tipo == "Entero")
+        {
+           code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tje "+ Etiqueta_desigual +"\n";
+            code += "\tmov eax, 1\n"; 
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_desigual + ": \n"; 
+            code += "\t mov eax, 0\n";
+            code += Etiqueta_Fin +":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else if (expr1->isA(NumExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo == "Entero")
+        {
+         code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
+            code += "\tje "+ Etiqueta_desigual +"\n";
+            code += "\tmov eax, 1\n"; 
+            code += "\tjmp "+Etiqueta_Fin+"\n";
+            code += Etiqueta_desigual + ": \n"; 
+            code += "\t mov eax, 0\n";
+            code += Etiqueta_Fin +":\n";
+            code += "\tmov ["+ place + "], eax\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else
+    {
+        std::string msgcompleto = "Error: Tipos ded datos incorrectos " ;
+        throw std::runtime_error(msgcompleto.c_str());
+    }
 	return code;
 }
 
@@ -423,13 +1473,132 @@ Gencode(ModExpr) {
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
 
-	code += "\tmov eax, " + getPlace(expr1) +"\n";
-    code += "\tcdq\n";
-    code += "\tmov ebx, "+ getPlace(expr2) +"\n";
-    code += "\tidiv ebx\n";
+	
 
-	code += "\tmov ["+ place + "], edx\n";
-	code += "\tmov eax, edx\n";
+    
+    if(expr1->isA(NumExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+      code += "\tmov eax, " + getPlace(expr1) +"\n";
+        code += "\tcdq\n";
+        code += "\tmov ebx, "+ getPlace(expr2) +"\n";
+        code += "\tidiv ebx\n";
+
+        code += "\tmov ["+ place + "], edx\n";
+        code += "\tmov eax, edx\n";
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo1 = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::string tipo2 = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo1 == "Entero" && tipo2 == "Entero")
+        {
+           code += "\tmov eax, " + getPlace(expr1) +"\n";
+            code += "\tcdq\n";
+            code += "\tmov ebx, "+ getPlace(expr2) +"\n";
+            code += "\tidiv ebx\n";
+
+            code += "\tmov ["+ place + "], edx\n";
+            code += "\tmov eax, edx\n";
+        }else
+        {
+            std::string msgcompleto = "Error: tipos de datos icorrectos " + static_cast<IdentExpr *>(expr1)->text + " " + static_cast<IdentExpr *>(expr2)->text;;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+        
+    }else if (expr1->isA(IdentExpr_kind) && expr2->isA(NumExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr1)->text);
+        std::cout<< tipo;
+        if(tipo == "Entero")
+        {
+           code += "\tmov eax, " + getPlace(expr1) +"\n";
+            code += "\tcdq\n";
+            code += "\tmov ebx, "+ getPlace(expr2) +"\n";
+            code += "\tidiv ebx\n";
+
+            code += "\tmov ["+ place + "], edx\n";
+            code += "\tmov eax, edx\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr1)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else if (expr1->isA(NumExpr_kind) && expr2->isA(IdentExpr_kind))
+    {
+        bool encontrado = false;
+        for (const auto& vari : vars) {
+            if (vari.Identificador == static_cast<IdentExpr *>(expr2)->text) {
+                encontrado = true;
+                break;
+            }
+        }
+
+        if (!encontrado) {
+            std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+
+        std::string tipo = TipoVar(tipos, static_cast<IdentExpr *>(expr2)->text);
+
+        if(tipo == "Entero")
+        {
+            code += "\tmov eax, " + getPlace(expr1) +"\n";
+            code += "\tcdq\n";
+            code += "\tmov ebx, "+ getPlace(expr2) +"\n";
+            code += "\tidiv ebx\n";
+
+            code += "\tmov ["+ place + "], edx\n";
+            code += "\tmov eax, edx\n";
+        }else
+        {
+            std::string msgcompleto = "Error: Tipo de datos incorrecto " + static_cast<IdentExpr *>(expr2)->text;
+            throw std::runtime_error(msgcompleto.c_str());\
+        }
+       
+    }else
+    {
+        std::string msgcompleto = "Error: Tipos ded datos incorrectos " ;
+        throw std::runtime_error(msgcompleto.c_str());
+    }
 	return code;
 }
 
@@ -443,6 +1612,7 @@ Gencode(OrExpr) {
     code += "\tmov eax, " + getPlace(expr1) +"\n";
     code += "\tor eax, " + getPlace(expr2) + "\n";
     code += "\tmov ["+ place + "], eax\n";
+    
     return code;
 }
 
@@ -452,10 +1622,11 @@ Gencode(AndExpr) {
     expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
     code += "\tmov eax, " + getPlace(expr1) +"\n";
     code += "\tand eax, " + getPlace(expr2) + "\n";
     code += "\tmov ["+ place + "], eax\n";
+    
+    
     return code;
 }
 
@@ -790,8 +1961,7 @@ Gencode(Declaracionvariable) {
     return code;
 }
 
-Gencode(RepitaStmt)
-{
+Gencode(RepitaStmt){
     std::string Etiqueta_repita = newLabel(); 
     stmtst->Gencode(tipos);
     condi->Gencode(tipos);

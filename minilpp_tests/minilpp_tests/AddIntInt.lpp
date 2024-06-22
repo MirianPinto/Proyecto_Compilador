@@ -1,9 +1,9 @@
 Entero x, _y, z, i 
-
+Caracter c
 
 Inicio
     x <- 65
     _y <- 27
-    z <- x * _y
+    z <- x + c
     Escriba z
 Fin

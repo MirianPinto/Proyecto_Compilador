@@ -9,7 +9,7 @@ Inicio
     Fin Si
 
     a <- 10
-    Si a < 10 y a = 10 Entonces
+    Si (a < 10) o (a = 10) Entonces
         Escriba 'b'
     Sino Si a > 10 Entonces
         Escriba 100

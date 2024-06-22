@@ -64,11 +64,8 @@ label_12:
 label_16: 
 	 mov eax, 0
 label_17:
-	mov [ebp - 20], eax
-	mov eax, dword [ebp - 20]
-	and eax, dword [ebp + 8]
 	mov [ebp - 16], eax
-	mov eax, dword [ebp - 16]
+	mov eax, dword [ebp + 8]
 	cmp eax, 10
 	jne label_18
 	mov eax, 1
@@ -76,6 +73,9 @@ label_17:
 label_18: 
 	 mov eax, 0
 label_19:
+	mov [ebp - 20], eax
+	mov eax, dword [ebp - 16]
+	or eax, dword [ebp - 20]
 	mov [ebp - 12], eax
 	mov eax, dword [ebp - 12]
 	cmp eax, 0

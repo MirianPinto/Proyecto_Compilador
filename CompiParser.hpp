@@ -16,28 +16,11 @@ private:
    CompiLexer& lexer;
    AstNode* ast;
    Tipos tipos_var;
-   std::string EAsm_Path = "../EasyASM-x86";
+   std::string EAsm_Path = "../ejecutable/EasyASM-x86";
 public:
     CompiParser(CompiLexer& lexer): lexer(lexer){};
 
     int parse();
-
-
-    CompiLexer& getLexer() const
-    {
-        return lexer;
-    }
-
-    void setRoot(AstNode* root)
-    {
-        ast = root;
-        
-    }
-
-    AstNode* getRoot() const
-    {
-        return ast;
-    }
 
     std::string runCmd(const std::string& cmd)
     {
@@ -63,8 +46,7 @@ public:
        std::vector<int> posiciones;
        std::string tipoAn ;
         for (int i = 0; i < tipos_var.size(); i++) {
-            //std::cout << "indice = "<< i<<" " <<tipos_var[i].Tipo << " " << tipos_var[i].variable << std::endl;
-            if(tipos_var[i].Tipo == "siguiente")
+            if(tipos_var[i].Tipo == "lista")
             {
                 posiciones.push_back(i);
             }else
@@ -77,11 +59,7 @@ public:
                 posiciones.clear();
                 tipoAn = "";
             }
-           // std::cout << "indice = "<< i<<" " <<tipos_var[i].Tipo << " " << tipos_var[i].variable << std::endl;
-        }
-
-        for (int i = 0; i < tipos_var.size(); i++) {
-            std::cout << "indice = "<< i<<" " <<tipos_var[i].Tipo << " " << tipos_var[i].variable << std::endl;
+           
         }
 
         
@@ -93,9 +71,10 @@ public:
         archivo << ast->Gencode(tipos_var);
         archivo.close();
 
-        std::string cmd = EAsm_Path + " --run " + nombre + " 2>&1";
+        std::string cmd = EAsm_Path + " --run "+ nombre + " 2>&1";
 
-        runCmd(cmd);
+        
+        std::cout<< "\n"<<runCmd(cmd);
         
     };
     
@@ -112,25 +91,27 @@ public:
         }
         int posicion = 0;
 
-        if(tipos == "anterior")
-        {
-            if (!encontrado) {
+        
+        if (!encontrado) {
                 
-
-                tipos_var.push_back({"siguiente", variable});
+            tipos_var.push_back({tipos, variable});
                 
-            }
-
-        }else {
-            if (!encontrado) {
-                
-                tipos_var.push_back({tipos, variable});
-                
-            }
         }
+        
             
     };
 
+    
+   CompiLexer& getLexer() const
+    {
+        return lexer;
+    }
+
+    void setLpp(AstNode* root)
+    {
+        ast = root;
+        
+    }
    
 
     

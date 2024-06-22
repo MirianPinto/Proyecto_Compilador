@@ -446,27 +446,14 @@ Program::~Program()
 	// not used
 }
 
-int Program::semantica()
-#line 407 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    declVar->semantica();
-    declFun->semantica();
-    main->semantica();
-
-    return 0.0;
-}
-#line 459 "CompiAst.cpp"
-
 stdstring Program::Gencode(Tipos & tipos)
-#line 1074 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 922 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
-    //stmts->Gencode(tipos);
     declVar->Gencode(tipos);
     declFun->Gencode(tipos);
     main->Gencode(tipos);
-    //code = varia;
     for (const auto& var : vars) {
-        std::cout<< var.Identificador << " = " << var.direccion <<"\n";
+       
         code += "\tpush 0\n";
     }
 
@@ -483,7 +470,7 @@ stdstring Program::Gencode(Tipos & tipos)
     
     return code;
 }
-#line 487 "CompiAst.cpp"
+#line 474 "CompiAst.cpp"
 
 int Program::isA(int kind) const
 {
@@ -560,22 +547,14 @@ NumExpr::~NumExpr()
 	// not used
 }
 
-int NumExpr::semantica()
-#line 344 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    
-    return value;
-}
-#line 570 "CompiAst.cpp"
-
 stdstring NumExpr::Gencode(Tipos & tipos)
-#line 629 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 462 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = std::to_string(value);
     code = "";
     return "";
 }
-#line 579 "CompiAst.cpp"
+#line 558 "CompiAst.cpp"
 
 int NumExpr::isA(int kind) const
 {
@@ -602,17 +581,8 @@ IdentExpr::~IdentExpr()
 	// not used
 }
 
-int IdentExpr::semantica()
-#line 349 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    
-
-    return 0.0;
-}
-#line 613 "CompiAst.cpp"
-
 stdstring IdentExpr::Gencode(Tipos & tipos)
-#line 641 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 474 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     bool encontrado = false;
     for (const auto& var : vars) {
@@ -626,11 +596,10 @@ stdstring IdentExpr::Gencode(Tipos & tipos)
     if (!encontrado) {
         place = "ebp + " +std::to_string(addOffset());
         vars.push_back({text, place, 0});
-        //code = "\tpush 0\n";
     }
     return "";
 }
-#line 634 "CompiAst.cpp"
+#line 603 "CompiAst.cpp"
 
 int IdentExpr::isA(int kind) const
 {
@@ -657,21 +626,14 @@ BoolExpr::~BoolExpr()
 	// not used
 }
 
-int BoolExpr::semantica()
-#line 427 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    return 0.0;
-}
-#line 666 "CompiAst.cpp"
-
 stdstring BoolExpr::Gencode(Tipos & tipos)
-#line 635 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 468 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = std::to_string(booleano);
     code = "";
     return "";
 }
-#line 675 "CompiAst.cpp"
+#line 637 "CompiAst.cpp"
 
 int BoolExpr::isA(int kind) const
 {
@@ -698,18 +660,8 @@ CaracterExpr::~CaracterExpr()
 	// not used
 }
 
-int CaracterExpr::semantica()
-#line 383 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-
-   // std::cout<< toString(condi) << " = " <<condi->semantica() << "\n" ;
-    
-    return 0.0;
-}
-#line 710 "CompiAst.cpp"
-
 stdstring CaracterExpr::Gencode(Tipos & tipos)
-#line 659 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 491 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
 
     int valor_ascii = static_cast<int>(character);
@@ -717,7 +669,7 @@ stdstring CaracterExpr::Gencode(Tipos & tipos)
     code = "";
     return "";
 }
-#line 721 "CompiAst.cpp"
+#line 673 "CompiAst.cpp"
 
 int CaracterExpr::isA(int kind) const
 {
@@ -744,26 +696,14 @@ CadenaExpr::~CadenaExpr()
 	// not used
 }
 
-int CadenaExpr::semantica()
-#line 390 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-
-   // std::cout<< toString(condi) << " = " <<condi->semantica() << "\n" ;
-    
-    return 0.0;
-}
-#line 756 "CompiAst.cpp"
-
 stdstring CadenaExpr::Gencode(Tipos & tipos)
-#line 667 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 499 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
-    
-    
-    //place = std::to_string(valor_ascii);
+    place = "";
     code = "";
     return "";
 }
-#line 767 "CompiAst.cpp"
+#line 707 "CompiAst.cpp"
 
 int CadenaExpr::isA(int kind) const
 {
@@ -790,22 +730,14 @@ ArregloExpr::~ArregloExpr()
 	// not used
 }
 
-int ArregloExpr::semantica()
-#line 440 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    return 0.0;
-}
-#line 799 "CompiAst.cpp"
-
 stdstring ArregloExpr::Gencode(Tipos & tipos)
-#line 675 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 505 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
-    
-
-   
+    code = "";
+    place ="";
     return "";
 }
-#line 809 "CompiAst.cpp"
+#line 741 "CompiAst.cpp"
 
 int ArregloExpr::isA(int kind) const
 {
@@ -833,15 +765,8 @@ DeclaracionStmt::~DeclaracionStmt()
 	// not used
 }
 
-int DeclaracionStmt::semantica()
-#line 403 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    return 0.0;
-}
-#line 842 "CompiAst.cpp"
-
 stdstring DeclaracionStmt::Gencode(Tipos & tipos)
-#line 959 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 774 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     ident1->Gencode(tipos);
     ident2->Gencode(tipos);
@@ -850,7 +775,7 @@ stdstring DeclaracionStmt::Gencode(Tipos & tipos)
 
     return code;
 }
-#line 854 "CompiAst.cpp"
+#line 779 "CompiAst.cpp"
 
 int DeclaracionStmt::isA(int kind) const
 {
@@ -876,19 +801,8 @@ AddExpr::~AddExpr()
 	// not used
 }
 
-int AddExpr::semantica()
-#line 256 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 + v2;
-}
-#line 889 "CompiAst.cpp"
-
 stdstring AddExpr::Gencode(Tipos & tipos)
-#line 453 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 261 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - " + std::to_string(addOffset_stmt());
 
@@ -900,7 +814,7 @@ stdstring AddExpr::Gencode(Tipos & tipos)
     code += "\tmov [" + place + "], eax\n";
     return code;
 }
-#line 904 "CompiAst.cpp"
+#line 818 "CompiAst.cpp"
 
 int AddExpr::isA(int kind) const
 {
@@ -926,29 +840,20 @@ MulExpr::~MulExpr()
 	// not used
 }
 
-int MulExpr::semantica()
-#line 264 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 * v2;
-}
-#line 938 "CompiAst.cpp"
-
 stdstring MulExpr::Gencode(Tipos & tipos)
-#line 465 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 273 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
 	
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-	code += "\tmov eax, " + getPlace(expr1) +"\n\timul eax, " + getPlace(expr2) + "\n";
+	code += "\tmov eax, " + getPlace(expr1) +"\n";
+    code += "\timul eax, " + getPlace(expr2) + "\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
-#line 952 "CompiAst.cpp"
+#line 857 "CompiAst.cpp"
 
 int MulExpr::isA(int kind) const
 {
@@ -974,18 +879,8 @@ DivExpr::~DivExpr()
 	// not used
 }
 
-int DivExpr::semantica()
-#line 278 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 / v2;
-}
-#line 986 "CompiAst.cpp"
-
 stdstring DivExpr::Gencode(Tipos & tipos)
-#line 488 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 297 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
 	
@@ -993,12 +888,15 @@ stdstring DivExpr::Gencode(Tipos & tipos)
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
 
-	code += "\tmov eax, " + getPlace(expr1) +"\n\tcdq\n\tmov ebx, "+ getPlace(expr2) +"\n\tidiv ebx\n";
+	code += "\tmov eax, " + getPlace(expr2) +"\n";
+    code += "\tcdq\n";
+    code += "\tmov ebx, "+ getPlace(expr1) +"\n";
+    code += "\tidiv ebx\n";
 
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
-#line 1002 "CompiAst.cpp"
+#line 900 "CompiAst.cpp"
 
 int DivExpr::isA(int kind) const
 {
@@ -1024,18 +922,8 @@ SubExpr::~SubExpr()
 	// not used
 }
 
-int SubExpr::semantica()
-#line 271 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    double v1 = expr1->semantica();
-    double v2 = expr2->semantica( );
-
-    return v1 - v2;
-}
-#line 1036 "CompiAst.cpp"
-
 stdstring SubExpr::Gencode(Tipos & tipos)
-#line 476 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 285 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - " + std::to_string(addOffset_stmt());
 
@@ -1047,7 +935,7 @@ stdstring SubExpr::Gencode(Tipos & tipos)
     code += "\tmov [" + place + "], eax\n";
     return code;
 }
-#line 1051 "CompiAst.cpp"
+#line 939 "CompiAst.cpp"
 
 int SubExpr::isA(int kind) const
 {
@@ -1073,16 +961,8 @@ ModExpr::~ModExpr()
 	// not used
 }
 
-int ModExpr::semantica()
-#line 327 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    
-    return 0;
-}
-#line 1083 "CompiAst.cpp"
-
 stdstring ModExpr::Gencode(Tipos & tipos)
-#line 591 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 419 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
 	
@@ -1090,13 +970,16 @@ stdstring ModExpr::Gencode(Tipos & tipos)
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
 
-	code += "\tmov eax, " + getPlace(expr1) +"\n\tcdq\n\tmov ebx, "+ getPlace(expr2) +"\n\tidiv ebx\n";
+	code += "\tmov eax, " + getPlace(expr1) +"\n";
+    code += "\tcdq\n";
+    code += "\tmov ebx, "+ getPlace(expr2) +"\n";
+    code += "\tidiv ebx\n";
 
 	code += "\tmov ["+ place + "], edx\n";
 	code += "\tmov eax, edx\n";
 	return code;
 }
-#line 1100 "CompiAst.cpp"
+#line 983 "CompiAst.cpp"
 
 int ModExpr::isA(int kind) const
 {
@@ -1122,33 +1005,26 @@ MayorExpr::~MayorExpr()
 	// not used
 }
 
-int MayorExpr::semantica()
-#line 285 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 > v2;
-}
-#line 1134 "CompiAst.cpp"
-
 stdstring MayorExpr::Gencode(Tipos & tipos)
-#line 501 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 313 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_mayor = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-    std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tjle "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tjle "+ Etiqueta_mayor +"\n";
+	code += "\tmov eax, 1\n";
+    code += "\tjmp "+Etiqueta_Fin+"\n";
+    code += Etiqueta_mayor + ": \n";
+    code += "\t mov eax, 0\n";
+    code += Etiqueta_Fin + ":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
-#line 1152 "CompiAst.cpp"
+#line 1028 "CompiAst.cpp"
 
 int MayorExpr::isA(int kind) const
 {
@@ -1174,33 +1050,26 @@ MenorExpr::~MenorExpr()
 	// not used
 }
 
-int MenorExpr::semantica()
-#line 292 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 < v2;
-}
-#line 1186 "CompiAst.cpp"
-
 stdstring MenorExpr::Gencode(Tipos & tipos)
-#line 516 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 331 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_menor = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tjge "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tjge "+ Etiqueta_menor +"\n";
+	code += "\tmov eax, 1\n";
+    code += "\tjmp "+Etiqueta_Fin+"\n";
+    code += Etiqueta_menor + ": \n";
+    code += "\t mov eax, 0\n";
+    code += Etiqueta_Fin+":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
-#line 1204 "CompiAst.cpp"
+#line 1073 "CompiAst.cpp"
 
 int MenorExpr::isA(int kind) const
 {
@@ -1226,33 +1095,26 @@ MayorIExpr::~MayorIExpr()
 	// not used
 }
 
-int MayorIExpr::semantica()
-#line 299 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 >= v2;
-}
-#line 1238 "CompiAst.cpp"
-
 stdstring MayorIExpr::Gencode(Tipos & tipos)
-#line 531 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 349 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_mayor = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tjl "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tjl " + Etiqueta_mayor +"\n";
+	code += "\tmov eax, 1\n";
+    code += "\tjmp " + Etiqueta_Fin + "\n";
+    code += Etiqueta_mayor + ": \n";
+    code += "\t mov eax, 0\n" ;
+    code += Etiqueta_Fin + ":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
-#line 1256 "CompiAst.cpp"
+#line 1118 "CompiAst.cpp"
 
 int MayorIExpr::isA(int kind) const
 {
@@ -1278,33 +1140,25 @@ MenorIExpr::~MenorIExpr()
 	// not used
 }
 
-int MenorIExpr::semantica()
-#line 306 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 <= v2;
-}
-#line 1290 "CompiAst.cpp"
-
 stdstring MenorIExpr::Gencode(Tipos & tipos)
-#line 546 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 367 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_menor = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tjg "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tjg "+ Etiqueta_menor +"\n";
+	code += "\tmov eax, 1\n";
+    code += "\tjmp "+Etiqueta_Fin+"\n";
+    code += Etiqueta_menor+": \n";
+    code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
-#line 1308 "CompiAst.cpp"
+#line 1162 "CompiAst.cpp"
 
 int MenorIExpr::isA(int kind) const
 {
@@ -1330,33 +1184,25 @@ IgualExpr::~IgualExpr()
 	// not used
 }
 
-int IgualExpr::semantica()
-#line 313 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 == v2;
-}
-#line 1342 "CompiAst.cpp"
-
 stdstring IgualExpr::Gencode(Tipos & tipos)
-#line 561 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 384 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_igual = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tjne "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tjne "+ Etiqueta_igual +"\n";
+	code += "\tmov eax, 1\n";
+    code += "\tjmp "+Etiqueta_Fin+"\n"; 
+    code += Etiqueta_igual+": \n";
+    code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
-#line 1360 "CompiAst.cpp"
+#line 1206 "CompiAst.cpp"
 
 int IgualExpr::isA(int kind) const
 {
@@ -1382,33 +1228,26 @@ DesigualExpr::~DesigualExpr()
 	// not used
 }
 
-int DesigualExpr::semantica()
-#line 320 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 != v2;
-}
-#line 1394 "CompiAst.cpp"
-
 stdstring DesigualExpr::Gencode(Tipos & tipos)
-#line 576 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 401 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_desigual = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tje "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tje "+ Etiqueta_desigual +"\n";
+	code += "\tmov eax, 1\n"; 
+    code += "\tjmp "+Etiqueta_Fin+"\n";
+    code += Etiqueta_desigual + ": \n"; 
+    code += "\t mov eax, 0\n";
+    code += Etiqueta_Fin +":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
-#line 1412 "CompiAst.cpp"
+#line 1251 "CompiAst.cpp"
 
 int DesigualExpr::isA(int kind) const
 {
@@ -1434,16 +1273,8 @@ OrExpr::~OrExpr()
 	// not used
 }
 
-int OrExpr::semantica()
-#line 334 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    
-    return 0;
-}
-#line 1444 "CompiAst.cpp"
-
 stdstring OrExpr::Gencode(Tipos & tipos)
-#line 605 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 436 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
     
@@ -1451,11 +1282,12 @@ stdstring OrExpr::Gencode(Tipos & tipos)
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
 
-    code += "\tmov eax, " + getPlace(expr1) +"\n\tor eax, " + getPlace(expr2) + "\n";
+    code += "\tmov eax, " + getPlace(expr1) +"\n";
+    code += "\tor eax, " + getPlace(expr2) + "\n";
     code += "\tmov ["+ place + "], eax\n";
     return code;
 }
-#line 1459 "CompiAst.cpp"
+#line 1291 "CompiAst.cpp"
 
 int OrExpr::isA(int kind) const
 {
@@ -1481,16 +1313,8 @@ AndExpr::~AndExpr()
 	// not used
 }
 
-int AndExpr::semantica()
-#line 339 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    
-    return 0;
-}
-#line 1491 "CompiAst.cpp"
-
 stdstring AndExpr::Gencode(Tipos & tipos)
-#line 617 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 449 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "ebp - "+std::to_string(addOffset_stmt());
     
@@ -1498,11 +1322,12 @@ stdstring AndExpr::Gencode(Tipos & tipos)
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
 
-    code += "\tmov eax, " + getPlace(expr1) +"\n\tand eax, " + getPlace(expr2) + "\n";
+    code += "\tmov eax, " + getPlace(expr1) +"\n";
+    code += "\tand eax, " + getPlace(expr2) + "\n";
     code += "\tmov ["+ place + "], eax\n";
     return code;
 }
-#line 1506 "CompiAst.cpp"
+#line 1331 "CompiAst.cpp"
 
 int AndExpr::isA(int kind) const
 {
@@ -1528,21 +1353,14 @@ Vacio::~Vacio()
 	// not used
 }
 
-int Vacio::semantica()
-#line 448 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    return 0.0;
-}
-#line 1537 "CompiAst.cpp"
-
 stdstring Vacio::Gencode(Tipos & tipos)
-#line 1057 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 889 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "";
     code = "";
     return "";
 }
-#line 1546 "CompiAst.cpp"
+#line 1364 "CompiAst.cpp"
 
 int Vacio::isA(int kind) const
 {
@@ -1570,17 +1388,8 @@ BlockStmts::~BlockStmts()
 	// not used
 }
 
-int BlockStmts::semantica()
-#line 397 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    stmt1->semantica();
-    stmt2->semantica();
-    return 0.0;
-}
-#line 1581 "CompiAst.cpp"
-
 stdstring BlockStmts::Gencode(Tipos & tipos)
-#line 950 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 765 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     stmt1->Gencode(tipos);
     stmt2->Gencode(tipos);
@@ -1589,7 +1398,7 @@ stdstring BlockStmts::Gencode(Tipos & tipos)
 
     return code;
 }
-#line 1593 "CompiAst.cpp"
+#line 1402 "CompiAst.cpp"
 
 int BlockStmts::isA(int kind) const
 {
@@ -1617,17 +1426,8 @@ Declaracionvariable::~Declaracionvariable()
 	// not used
 }
 
-int Declaracionvariable::semantica()
-#line 416 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    //stmts->semantica();
-
-    return 0.0;
-}
-#line 1628 "CompiAst.cpp"
-
 stdstring Declaracionvariable::Gencode(Tipos & tipos)
-#line 968 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 783 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     ident->Gencode(tipos);
     ident2->Gencode(tipos);
@@ -1637,7 +1437,7 @@ stdstring Declaracionvariable::Gencode(Tipos & tipos)
 
     return code;
 }
-#line 1641 "CompiAst.cpp"
+#line 1441 "CompiAst.cpp"
 
 int Declaracionvariable::isA(int kind) const
 {
@@ -1665,17 +1465,8 @@ AsignarStmt::~AsignarStmt()
 	// not used
 }
 
-int AsignarStmt::semantica()
-#line 355 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    var->semantica();
-    var_value->semantica();
-    return 0.0;
-}
-#line 1676 "CompiAst.cpp"
-
 stdstring AsignarStmt::Gencode(Tipos & tipos)
-#line 683 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 513 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
 
     bool encontrado = false;
@@ -1695,10 +1486,7 @@ stdstring AsignarStmt::Gencode(Tipos & tipos)
         throw std::runtime_error(msgcompleto.c_str());\
     }
     
-
     
-
-    //hacer validacion que el valor sea del tipo de numero
     if(var_value->isA(NumExpr_kind))
     {
         
@@ -1724,7 +1512,7 @@ stdstring AsignarStmt::Gencode(Tipos & tipos)
                     var_value->Gencode(tipos);
                 }else
                 {
-                    std::string msgcompleto = "Error: La Variable " + var->text + " no es de tipo "+tipo ;
+                    std::string msgcompleto = "Error: La Variable " + var->text + " no es de tipo " + tipo ;
                     throw std::runtime_error(msgcompleto.c_str());\
                 }
 
@@ -1747,6 +1535,7 @@ stdstring AsignarStmt::Gencode(Tipos & tipos)
             std::string msgcompleto = "Error: La Variable " + var->text + " no es de tipo Caracter" ;
             throw std::runtime_error(msgcompleto.c_str());\
         }
+
     }else if(var_value->isA(BoolExpr_kind))
     {
         if(siTipo(tipos, var->text, "Booleano"))
@@ -1758,6 +1547,7 @@ stdstring AsignarStmt::Gencode(Tipos & tipos)
             std::string msgcompleto = "Error: La Variable " + var->text + " no es de tipo Booleano" ;
             throw std::runtime_error(msgcompleto.c_str());\
         }
+
     }else
     {
         var_value->Gencode(tipos);
@@ -1771,7 +1561,7 @@ stdstring AsignarStmt::Gencode(Tipos & tipos)
     code += "\tmov " + getPlace(var) + ", eax\n"; 
     return "";
 }
-#line 1775 "CompiAst.cpp"
+#line 1565 "CompiAst.cpp"
 
 int AsignarStmt::isA(int kind) const
 {
@@ -1800,20 +1590,13 @@ ForStmt::~ForStmt()
 	// not used
 }
 
-int ForStmt::semantica()
-#line 422 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    return 0.0;
-}
-#line 1809 "CompiAst.cpp"
-
 stdstring ForStmt::Gencode(Tipos & tipos)
-#line 979 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 811 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
-    std::string label1 = newLabel(); // label de for
+    std::string label1 = newLabel(); 
     
-    std::string label2 = newLabel(); // finalizacion del for
-    std::string label3 = newLabel(); // label que no entro al for
+    std::string label2 = newLabel(); 
+    std::string label3 = newLabel(); 
    
 
     asignacion->Gencode(tipos);
@@ -1832,7 +1615,7 @@ stdstring ForStmt::Gencode(Tipos & tipos)
     code += label3 + ":\n";
     return code;
 }
-#line 1836 "CompiAst.cpp"
+#line 1619 "CompiAst.cpp"
 
 int ForStmt::isA(int kind) const
 {
@@ -1847,6 +1630,52 @@ const char *ForStmt::getKindName() const
 	return "ForStmt";
 }
 
+RepitaStmt::RepitaStmt(AstNode * stmtst, Expr * condi)
+	: Stmt()
+{
+	this->kind__ = RepitaStmt_kind;
+	this->stmtst = stmtst;
+	this->condi = condi;
+}
+
+RepitaStmt::~RepitaStmt()
+{
+	// not used
+}
+
+stdstring RepitaStmt::Gencode(Tipos & tipos)
+#line 794 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+{
+    std::string Etiqueta_repita = newLabel(); 
+    stmtst->Gencode(tipos);
+    condi->Gencode(tipos);
+
+
+    code += Etiqueta_repita + ":\n";
+    code += stmtst->code;
+    code += condi->code;
+    code += "\tmov eax, " + getPlace(condi) + "\n";
+    code += "\tcmp eax, 0\n";
+    code += "\tjne " + Etiqueta_repita + "\n";
+
+
+    return code;
+}
+#line 1665 "CompiAst.cpp"
+
+int RepitaStmt::isA(int kind) const
+{
+	if(kind == RepitaStmt_kind)
+		return 1;
+	else
+		return Stmt::isA(kind);
+}
+
+const char *RepitaStmt::getKindName() const
+{
+	return "RepitaStmt";
+}
+
 EscribaStmt::EscribaStmt(AstNode * expr1)
 	: Stmt()
 {
@@ -1859,24 +1688,11 @@ EscribaStmt::~EscribaStmt()
 	// not used
 }
 
-int EscribaStmt::semantica()
-#line 361 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    std::ostringstream stream;
-    stream << std::fixed << std::setprecision(2) << expr1->semantica();
-    std::string cadena = stream.str();
-    
-    return 0.0;
-}
-#line 1872 "CompiAst.cpp"
-
 stdstring EscribaStmt::Gencode(Tipos & tipos)
-#line 779 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 608 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     bool encontrado = false;
 
-
-    
     if(expr1->isA(NumExpr_kind))
     {
         expr1->Gencode(tipos);
@@ -1891,11 +1707,8 @@ stdstring EscribaStmt::Gencode(Tipos & tipos)
         for (const auto& vari : vars) {
             if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
                 encontrado = true;
-                
 
                 expr1->Gencode(tipos);
-
-
 
                 break;
             }
@@ -1987,27 +1800,18 @@ stdstring EscribaStmt::Gencode(Tipos & tipos)
         for (i = 0; static_cast<CadenaExpr *>(expr1)->cadena[i] != '\0'; ++i) {
 
             if (i % 4 == 0) {
-                code += "\n\tmov [ebx + "+std::to_string(i)+"], 0x";
-                std::cout<<"i=" << i<< "\n";
+                code += "\n\tmov [ebx + " + std::to_string(i) + "], 0x";   
             }
-            
-            //code += std::ios_base& << std::_Setw(2) << std::setfill('0') << static_cast<int>(static_cast<CadenaExpr *>(expr1)->cadena[i]);
             ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(static_cast<CadenaExpr *>(expr1)->cadena[i]);
             
            if(i >= 0 && (i-3) % 4 == 0 || i == static_cast<CadenaExpr *>(expr1)->cadena.size() - 1)
             {
                 
                 std::vector<std::string> pares;
-
-                // Dividir la cadena en pares de dos caracteres
                 for (size_t i = 0; i < ss.str().length(); i += 2) {
                     pares.push_back(ss.str().substr(i, 2));
                 }
-
-                // Invertir el vector de pares
                 std::reverse(pares.begin(), pares.end());
-
-                // Construir la cadena resultante
                 std::ostringstream resultado;
                 for (const auto& par : pares) {
                     resultado << par;
@@ -2041,7 +1845,7 @@ stdstring EscribaStmt::Gencode(Tipos & tipos)
     code += "\tint 0x80\n";
     return code;
 }
-#line 2045 "CompiAst.cpp"
+#line 1849 "CompiAst.cpp"
 
 int EscribaStmt::isA(int kind) const
 {
@@ -2070,25 +1874,8 @@ IfStmt::~IfStmt()
 	// not used
 }
 
-int IfStmt::semantica()
-#line 369 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-
-   // std::cout<< toString(condi) << " = " <<condi->semantica() << "\n" ;
-    if(condi->semantica() != 0.0)
-    {
-        stmt_tr->semantica();
-    }else
-    {
-        stmt_f->semantica();
-    }
-    
-    return 0.0;
-}
-#line 2089 "CompiAst.cpp"
-
 stdstring IfStmt::Gencode(Tipos & tipos)
-#line 1025 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 857 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     std::string label1 = newLabel(); // label de for
     std::string label2 = newLabel(); // finalizacion del for
@@ -2110,7 +1897,7 @@ stdstring IfStmt::Gencode(Tipos & tipos)
     code += label4 + ":\n";
     return code;
 }
-#line 2114 "CompiAst.cpp"
+#line 1901 "CompiAst.cpp"
 
 int IfStmt::isA(int kind) const
 {
@@ -2138,15 +1925,8 @@ WhileStmt::~WhileStmt()
 	// not used
 }
 
-int WhileStmt::semantica()
-#line 437 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    return 0.0;
-}
-#line 2147 "CompiAst.cpp"
-
 stdstring WhileStmt::Gencode(Tipos & tipos)
-#line 1004 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 836 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     std::string label1 = newLabel(); // label de for
     std::string label2 = newLabel(); // finalizacion del for
@@ -2166,7 +1946,7 @@ stdstring WhileStmt::Gencode(Tipos & tipos)
     code += label3 + ":\n";
     return code;
 }
-#line 2170 "CompiAst.cpp"
+#line 1950 "CompiAst.cpp"
 
 int WhileStmt::isA(int kind) const
 {
@@ -2193,15 +1973,8 @@ RetorneStmt::~RetorneStmt()
 	// not used
 }
 
-int RetorneStmt::semantica()
-#line 433 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    return 0.0;
-}
-#line 2202 "CompiAst.cpp"
-
 stdstring RetorneStmt::Gencode(Tipos & tipos)
-#line 1047 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 879 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
 
     retorno->Gencode(tipos);
@@ -2210,7 +1983,7 @@ stdstring RetorneStmt::Gencode(Tipos & tipos)
 
     return code;
 }
-#line 2214 "CompiAst.cpp"
+#line 1987 "CompiAst.cpp"
 
 int RetorneStmt::isA(int kind) const
 {
@@ -2237,17 +2010,26 @@ LeaStmt::~LeaStmt()
 	// not used
 }
 
-int LeaStmt::semantica()
-#line 444 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
-{
-    return 0.0;
-}
-#line 2246 "CompiAst.cpp"
-
 stdstring LeaStmt::Gencode(Tipos & tipos)
-#line 1064 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 896 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
-    leer->Gencode(tipos);
+    
+    bool encontrado = false;
+    for (const auto& vari : vars) {
+        if (vari.Identificador == static_cast<IdentExpr *>(leer)->text) {
+            encontrado = true;
+            
+           leer->Gencode(tipos);
+
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        
+        std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(leer)->text;
+        throw std::runtime_error(msgcompleto.c_str());\
+    }
 
     code += "\tmov eax, 5\n";
     code += "\tint 0x80\n";
@@ -2255,7 +2037,7 @@ stdstring LeaStmt::Gencode(Tipos & tipos)
 
     return "";
 }
-#line 2259 "CompiAst.cpp"
+#line 2041 "CompiAst.cpp"
 
 int LeaStmt::isA(int kind) const
 {

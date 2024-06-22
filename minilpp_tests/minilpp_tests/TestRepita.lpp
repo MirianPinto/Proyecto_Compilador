@@ -5,5 +5,5 @@ Inicio
     Repita
         Escriba a
         a <- a + 1
-    Hasta a > 100
+    Hasta a < 10
 Fin

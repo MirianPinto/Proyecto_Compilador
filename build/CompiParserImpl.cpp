@@ -130,105 +130,92 @@ enum yysymbol_kind_t
   YYSYMBOL_Repita = 12,                    /* "Repita"  */
   YYSYMBOL_Escriba = 13,                   /* "Escriba"  */
   YYSYMBOL_Llamar = 14,                    /* "Llamar"  */
-  YYSYMBOL_Lectura = 15,                   /* "Lectura"  */
-  YYSYMBOL_Escritura = 16,                 /* "Escritura"  */
-  YYSYMBOL_Leer = 17,                      /* "Leer"  */
-  YYSYMBOL_Escribir = 18,                  /* "Escribir"  */
-  YYSYMBOL_Tipo = 19,                      /* "Tipo"  */
-  YYSYMBOL_Registro = 20,                  /* "Registro"  */
-  YYSYMBOL_Cerrar = 21,                    /* "Cerrar"  */
-  YYSYMBOL_Archivo = 22,                   /* "Archivo"  */
-  YYSYMBOL_Abrir = 23,                     /* "Abrir"  */
-  YYSYMBOL_Como = 24,                      /* "Como"  */
-  YYSYMBOL_Lea = 25,                       /* "Lea"  */
-  YYSYMBOL_Para = 26,                      /* "Para"  */
-  YYSYMBOL_Mientras = 27,                  /* "Mientras"  */
-  YYSYMBOL_Haga = 28,                      /* "Haga"  */
-  YYSYMBOL_Hasta = 29,                     /* "Hasta"  */
-  YYSYMBOL_Secuencial = 30,                /* "Secuencial"  */
-  YYSYMBOL_Si = 31,                        /* "Si"  */
-  YYSYMBOL_SiNoSi = 32,                    /* "Sino Si"  */
-  YYSYMBOL_Entonces = 33,                  /* "Entonces"  */
-  YYSYMBOL_Sino = 34,                      /* "Sino"  */
-  YYSYMBOL_Retorne = 35,                   /* "Retorne"  */
-  YYSYMBOL_Caso = 36,                      /* "Caso"  */
-  YYSYMBOL_C_O = 37,                       /* "o"  */
-  YYSYMBOL_C_Y = 38,                       /* "y"  */
-  YYSYMBOL_C_No = 39,                      /* "no"  */
-  YYSYMBOL_Div = 40,                       /* "div"  */
-  YYSYMBOL_Mod = 41,                       /* "mod"  */
-  YYSYMBOL_Verdadero = 42,                 /* "Verdadero"  */
-  YYSYMBOL_Falso = 43,                     /* "Falso"  */
-  YYSYMBOL_Inicio = 44,                    /* "Inicio"  */
-  YYSYMBOL_Final = 45,                     /* "Final"  */
-  YYSYMBOL_Fin = 46,                       /* "Fin"  */
-  YYSYMBOL_Es = 47,                        /* "Es"  */
-  YYSYMBOL_De = 48,                        /* "De"  */
-  YYSYMBOL_OpenCorch = 49,                 /* "["  */
-  YYSYMBOL_CloseCorch = 50,                /* "]"  */
-  YYSYMBOL_Coma = 51,                      /* ","  */
-  YYSYMBOL_Colon = 52,                     /* ":"  */
-  YYSYMBOL_OpenPar = 53,                   /* "("  */
-  YYSYMBOL_ClosePar = 54,                  /* ")"  */
-  YYSYMBOL_OpPuntero = 55,                 /* "<-"  */
-  YYSYMBOL_OpAdd = 56,                     /* "+"  */
-  YYSYMBOL_OpSub = 57,                     /* "-"  */
-  YYSYMBOL_OpMult = 58,                    /* "*"  */
-  YYSYMBOL_OpSombrero = 59,                /* "^"  */
-  YYSYMBOL_OpMenor = 60,                   /* "<"  */
-  YYSYMBOL_OpMayor = 61,                   /* ">"  */
-  YYSYMBOL_OpIgual = 62,                   /* "="  */
-  YYSYMBOL_OpDiple = 63,                   /* "<>"  */
-  YYSYMBOL_OpMenorI = 64,                  /* "<="  */
-  YYSYMBOL_OpMayorI = 65,                  /* ">="  */
-  YYSYMBOL_SemiColon = 66,                 /* ";"  */
-  YYSYMBOL_Asignar = 67,                   /* "=="  */
-  YYSYMBOL_Number = 68,                    /* "Number"  */
-  YYSYMBOL_Ident = 69,                     /* "Ident"  */
-  YYSYMBOL_Character = 70,                 /* "Character"  */
-  YYSYMBOL_String = 71,                    /* "String"  */
-  YYSYMBOL_YYACCEPT = 72,                  /* $accept  */
-  YYSYMBOL_input = 73,                     /* input  */
-  YYSYMBOL_program = 74,                   /* program  */
-  YYSYMBOL_75_subtypes_section = 75,       /* subtypes-section  */
-  YYSYMBOL_decl_Var = 76,                  /* decl_Var  */
-  YYSYMBOL_77_type_subtypes = 77,          /* type-subtypes  */
-  YYSYMBOL_tipos_variables = 78,           /* tipos_variables  */
-  YYSYMBOL_more_iden = 79,                 /* more_iden  */
-  YYSYMBOL_block_decl = 80,                /* block_decl  */
-  YYSYMBOL_declaraciones = 81,             /* declaraciones  */
-  YYSYMBOL_decl_procedieminto = 82,        /* decl_procedieminto  */
-  YYSYMBOL_decl_funcion = 83,              /* decl_funcion  */
-  YYSYMBOL_decl_parametros_funcion = 84,   /* decl_parametros_funcion  */
-  YYSYMBOL_decl_var_funcion = 85,          /* decl_var_funcion  */
-  YYSYMBOL_tipos_paramettros = 86,         /* tipos_paramettros  */
-  YYSYMBOL_main = 87,                      /* main  */
-  YYSYMBOL_block_actions = 88,             /* block_actions  */
-  YYSYMBOL_actions = 89,                   /* actions  */
-  YYSYMBOL_struct_lea = 90,                /* struct_lea  */
-  YYSYMBOL_llamar_arreglo = 91,            /* llamar_arreglo  */
-  YYSYMBOL_estructura_llamar = 92,         /* estructura_llamar  */
-  YYSYMBOL_asign_Var = 93,                 /* asign_Var  */
-  YYSYMBOL_asignar = 94,                   /* asignar  */
-  YYSYMBOL_f_escriba = 95,                 /* f_escriba  */
-  YYSYMBOL_cliclo_for = 96,                /* cliclo_for  */
-  YYSYMBOL_cliclo_While = 97,              /* cliclo_While  */
-  YYSYMBOL_cliclo_Repeat = 98,             /* cliclo_Repeat  */
-  YYSYMBOL_si_statement = 99,              /* si_statement  */
-  YYSYMBOL_si2_statement = 100,            /* si2_statement  */
-  YYSYMBOL_retorne = 101,                  /* retorne  */
-  YYSYMBOL_funcion_llamado = 102,          /* funcion_llamado  */
-  YYSYMBOL_parametros = 103,               /* parametros  */
-  YYSYMBOL_parametros_mult = 104,          /* parametros_mult  */
-  YYSYMBOL_escriba_list = 105,             /* escriba_list  */
-  YYSYMBOL_valores = 106,                  /* valores  */
-  YYSYMBOL_tipo = 107,                     /* tipo  */
-  YYSYMBOL_valores_ciclos = 108,           /* valores_ciclos  */
-  YYSYMBOL_expr = 109,                     /* expr  */
-  YYSYMBOL_term = 110,                     /* term  */
-  YYSYMBOL_condi = 111,                    /* condi  */
-  YYSYMBOL_factor = 112,                   /* factor  */
-  YYSYMBOL_enteros = 113                   /* enteros  */
+  YYSYMBOL_Tipo = 15,                      /* "Tipo"  */
+  YYSYMBOL_Lea = 16,                       /* "Lea"  */
+  YYSYMBOL_Para = 17,                      /* "Para"  */
+  YYSYMBOL_Mientras = 18,                  /* "Mientras"  */
+  YYSYMBOL_Haga = 19,                      /* "Haga"  */
+  YYSYMBOL_Hasta = 20,                     /* "Hasta"  */
+  YYSYMBOL_Si = 21,                        /* "Si"  */
+  YYSYMBOL_SiNoSi = 22,                    /* "Sino Si"  */
+  YYSYMBOL_Entonces = 23,                  /* "Entonces"  */
+  YYSYMBOL_Sino = 24,                      /* "Sino"  */
+  YYSYMBOL_Retorne = 25,                   /* "Retorne"  */
+  YYSYMBOL_C_O = 26,                       /* "o"  */
+  YYSYMBOL_C_Y = 27,                       /* "y"  */
+  YYSYMBOL_C_No = 28,                      /* "no"  */
+  YYSYMBOL_Div = 29,                       /* "div"  */
+  YYSYMBOL_Mod = 30,                       /* "mod"  */
+  YYSYMBOL_Verdadero = 31,                 /* "Verdadero"  */
+  YYSYMBOL_Falso = 32,                     /* "Falso"  */
+  YYSYMBOL_Inicio = 33,                    /* "Inicio"  */
+  YYSYMBOL_Final = 34,                     /* "Final"  */
+  YYSYMBOL_Fin = 35,                       /* "Fin"  */
+  YYSYMBOL_Es = 36,                        /* "Es"  */
+  YYSYMBOL_De = 37,                        /* "De"  */
+  YYSYMBOL_OpenCorch = 38,                 /* "["  */
+  YYSYMBOL_CloseCorch = 39,                /* "]"  */
+  YYSYMBOL_Coma = 40,                      /* ","  */
+  YYSYMBOL_Colon = 41,                     /* ":"  */
+  YYSYMBOL_OpenPar = 42,                   /* "("  */
+  YYSYMBOL_ClosePar = 43,                  /* ")"  */
+  YYSYMBOL_OpPuntero = 44,                 /* "<-"  */
+  YYSYMBOL_OpAdd = 45,                     /* "+"  */
+  YYSYMBOL_OpSub = 46,                     /* "-"  */
+  YYSYMBOL_OpMult = 47,                    /* "*"  */
+  YYSYMBOL_OpSombrero = 48,                /* "^"  */
+  YYSYMBOL_OpMenor = 49,                   /* "<"  */
+  YYSYMBOL_OpMayor = 50,                   /* ">"  */
+  YYSYMBOL_OpIgual = 51,                   /* "="  */
+  YYSYMBOL_OpDiple = 52,                   /* "<>"  */
+  YYSYMBOL_OpMenorI = 53,                  /* "<="  */
+  YYSYMBOL_OpMayorI = 54,                  /* ">="  */
+  YYSYMBOL_Number = 55,                    /* "Number"  */
+  YYSYMBOL_Ident = 56,                     /* "Ident"  */
+  YYSYMBOL_Character = 57,                 /* "Character"  */
+  YYSYMBOL_String = 58,                    /* "String"  */
+  YYSYMBOL_YYACCEPT = 59,                  /* $accept  */
+  YYSYMBOL_input = 60,                     /* input  */
+  YYSYMBOL_program = 61,                   /* program  */
+  YYSYMBOL_62_subtypes_section = 62,       /* subtypes-section  */
+  YYSYMBOL_decl_Var = 63,                  /* decl_Var  */
+  YYSYMBOL_64_type_subtypes = 64,          /* type-subtypes  */
+  YYSYMBOL_tipos_variables = 65,           /* tipos_variables  */
+  YYSYMBOL_more_iden = 66,                 /* more_iden  */
+  YYSYMBOL_block_decl = 67,                /* block_decl  */
+  YYSYMBOL_declaraciones = 68,             /* declaraciones  */
+  YYSYMBOL_decl_procedieminto = 69,        /* decl_procedieminto  */
+  YYSYMBOL_decl_funcion = 70,              /* decl_funcion  */
+  YYSYMBOL_decl_parametros_funcion = 71,   /* decl_parametros_funcion  */
+  YYSYMBOL_decl_var_funcion = 72,          /* decl_var_funcion  */
+  YYSYMBOL_tipos_paramettros = 73,         /* tipos_paramettros  */
+  YYSYMBOL_main = 74,                      /* main  */
+  YYSYMBOL_block_actions = 75,             /* block_actions  */
+  YYSYMBOL_actions = 76,                   /* actions  */
+  YYSYMBOL_struct_lea = 77,                /* struct_lea  */
+  YYSYMBOL_llamar_arreglo = 78,            /* llamar_arreglo  */
+  YYSYMBOL_estructura_llamar = 79,         /* estructura_llamar  */
+  YYSYMBOL_asign_Var = 80,                 /* asign_Var  */
+  YYSYMBOL_asignar = 81,                   /* asignar  */
+  YYSYMBOL_f_escriba = 82,                 /* f_escriba  */
+  YYSYMBOL_cliclo_for = 83,                /* cliclo_for  */
+  YYSYMBOL_cliclo_While = 84,              /* cliclo_While  */
+  YYSYMBOL_cliclo_Repeat = 85,             /* cliclo_Repeat  */
+  YYSYMBOL_si_statement = 86,              /* si_statement  */
+  YYSYMBOL_si2_statement = 87,             /* si2_statement  */
+  YYSYMBOL_retorne = 88,                   /* retorne  */
+  YYSYMBOL_funcion_llamado = 89,           /* funcion_llamado  */
+  YYSYMBOL_parametros = 90,                /* parametros  */
+  YYSYMBOL_parametros_mult = 91,           /* parametros_mult  */
+  YYSYMBOL_escriba_list = 92,              /* escriba_list  */
+  YYSYMBOL_valores = 93,                   /* valores  */
+  YYSYMBOL_tipo = 94,                      /* tipo  */
+  YYSYMBOL_valores_ciclos = 95,            /* valores_ciclos  */
+  YYSYMBOL_expr = 96,                      /* expr  */
+  YYSYMBOL_term = 97,                      /* term  */
+  YYSYMBOL_condi = 98,                     /* condi  */
+  YYSYMBOL_factor = 99,                    /* factor  */
+  YYSYMBOL_enteros = 100                   /* enteros  */
 };
 typedef enum yysymbol_kind_t yysymbol_kind_t;
 
@@ -556,10 +543,10 @@ union yyalloc
 /* YYFINAL -- State number of the termination state.  */
 #define YYFINAL  6
 /* YYLAST -- Last index in YYTABLE.  */
-#define YYLAST   515
+#define YYLAST   507
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  72
+#define YYNTOKENS  59
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  42
 /* YYNRULES -- Number of rules.  */
@@ -568,7 +555,7 @@ union yyalloc
 #define YYNSTATES  232
 
 /* YYMAXUTOK -- Last valid token kind.  */
-#define YYMAXUTOK   326
+#define YYMAXUTOK   313
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -613,26 +600,25 @@ static const yytype_int8 yytranslate[] =
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
       35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
       45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
-      55,    56,    57,    58,    59,    60,    61,    62,    63,    64,
-      65,    66,    67,    68,    69,    70,    71
+      55,    56,    57,    58
 };
 
 #if YYDEBUG
 /* YYRLINE[YYN] -- Source line where rule number YYN was defined.  */
 static const yytype_int16 yyrline[] =
 {
-       0,   119,   119,   122,   126,   127,   128,   132,   133,   134,
-     137,   138,   141,   142,   143,   147,   148,   149,   153,   154,
-     155,   159,   160,   164,   169,   173,   174,   178,   179,   184,
-     185,   186,   187,   188,   189,   194,   198,   199,   203,   204,
-     205,   206,   207,   208,   209,   210,   211,   212,   219,   223,
-     227,   231,   234,   235,   239,   243,   246,   249,   252,   253,
-     254,   256,   257,   258,   262,   266,   269,   270,   271,   274,
-     275,   282,   283,   286,   287,   288,   289,   290,   294,   295,
-     296,   297,   298,   302,   303,   307,   308,   309,   312,   313,
-     314,   315,   318,   319,   320,   321,   322,   323,   324,   325,
-     326,   327,   330,   331,   332,   333,   334,   335,   336,   337,
-     340,   341
+       0,   108,   108,   111,   115,   116,   117,   121,   122,   123,
+     126,   127,   130,   131,   132,   136,   137,   138,   142,   143,
+     144,   148,   149,   153,   158,   162,   163,   167,   168,   173,
+     174,   175,   176,   177,   178,   183,   187,   188,   192,   193,
+     194,   195,   196,   197,   198,   199,   200,   201,   207,   211,
+     215,   219,   222,   223,   226,   229,   232,   235,   238,   239,
+     240,   242,   243,   244,   247,   250,   253,   254,   255,   258,
+     259,   265,   266,   269,   270,   271,   272,   273,   276,   277,
+     278,   279,   280,   284,   285,   289,   290,   291,   294,   295,
+     296,   297,   300,   301,   302,   303,   304,   305,   306,   307,
+     308,   309,   312,   313,   314,   315,   316,   317,   318,   319,
+     322,   323
 };
 #endif
 
@@ -651,26 +637,24 @@ static const char *const yytname[] =
   "\"end of file\"", "error", "\"invalid token\"", "\"Entero\"",
   "\"Real\"", "\"Cadena\"", "\"Booleano\"", "\"Caracter\"", "\"Arreglo\"",
   "\"Var\"", "\"Funcion\"", "\"Procedimeinto\"", "\"Repita\"",
-  "\"Escriba\"", "\"Llamar\"", "\"Lectura\"", "\"Escritura\"", "\"Leer\"",
-  "\"Escribir\"", "\"Tipo\"", "\"Registro\"", "\"Cerrar\"", "\"Archivo\"",
-  "\"Abrir\"", "\"Como\"", "\"Lea\"", "\"Para\"", "\"Mientras\"",
-  "\"Haga\"", "\"Hasta\"", "\"Secuencial\"", "\"Si\"", "\"Sino Si\"",
-  "\"Entonces\"", "\"Sino\"", "\"Retorne\"", "\"Caso\"", "\"o\"", "\"y\"",
-  "\"no\"", "\"div\"", "\"mod\"", "\"Verdadero\"", "\"Falso\"",
-  "\"Inicio\"", "\"Final\"", "\"Fin\"", "\"Es\"", "\"De\"", "\"[\"",
-  "\"]\"", "\",\"", "\":\"", "\"(\"", "\")\"", "\"<-\"", "\"+\"", "\"-\"",
-  "\"*\"", "\"^\"", "\"<\"", "\">\"", "\"=\"", "\"<>\"", "\"<=\"",
-  "\">=\"", "\";\"", "\"==\"", "\"Number\"", "\"Ident\"", "\"Character\"",
-  "\"String\"", "$accept", "input", "program", "subtypes-section",
-  "decl_Var", "type-subtypes", "tipos_variables", "more_iden",
-  "block_decl", "declaraciones", "decl_procedieminto", "decl_funcion",
-  "decl_parametros_funcion", "decl_var_funcion", "tipos_paramettros",
-  "main", "block_actions", "actions", "struct_lea", "llamar_arreglo",
-  "estructura_llamar", "asign_Var", "asignar", "f_escriba", "cliclo_for",
-  "cliclo_While", "cliclo_Repeat", "si_statement", "si2_statement",
-  "retorne", "funcion_llamado", "parametros", "parametros_mult",
-  "escriba_list", "valores", "tipo", "valores_ciclos", "expr", "term",
-  "condi", "factor", "enteros", YY_NULLPTR
+  "\"Escriba\"", "\"Llamar\"", "\"Tipo\"", "\"Lea\"", "\"Para\"",
+  "\"Mientras\"", "\"Haga\"", "\"Hasta\"", "\"Si\"", "\"Sino Si\"",
+  "\"Entonces\"", "\"Sino\"", "\"Retorne\"", "\"o\"", "\"y\"", "\"no\"",
+  "\"div\"", "\"mod\"", "\"Verdadero\"", "\"Falso\"", "\"Inicio\"",
+  "\"Final\"", "\"Fin\"", "\"Es\"", "\"De\"", "\"[\"", "\"]\"", "\",\"",
+  "\":\"", "\"(\"", "\")\"", "\"<-\"", "\"+\"", "\"-\"", "\"*\"", "\"^\"",
+  "\"<\"", "\">\"", "\"=\"", "\"<>\"", "\"<=\"", "\">=\"", "\"Number\"",
+  "\"Ident\"", "\"Character\"", "\"String\"", "$accept", "input",
+  "program", "subtypes-section", "decl_Var", "type-subtypes",
+  "tipos_variables", "more_iden", "block_decl", "declaraciones",
+  "decl_procedieminto", "decl_funcion", "decl_parametros_funcion",
+  "decl_var_funcion", "tipos_paramettros", "main", "block_actions",
+  "actions", "struct_lea", "llamar_arreglo", "estructura_llamar",
+  "asign_Var", "asignar", "f_escriba", "cliclo_for", "cliclo_While",
+  "cliclo_Repeat", "si_statement", "si2_statement", "retorne",
+  "funcion_llamado", "parametros", "parametros_mult", "escriba_list",
+  "valores", "tipo", "valores_ciclos", "expr", "term", "condi", "factor",
+  "enteros", YY_NULLPTR
 };
 
 static const char *
@@ -680,7 +664,7 @@ yysymbol_name (yysymbol_kind_t yysymbol)
 }
 #endif
 
-#define YYPACT_NINF (-60)
+#define YYPACT_NINF (-51)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -694,30 +678,30 @@ yysymbol_name (yysymbol_kind_t yysymbol)
    STATE-NUM.  */
 static const yytype_int16 yypact[] =
 {
-     -13,   -59,    24,   -60,    69,   -25,   -60,   -60,   -60,   -60,
-     -60,   -60,   -23,   -30,    -5,    39,   -60,    21,   242,   -12,
-      44,   -60,    36,    51,   -60,    -3,   -60,   -60,   -60,    42,
-      79,   -60,   -60,    86,   242,    84,    84,   359,   -60,   -60,
-      70,    89,    73,    94,   -60,    25,   101,   126,   359,   384,
-      85,    87,    87,   403,   403,   384,   109,   230,   -60,   -60,
-     -60,   -60,   -60,   104,   -60,   -60,   -60,   -60,   -60,   -60,
-     -60,    92,   113,    96,   116,   193,    98,     0,   -60,   100,
-      96,   106,   254,   103,   421,   450,   403,   110,   -60,   -28,
-     -60,   -60,   -60,   -60,   132,   -60,    22,    12,   436,   -60,
-     -60,   135,   -60,   -60,   134,   -60,   -60,   351,     2,   -60,
-     403,   -60,   -60,   384,   -60,   143,   123,   146,   174,   157,
-     158,   -60,    25,   -60,   -60,   126,   359,   403,   -60,     9,
-     -60,   364,   -60,   384,   403,   403,   403,   403,   403,   403,
-     403,   403,   403,   403,   403,   403,   403,   403,   403,   359,
-     359,   -37,   -60,    96,   -60,   178,   161,   -60,   -60,   -60,
-     118,   278,   436,   -60,   -60,    17,   -60,   -60,    12,    12,
-     436,   436,   436,   -60,   -60,   -60,   -60,   -60,   -60,   -60,
-     -60,   -60,   201,    22,   205,   281,   190,   -60,   -60,   187,
-     189,   359,   -60,   384,   -60,   403,   224,   403,   359,   222,
-      96,   210,   305,   -60,   -19,   -60,   -60,    28,   308,   -60,
-     185,    96,   -60,   359,   359,   229,   -60,   194,   332,   206,
-     -60,   -60,   238,   403,   359,   239,   -60,   -60,   356,   -60,
-     240,   -60
+      -7,   -46,    22,   -51,    26,   -10,   -51,   -51,   -51,   -51,
+     -51,   -51,     1,     5,     7,    67,   -51,    20,   125,    11,
+      52,   -51,    25,    38,   -51,    10,   -51,   -51,   -51,    16,
+      63,   -51,   -51,    64,   125,    78,    78,   362,   -51,   -51,
+      49,    81,    69,    85,   -51,   105,    84,   133,   362,   377,
+      70,    86,    86,   451,   451,   377,    96,   225,   -51,   -51,
+     -51,   -51,   -51,   106,   -51,   -51,   -51,   -51,   -51,   -51,
+     -51,    97,   115,   252,   118,   198,   102,   -15,   -51,   103,
+     252,    46,   251,   107,   395,   424,   451,   110,   -51,   -29,
+     -51,   -51,   -51,   -51,   122,   -51,    13,   -23,   410,   -51,
+     -51,   127,   -51,   -51,   123,   -51,   -51,   343,    19,   -51,
+     451,   -51,   -51,   377,   -51,   135,   119,   128,   140,   131,
+     132,   -51,   105,   -51,   -51,   133,   362,   451,   -51,    -8,
+     -51,   358,   -51,   377,   451,   451,   451,   451,   451,   451,
+     451,   451,   451,   451,   451,   451,   451,   451,   451,   362,
+     362,    54,   -51,   252,   -51,   152,   137,   -51,   -51,   -51,
+     192,   261,   410,   -51,   -51,     4,   -51,   -51,   -23,   -23,
+     410,   410,   410,   -51,   -51,   -51,   -51,   -51,   -51,   -51,
+     -51,   -51,   190,    13,   194,   276,   195,   -51,   -51,   178,
+     179,   362,   -51,   377,   -51,   451,   203,   451,   362,   208,
+     252,   196,   302,   -51,     0,   -51,   -51,    45,   317,   -51,
+     180,   252,   -51,   362,   362,   219,   -51,   188,   332,   210,
+     -51,   -51,   230,   451,   362,   228,   -51,   -51,   347,   -51,
+     231,   -51
 };
 
 /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -754,11 +738,11 @@ static const yytype_int8 yydefact[] =
 /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int16 yypgoto[] =
 {
-     -60,   -60,   -60,   -60,   -45,   235,   -14,   -60,   -60,   247,
-     -60,   -60,   237,   -60,   152,   -60,   -43,   -42,   -60,   -34,
-     -60,   -60,    30,   -60,   -60,   -60,   -60,   -60,    54,   -60,
-     228,   -60,   -60,   -60,   -44,   -18,   -60,   -50,   -17,   -41,
-      66,   136
+     -51,   -51,   -51,   -51,   -45,   227,   -14,   -51,   -51,   237,
+     -51,   -51,   217,   -51,   148,   -51,   -43,   -42,   -51,   -34,
+     -51,   -51,    33,   -51,   -51,   -51,   -51,   -51,    57,   -51,
+     233,   -51,   -51,   -51,   -44,   -18,   -51,   -50,   -17,   -41,
+     345,   136
 };
 
 /* YYDEFGOTO[NTERM-NUM].  */
@@ -776,161 +760,159 @@ static const yytype_uint8 yydefgoto[] =
    number is the opposite.  If YYTABLE_NINF, syntax error.  */
 static const yytype_int16 yytable[] =
 {
-      32,    24,    81,    60,   108,    82,     1,    22,    23,   213,
-       5,   109,   107,   187,    60,   112,    32,    60,    60,   134,
-     135,   110,    18,    60,     6,   131,    19,    79,     7,     8,
-       9,    10,    11,    74,    75,   150,   129,   134,   135,    20,
-     112,    37,     7,     8,     9,    10,    11,    12,    60,    22,
-      23,   122,   136,   137,   123,   116,    33,   120,   134,   135,
-     151,   214,   125,   163,    21,   134,   135,    24,   193,   152,
-     138,   194,     7,     8,     9,    10,    11,    12,   134,   135,
-     160,   103,   104,   161,   134,   135,   162,   166,    13,   167,
-      29,    34,    60,    40,    76,   170,   171,   172,   183,     7,
-       8,     9,    10,    11,    79,    35,   185,   186,    14,     7,
-       8,     9,    10,    11,    12,    60,    60,   168,   169,   112,
-      36,     7,     8,     9,    10,    11,    12,    60,    42,     7,
-       8,     9,    10,    11,    12,   188,    43,    45,    14,    70,
-      71,    72,    73,   112,   112,   204,    24,   207,   202,   203,
-     126,    60,    60,    80,   101,   208,    56,    60,   110,   113,
-     112,   114,   191,   115,    60,   117,   112,   121,    60,   124,
-     218,   219,   128,   207,    60,    14,   112,   112,   130,    60,
-      60,   228,   210,   133,    60,    60,   112,    14,   131,   148,
-      60,   153,   154,   217,    60,    14,     7,     8,     9,    10,
-      11,   118,    48,    49,    50,   173,   174,   175,   176,   177,
-     178,   179,   180,   181,   155,    51,    52,    53,    48,    49,
-      50,    54,   197,   156,   198,    55,   157,   158,   189,   190,
-     195,    51,    52,    53,   -83,   200,   199,    54,   223,   201,
-     224,    55,    48,    49,    50,     7,     8,     9,    10,    11,
-      30,   205,   225,   209,   216,    51,    52,    53,   211,    56,
-     220,    54,   119,   221,   226,    55,    48,    49,    50,    44,
-     229,   231,    38,    47,   159,    56,   111,   227,   102,    51,
-      52,    53,     0,   127,   184,    54,     0,     0,     0,    55,
-      48,    49,    50,    48,    49,    50,     0,     0,     0,    56,
-       0,     0,     0,    51,    52,    53,    51,    52,    53,    54,
-       0,     0,    54,    55,     0,     0,    55,    48,    49,    50,
-      48,    49,    50,    56,   192,     0,     0,   196,     0,     0,
-      51,    52,    53,    51,    52,    53,    54,     0,     0,    54,
-      55,     0,     0,    55,    48,    49,    50,    56,     0,     0,
-      56,   212,     0,     0,   215,     0,     0,    51,    52,    53,
-       0,     0,     0,    54,     0,     0,     0,    55,    48,    49,
-      50,    48,    49,    50,    56,     0,     0,    56,   222,   149,
-       0,    51,    52,    53,    51,    52,    53,    54,   139,   140,
-      54,    55,     0,     0,    55,     0,     0,     0,     0,     0,
-       0,    56,   230,    83,     0,     0,    84,    85,     0,     0,
-     141,   142,   143,   144,   145,   146,   147,    86,   164,     0,
-       0,    87,     0,    83,     0,    56,    84,    85,    56,     0,
-       0,     0,    88,    89,    90,    91,     0,    86,     0,     0,
-       0,    87,    83,     0,     0,   105,   106,     0,     0,     0,
-       0,     0,    88,    89,    90,    91,    86,     0,  -106,  -106,
-      87,  -106,  -106,     0,     0,     0,     0,     0,     0,     0,
-       0,    88,    89,   139,   140,     0,     0,  -106,  -106,  -106,
-    -106,  -106,  -106,  -106,  -106,  -106,  -106,  -107,  -107,     0,
-    -107,  -107,     0,     0,     0,   141,   142,   143,   144,   145,
-     146,   147,     0,     0,     0,     0,  -107,  -107,  -107,  -107,
-    -107,  -107,  -107,  -107,  -107,  -107
+      32,    24,    81,    60,   108,    82,   136,   137,     1,   110,
+       5,   109,   107,   131,    60,   112,    32,    60,    60,   213,
+      22,    23,     6,    60,   138,   122,    18,    79,   123,     7,
+       8,     9,    10,    11,    12,   163,   129,   134,   135,    19,
+     112,    13,   150,    37,   193,   134,   135,   194,    60,     7,
+       8,     9,    10,    11,    12,   116,    40,   120,   134,   135,
+     151,    20,   125,    21,   134,   135,    33,    24,   214,   152,
+       7,     8,     9,    10,    11,    12,    29,    22,    23,   126,
+     160,    35,    14,   161,   103,   104,   162,   166,    34,   167,
+     134,   135,    60,   187,    36,   170,   171,   172,   183,   134,
+     135,    42,    14,    43,    79,    70,   185,   186,     7,     8,
+       9,    10,    11,    74,    75,    60,    60,   168,   169,   112,
+      45,    71,    73,    14,    72,    80,   101,    60,     7,     8,
+       9,    10,    11,    30,   110,   188,     7,     8,     9,    10,
+      11,    12,    56,   112,   112,   204,    24,   207,   202,   203,
+     113,    60,    60,   114,   115,   208,   117,    60,   121,   124,
+     112,    76,   133,   128,    60,   130,   112,   148,    60,   131,
+     218,   219,   153,   207,    60,   154,   112,   112,   156,    60,
+      60,   228,   210,   155,    60,    60,   112,   157,   158,    14,
+      60,   189,   190,   217,    60,     7,     8,     9,    10,    11,
+      12,     7,     8,     9,    10,    11,   118,    48,    49,    50,
+     195,    51,    52,    53,   -83,   200,    54,   197,   201,   198,
+      55,   205,    48,    49,    50,   191,    51,    52,    53,   209,
+     199,    54,   223,   211,   224,    55,   216,    48,    49,    50,
+     220,    51,    52,    53,   221,   225,    54,   226,    14,   229,
+      55,    56,   231,    47,   119,     7,     8,     9,    10,    11,
+     111,    44,    38,    48,    49,    50,    56,    51,    52,    53,
+     159,   127,    54,    48,    49,    50,    55,    51,    52,    53,
+     227,    56,    54,   102,   184,     0,    55,     0,    48,    49,
+      50,     0,    51,    52,    53,     0,   192,    54,     0,     0,
+       0,    55,     0,     0,     0,     0,     0,    56,     0,     0,
+       0,   196,     0,     0,    48,    49,    50,    56,    51,    52,
+      53,     0,     0,    54,     0,     0,     0,    55,     0,    48,
+      49,    50,    56,    51,    52,    53,     0,   212,    54,     0,
+       0,     0,    55,     0,    48,    49,    50,     0,    51,    52,
+      53,     0,   215,    54,     0,     0,     0,    55,    56,    48,
+      49,    50,   149,    51,    52,    53,     0,   222,    54,   139,
+     140,     0,    55,    56,    48,    49,    50,     0,    51,    52,
+      53,     0,   230,    54,     0,     0,    83,    55,    56,    84,
+      85,   141,   142,   143,   144,   145,   146,   147,     0,     0,
+      86,   164,     0,    56,    87,    83,     0,     0,    84,    85,
+       0,     0,     0,    88,    89,    90,    91,     0,    56,    86,
+       0,  -106,  -106,    87,  -106,  -106,     0,     0,     0,     0,
+       0,     0,    88,    89,    90,    91,   139,   140,     0,     0,
+    -106,  -106,  -106,  -106,  -106,  -106,  -106,  -106,  -106,  -106,
+    -107,  -107,     0,  -107,  -107,     0,     0,     0,   141,   142,
+     143,   144,   145,   146,   147,     0,     0,     0,     0,  -107,
+    -107,  -107,  -107,  -107,  -107,  -107,  -107,  -107,  -107,    83,
+       0,     0,   105,   106,   173,   174,   175,   176,   177,   178,
+     179,   180,   181,    86,     0,     0,     0,    87,     0,     0,
+       0,     0,     0,     0,     0,     0,    88,    89
 };
 
 static const yytype_int16 yycheck[] =
 {
-      18,    15,    47,    37,    54,    48,    19,    10,    11,    28,
-      69,    55,    53,    50,    48,    57,    34,    51,    52,    56,
-      57,    49,    47,    57,     0,    53,    49,    45,     3,     4,
-       5,     6,     7,     8,     9,    33,    86,    56,    57,    69,
-      82,    44,     3,     4,     5,     6,     7,     8,    82,    10,
-      11,    51,    40,    41,    54,    73,    68,    75,    56,    57,
-     110,    33,    80,    54,    69,    56,    57,    81,    51,   113,
-      58,    54,     3,     4,     5,     6,     7,     8,    56,    57,
-     125,    51,    52,   126,    56,    57,   127,   131,    19,   133,
-      69,    47,   126,    51,    69,   136,   137,   138,   148,     3,
-       4,     5,     6,     7,   122,    69,   149,   150,    69,     3,
-       4,     5,     6,     7,     8,   149,   150,   134,   135,   161,
-      69,     3,     4,     5,     6,     7,     8,   161,    49,     3,
-       4,     5,     6,     7,     8,   153,    50,    53,    69,    69,
-      51,    68,    48,   185,   186,   195,   160,   197,   191,   193,
-      44,   185,   186,    52,    69,   198,    69,   191,    49,    55,
-     202,    69,    44,    50,   198,    49,   208,    69,   202,    69,
-     213,   214,    69,   223,   208,    69,   218,   219,    68,   213,
-     214,   224,   200,    51,   218,   219,   228,    69,    53,    55,
-     224,    48,    69,   211,   228,    69,     3,     4,     5,     6,
-       7,     8,    12,    13,    14,   139,   140,   141,   142,   143,
-     144,   145,   146,   147,    68,    25,    26,    27,    12,    13,
-      14,    31,    32,    49,    34,    35,    69,    69,    50,    68,
-      29,    25,    26,    27,    29,    48,    46,    31,    32,    50,
-      34,    35,    12,    13,    14,     3,     4,     5,     6,     7,
-       8,    27,    46,    31,    69,    25,    26,    27,    48,    69,
-      31,    31,    69,    69,    26,    35,    12,    13,    14,    34,
-      31,    31,    25,    36,   122,    69,    46,   223,    50,    25,
-      26,    27,    -1,    29,   148,    31,    -1,    -1,    -1,    35,
-      12,    13,    14,    12,    13,    14,    -1,    -1,    -1,    69,
-      -1,    -1,    -1,    25,    26,    27,    25,    26,    27,    31,
-      -1,    -1,    31,    35,    -1,    -1,    35,    12,    13,    14,
-      12,    13,    14,    69,    46,    -1,    -1,    46,    -1,    -1,
-      25,    26,    27,    25,    26,    27,    31,    -1,    -1,    31,
-      35,    -1,    -1,    35,    12,    13,    14,    69,    -1,    -1,
-      69,    46,    -1,    -1,    46,    -1,    -1,    25,    26,    27,
-      -1,    -1,    -1,    31,    -1,    -1,    -1,    35,    12,    13,
-      14,    12,    13,    14,    69,    -1,    -1,    69,    46,    28,
-      -1,    25,    26,    27,    25,    26,    27,    31,    37,    38,
-      31,    35,    -1,    -1,    35,    -1,    -1,    -1,    -1,    -1,
-      -1,    69,    46,    39,    -1,    -1,    42,    43,    -1,    -1,
-      59,    60,    61,    62,    63,    64,    65,    53,    54,    -1,
-      -1,    57,    -1,    39,    -1,    69,    42,    43,    69,    -1,
-      -1,    -1,    68,    69,    70,    71,    -1,    53,    -1,    -1,
-      -1,    57,    39,    -1,    -1,    42,    43,    -1,    -1,    -1,
-      -1,    -1,    68,    69,    70,    71,    53,    -1,    37,    38,
-      57,    40,    41,    -1,    -1,    -1,    -1,    -1,    -1,    -1,
-      -1,    68,    69,    37,    38,    -1,    -1,    56,    57,    58,
-      59,    60,    61,    62,    63,    64,    65,    37,    38,    -1,
-      40,    41,    -1,    -1,    -1,    59,    60,    61,    62,    63,
-      64,    65,    -1,    -1,    -1,    -1,    56,    57,    58,    59,
-      60,    61,    62,    63,    64,    65
+      18,    15,    47,    37,    54,    48,    29,    30,    15,    38,
+      56,    55,    53,    42,    48,    57,    34,    51,    52,    19,
+      10,    11,     0,    57,    47,    40,    36,    45,    43,     3,
+       4,     5,     6,     7,     8,    43,    86,    45,    46,    38,
+      82,    15,    23,    33,    40,    45,    46,    43,    82,     3,
+       4,     5,     6,     7,     8,    73,    40,    75,    45,    46,
+     110,    56,    80,    56,    45,    46,    55,    81,    23,   113,
+       3,     4,     5,     6,     7,     8,    56,    10,    11,    33,
+     125,    56,    56,   126,    51,    52,   127,   131,    36,   133,
+      45,    46,   126,    39,    56,   136,   137,   138,   148,    45,
+      46,    38,    56,    39,   122,    56,   149,   150,     3,     4,
+       5,     6,     7,     8,     9,   149,   150,   134,   135,   161,
+      42,    40,    37,    56,    55,    41,    56,   161,     3,     4,
+       5,     6,     7,     8,    38,   153,     3,     4,     5,     6,
+       7,     8,    56,   185,   186,   195,   160,   197,   191,   193,
+      44,   185,   186,    56,    39,   198,    38,   191,    56,    56,
+     202,    56,    40,    56,   198,    55,   208,    44,   202,    42,
+     213,   214,    37,   223,   208,    56,   218,   219,    38,   213,
+     214,   224,   200,    55,   218,   219,   228,    56,    56,    56,
+     224,    39,    55,   211,   228,     3,     4,     5,     6,     7,
+       8,     3,     4,     5,     6,     7,     8,    12,    13,    14,
+      20,    16,    17,    18,    20,    37,    21,    22,    39,    24,
+      25,    18,    12,    13,    14,    33,    16,    17,    18,    21,
+      35,    21,    22,    37,    24,    25,    56,    12,    13,    14,
+      21,    16,    17,    18,    56,    35,    21,    17,    56,    21,
+      25,    56,    21,    36,    56,     3,     4,     5,     6,     7,
+      35,    34,    25,    12,    13,    14,    56,    16,    17,    18,
+     122,    20,    21,    12,    13,    14,    25,    16,    17,    18,
+     223,    56,    21,    50,   148,    -1,    25,    -1,    12,    13,
+      14,    -1,    16,    17,    18,    -1,    35,    21,    -1,    -1,
+      -1,    25,    -1,    -1,    -1,    -1,    -1,    56,    -1,    -1,
+      -1,    35,    -1,    -1,    12,    13,    14,    56,    16,    17,
+      18,    -1,    -1,    21,    -1,    -1,    -1,    25,    -1,    12,
+      13,    14,    56,    16,    17,    18,    -1,    35,    21,    -1,
+      -1,    -1,    25,    -1,    12,    13,    14,    -1,    16,    17,
+      18,    -1,    35,    21,    -1,    -1,    -1,    25,    56,    12,
+      13,    14,    19,    16,    17,    18,    -1,    35,    21,    26,
+      27,    -1,    25,    56,    12,    13,    14,    -1,    16,    17,
+      18,    -1,    35,    21,    -1,    -1,    28,    25,    56,    31,
+      32,    48,    49,    50,    51,    52,    53,    54,    -1,    -1,
+      42,    43,    -1,    56,    46,    28,    -1,    -1,    31,    32,
+      -1,    -1,    -1,    55,    56,    57,    58,    -1,    56,    42,
+      -1,    26,    27,    46,    29,    30,    -1,    -1,    -1,    -1,
+      -1,    -1,    55,    56,    57,    58,    26,    27,    -1,    -1,
+      45,    46,    47,    48,    49,    50,    51,    52,    53,    54,
+      26,    27,    -1,    29,    30,    -1,    -1,    -1,    48,    49,
+      50,    51,    52,    53,    54,    -1,    -1,    -1,    -1,    45,
+      46,    47,    48,    49,    50,    51,    52,    53,    54,    28,
+      -1,    -1,    31,    32,   139,   140,   141,   142,   143,   144,
+     145,   146,   147,    42,    -1,    -1,    -1,    46,    -1,    -1,
+      -1,    -1,    -1,    -1,    -1,    -1,    55,    56
 };
 
 /* YYSTOS[STATE-NUM] -- The symbol kind of the accessing symbol of
    state STATE-NUM.  */
 static const yytype_int8 yystos[] =
 {
-       0,    19,    73,    74,    75,    69,     0,     3,     4,     5,
-       6,     7,     8,    19,    69,    76,    78,   107,    47,    49,
-      69,    69,    10,    11,    78,    80,    81,    82,    83,    69,
-       8,    77,   107,    68,    47,    69,    69,    44,    81,    87,
-      51,    79,    49,    50,    77,    53,    84,    84,    12,    13,
-      14,    25,    26,    27,    31,    35,    69,    88,    89,    90,
-      91,    92,    93,    94,    95,    96,    97,    98,    99,   101,
-      69,    51,    68,    48,     8,     9,    69,    85,    86,   107,
-      52,    76,    88,    39,    42,    43,    53,    57,    68,    69,
-      70,    71,    91,   102,   105,   106,   109,   110,   111,   112,
-     113,    69,   102,    94,    94,    42,    43,   111,   109,   106,
-      49,    46,    89,    55,    69,    50,   107,    49,     8,    69,
-     107,    69,    51,    54,    69,   107,    44,    29,    69,   109,
-      68,    53,   103,    51,    56,    57,    40,    41,    58,    37,
-      38,    59,    60,    61,    62,    63,    64,    65,    55,    28,
-      33,   109,   106,    48,    69,    68,    49,    69,    69,    86,
-      76,    88,   111,    54,    54,   104,   106,   106,   110,   110,
-     111,   111,   111,   112,   112,   112,   112,   112,   112,   112,
-     112,   112,   108,   109,   113,    88,    88,    50,   107,    50,
-      68,    44,    46,    51,    54,    29,    46,    32,    34,    46,
-      48,    50,    88,   106,   109,    27,   100,   109,    88,    31,
-     107,    48,    46,    28,    33,    46,    69,   107,    88,    88,
-      31,    69,    46,    32,    34,    46,    26,   100,    88,    31,
-      46,    31
+       0,    15,    60,    61,    62,    56,     0,     3,     4,     5,
+       6,     7,     8,    15,    56,    63,    65,    94,    36,    38,
+      56,    56,    10,    11,    65,    67,    68,    69,    70,    56,
+       8,    64,    94,    55,    36,    56,    56,    33,    68,    74,
+      40,    66,    38,    39,    64,    42,    71,    71,    12,    13,
+      14,    16,    17,    18,    21,    25,    56,    75,    76,    77,
+      78,    79,    80,    81,    82,    83,    84,    85,    86,    88,
+      56,    40,    55,    37,     8,     9,    56,    72,    73,    94,
+      41,    63,    75,    28,    31,    32,    42,    46,    55,    56,
+      57,    58,    78,    89,    92,    93,    96,    97,    98,    99,
+     100,    56,    89,    81,    81,    31,    32,    98,    96,    93,
+      38,    35,    76,    44,    56,    39,    94,    38,     8,    56,
+      94,    56,    40,    43,    56,    94,    33,    20,    56,    96,
+      55,    42,    90,    40,    45,    46,    29,    30,    47,    26,
+      27,    48,    49,    50,    51,    52,    53,    54,    44,    19,
+      23,    96,    93,    37,    56,    55,    38,    56,    56,    73,
+      63,    75,    98,    43,    43,    91,    93,    93,    97,    97,
+      98,    98,    98,    99,    99,    99,    99,    99,    99,    99,
+      99,    99,    95,    96,   100,    75,    75,    39,    94,    39,
+      55,    33,    35,    40,    43,    20,    35,    22,    24,    35,
+      37,    39,    75,    93,    96,    18,    87,    96,    75,    21,
+      94,    37,    35,    19,    23,    35,    56,    94,    75,    75,
+      21,    56,    35,    22,    24,    35,    17,    87,    75,    21,
+      35,    21
 };
 
 /* YYR1[RULE-NUM] -- Symbol kind of the left-hand side of rule RULE-NUM.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    72,    73,    74,    75,    75,    75,    76,    76,    76,
-      77,    77,    78,    78,    78,    79,    79,    79,    80,    80,
-      80,    81,    81,    82,    83,    84,    84,    85,    85,    86,
-      86,    86,    86,    86,    86,    87,    88,    88,    89,    89,
-      89,    89,    89,    89,    89,    89,    89,    89,    90,    91,
-      92,    93,    94,    94,    95,    96,    97,    98,    99,    99,
-      99,   100,   100,   100,   101,   102,   103,   103,   103,   104,
-     104,   105,   105,   106,   106,   106,   106,   106,   107,   107,
-     107,   107,   107,   108,   108,   109,   109,   109,   110,   110,
-     110,   110,   111,   111,   111,   111,   111,   111,   111,   111,
-     111,   111,   112,   112,   112,   112,   112,   112,   112,   112,
-     113,   113
+       0,    59,    60,    61,    62,    62,    62,    63,    63,    63,
+      64,    64,    65,    65,    65,    66,    66,    66,    67,    67,
+      67,    68,    68,    69,    70,    71,    71,    72,    72,    73,
+      73,    73,    73,    73,    73,    74,    75,    75,    76,    76,
+      76,    76,    76,    76,    76,    76,    76,    76,    77,    78,
+      79,    80,    81,    81,    82,    83,    84,    85,    86,    86,
+      86,    87,    87,    87,    88,    89,    90,    90,    90,    91,
+      91,    92,    92,    93,    93,    93,    93,    93,    94,    94,
+      94,    94,    94,    95,    95,    96,    96,    96,    97,    97,
+      97,    97,    98,    98,    98,    98,    98,    98,    98,    98,
+      98,    98,    99,    99,    99,    99,    99,    99,    99,    99,
+     100,   100
 };
 
 /* YYR2[RULE-NUM] -- Number of symbols on the right-hand side of rule RULE-NUM.  */
@@ -1689,433 +1671,457 @@ yyreduce:
   switch (yyn)
     {
   case 2: /* input: program  */
-#line 119 "CompiParserImpl.y"
-               { parse.setRoot(yyvsp[0]); }
-#line 1695 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 108 "CompiParserImpl.y"
+               { parse.setLpp(yyvsp[0]); }
+#line 1677 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 3: /* program: subtypes-section decl_Var block_decl main  */
-#line 122 "CompiParserImpl.y"
+#line 111 "CompiParserImpl.y"
                                                    { yyval = new Program(yyvsp[-2],yyvsp[-1],yyvsp[0]);}
-#line 1701 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1683 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 5: /* subtypes-section: "Tipo" "Ident" "Es" type-subtypes  */
-#line 127 "CompiParserImpl.y"
+#line 116 "CompiParserImpl.y"
                                                 {}
-#line 1707 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1689 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 7: /* decl_Var: decl_Var tipos_variables  */
-#line 132 "CompiParserImpl.y"
+#line 121 "CompiParserImpl.y"
                                    { yyval = new Declaracionvariable(yyvsp[-1],yyvsp[0]); }
-#line 1713 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1695 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 8: /* decl_Var: tipos_variables  */
-#line 133 "CompiParserImpl.y"
+#line 122 "CompiParserImpl.y"
                         { yyval = yyvsp[0];}
-#line 1719 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1701 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 9: /* decl_Var: %empty  */
-#line 134 "CompiParserImpl.y"
+#line 123 "CompiParserImpl.y"
         {yyval = new Vacio();}
-#line 1725 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1707 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 13: /* tipos_variables: tipo "Ident" more_iden  */
-#line 142 "CompiParserImpl.y"
+#line 131 "CompiParserImpl.y"
                                    { yyval = new DeclaracionStmt(yyvsp[-1],yyvsp[0]); parse.addTipo(((IdentExpr*)(yyvsp[-2]))->text, ((IdentExpr*)(yyvsp[-1]))->text); }
-#line 1731 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1713 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 14: /* tipos_variables: "Ident" "Ident"  */
-#line 143 "CompiParserImpl.y"
+#line 132 "CompiParserImpl.y"
                           {}
-#line 1737 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1719 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 15: /* more_iden: more_iden "," "Ident"  */
-#line 147 "CompiParserImpl.y"
-                                { yyval = new DeclaracionStmt(yyvsp[-2],yyvsp[0]); parse.addTipo("anterior", ((IdentExpr*)(yyvsp[0]))->text);}
-#line 1743 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 136 "CompiParserImpl.y"
+                                { yyval = new DeclaracionStmt(yyvsp[-2],yyvsp[0]); parse.addTipo("lista", ((IdentExpr*)(yyvsp[0]))->text);}
+#line 1725 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 16: /* more_iden: "," "Ident"  */
-#line 148 "CompiParserImpl.y"
-                   { yyval = yyvsp[0]; parse.addTipo("anterior", ((IdentExpr*)(yyvsp[0]))->text);}
-#line 1749 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 137 "CompiParserImpl.y"
+                   { yyval = yyvsp[0]; parse.addTipo("lista", ((IdentExpr*)(yyvsp[0]))->text);}
+#line 1731 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 17: /* more_iden: %empty  */
-#line 149 "CompiParserImpl.y"
+#line 138 "CompiParserImpl.y"
                    { yyval = new Vacio();}
-#line 1755 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1737 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 20: /* block_decl: %empty  */
-#line 155 "CompiParserImpl.y"
+#line 144 "CompiParserImpl.y"
                    {yyval = new Vacio();}
-#line 1761 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1743 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 35: /* main: "Inicio" block_actions "Fin"  */
-#line 194 "CompiParserImpl.y"
+#line 183 "CompiParserImpl.y"
                                { yyval = yyvsp[-1]; }
-#line 1767 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1749 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 36: /* block_actions: block_actions actions  */
-#line 198 "CompiParserImpl.y"
+#line 187 "CompiParserImpl.y"
                                      {yyval = new BlockStmts(yyvsp[-1],yyvsp[0]);}
-#line 1773 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1755 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 37: /* block_actions: actions  */
-#line 199 "CompiParserImpl.y"
+#line 188 "CompiParserImpl.y"
                         {yyval = yyvsp[0]; }
-#line 1779 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1761 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 38: /* actions: asign_Var  */
-#line 203 "CompiParserImpl.y"
+#line 192 "CompiParserImpl.y"
                    { yyval = yyvsp[0];}
-#line 1785 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1767 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 39: /* actions: f_escriba  */
-#line 204 "CompiParserImpl.y"
+#line 193 "CompiParserImpl.y"
                   { yyval = yyvsp[0];}
-#line 1791 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1773 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 40: /* actions: cliclo_for  */
-#line 205 "CompiParserImpl.y"
+#line 194 "CompiParserImpl.y"
                    { yyval = yyvsp[0];}
-#line 1797 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1779 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 41: /* actions: retorne  */
-#line 206 "CompiParserImpl.y"
+#line 195 "CompiParserImpl.y"
                 { yyval = yyvsp[0];}
-#line 1803 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1785 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 42: /* actions: estructura_llamar  */
-#line 207 "CompiParserImpl.y"
+#line 196 "CompiParserImpl.y"
                           { yyval = yyvsp[0];}
-#line 1809 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+#line 1791 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 43: /* actions: cliclo_While  */
-#line 208 "CompiParserImpl.y"
+#line 197 "CompiParserImpl.y"
+                     { yyval = yyvsp[0];}
+#line 1797 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 44: /* actions: cliclo_Repeat  */
+#line 198 "CompiParserImpl.y"
+                      { yyval = yyvsp[0];}
+#line 1803 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 45: /* actions: struct_lea  */
+#line 199 "CompiParserImpl.y"
+                   { yyval = yyvsp[0];}
+#line 1809 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
+
+  case 46: /* actions: si_statement  */
+#line 200 "CompiParserImpl.y"
                      { yyval = yyvsp[0];}
 #line 1815 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 44: /* actions: cliclo_Repeat  */
-#line 209 "CompiParserImpl.y"
-                      { yyval = yyvsp[0];}
+  case 47: /* actions: %empty  */
+#line 201 "CompiParserImpl.y"
+               { yyval = new Vacio();}
 #line 1821 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 45: /* actions: struct_lea  */
-#line 210 "CompiParserImpl.y"
-                   { yyval = yyvsp[0];}
+  case 48: /* struct_lea: "Lea" asignar  */
+#line 207 "CompiParserImpl.y"
+                        { yyval = new LeaStmt(yyvsp[0]); }
 #line 1827 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 46: /* actions: si_statement  */
+  case 49: /* llamar_arreglo: "Ident" "[" expr "]"  */
 #line 211 "CompiParserImpl.y"
-                     { yyval = yyvsp[0];}
+                                                { }
 #line 1833 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 47: /* actions: %empty  */
-#line 212 "CompiParserImpl.y"
-               { yyval = new Vacio();}
+  case 51: /* asign_Var: asignar "<-" valores  */
+#line 219 "CompiParserImpl.y"
+                                     {yyval = new AsignarStmt((IdentExpr*)yyvsp[-2],yyvsp[0]); }
 #line 1839 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 48: /* struct_lea: "Lea" asignar  */
-#line 219 "CompiParserImpl.y"
-                        { yyval = new LeaStmt(yyvsp[0]); }
+  case 52: /* asignar: "Ident"  */
+#line 222 "CompiParserImpl.y"
+               { yyval = yyvsp[0]; }
 #line 1845 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 49: /* llamar_arreglo: "Ident" "[" expr "]"  */
-#line 223 "CompiParserImpl.y"
-                                                { }
+  case 54: /* f_escriba: "Escriba" escriba_list  */
+#line 226 "CompiParserImpl.y"
+                                {yyval = new EscribaStmt(yyvsp[0]); }
 #line 1851 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 51: /* asign_Var: asignar "<-" valores  */
-#line 231 "CompiParserImpl.y"
-                                     {yyval = new AsignarStmt((IdentExpr*)yyvsp[-2],yyvsp[0]); }
+  case 55: /* cliclo_for: "Para" asignar "<-" valores_ciclos "Hasta" expr "Haga" block_actions "Fin" "Para"  */
+#line 229 "CompiParserImpl.y"
+                                                                                         { yyval = new ForStmt(new AsignarStmt((IdentExpr*)yyvsp[-8],yyvsp[-7]),(Expr*)yyvsp[-4],yyvsp[-2] ); }
 #line 1857 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 52: /* asignar: "Ident"  */
-#line 234 "CompiParserImpl.y"
-               { yyval = yyvsp[0]; }
+  case 56: /* cliclo_While: "Mientras" condi "Haga" block_actions "Fin" "Mientras"  */
+#line 232 "CompiParserImpl.y"
+                                                             { yyval = new WhileStmt(yyvsp[-4],yyvsp[-2]); }
 #line 1863 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 54: /* f_escriba: "Escriba" escriba_list  */
-#line 239 "CompiParserImpl.y"
-                                {yyval = new EscribaStmt(yyvsp[0]); }
+  case 57: /* cliclo_Repeat: "Repita" block_actions "Hasta" condi  */
+#line 235 "CompiParserImpl.y"
+                                                { yyval = new RepitaStmt(yyvsp[-2],(Expr*)yyvsp[0]); }
 #line 1869 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 55: /* cliclo_for: "Para" asignar "<-" valores_ciclos "Hasta" expr "Haga" block_actions "Fin" "Para"  */
-#line 243 "CompiParserImpl.y"
-                                                                                         { yyval = new ForStmt(new AsignarStmt((IdentExpr*)yyvsp[-8],yyvsp[-7]),(Expr*)yyvsp[-4],yyvsp[-2] ); }
+  case 58: /* si_statement: "Si" expr "Entonces" block_actions "Sino Si" si2_statement  */
+#line 238 "CompiParserImpl.y"
+                                                                  { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],yyvsp[0]); }
 #line 1875 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 56: /* cliclo_While: "Mientras" condi "Haga" block_actions "Fin" "Mientras"  */
-#line 246 "CompiParserImpl.y"
-                                                             { yyval = new WhileStmt(yyvsp[-4],yyvsp[-2]); }
+  case 59: /* si_statement: "Si" expr "Entonces" block_actions "Sino" block_actions "Fin" "Si"  */
+#line 239 "CompiParserImpl.y"
+                                                                        { yyval = new IfStmt(yyvsp[-6],yyvsp[-4],yyvsp[-2]); }
 #line 1881 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 58: /* si_statement: "Si" expr "Entonces" block_actions "Sino Si" si2_statement  */
-#line 252 "CompiParserImpl.y"
-                                                                  { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],yyvsp[0]); }
+  case 60: /* si_statement: "Si" expr "Entonces" block_actions "Fin" "Si"  */
+#line 240 "CompiParserImpl.y"
+                                                     { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],new Vacio()); }
 #line 1887 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 59: /* si_statement: "Si" expr "Entonces" block_actions "Sino" block_actions "Fin" "Si"  */
-#line 253 "CompiParserImpl.y"
-                                                                        { yyval = new IfStmt(yyvsp[-6],yyvsp[-4],yyvsp[-2]); }
+  case 61: /* si2_statement: expr "Entonces" block_actions "Sino Si" si2_statement  */
+#line 242 "CompiParserImpl.y"
+                                                                  { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],yyvsp[0]); }
 #line 1893 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 60: /* si_statement: "Si" expr "Entonces" block_actions "Fin" "Si"  */
-#line 254 "CompiParserImpl.y"
-                                                     { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],new Vacio()); }
+  case 62: /* si2_statement: expr "Entonces" block_actions "Sino" block_actions "Fin" "Si"  */
+#line 243 "CompiParserImpl.y"
+                                                                     { yyval = new IfStmt(yyvsp[-6],yyvsp[-4],yyvsp[-2]); }
 #line 1899 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 61: /* si2_statement: expr "Entonces" block_actions "Sino Si" si2_statement  */
-#line 256 "CompiParserImpl.y"
-                                                                  { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],yyvsp[0]); }
+  case 63: /* si2_statement: expr "Entonces" block_actions "Fin" "Si"  */
+#line 244 "CompiParserImpl.y"
+                                                   { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],new Vacio()); }
 #line 1905 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 62: /* si2_statement: expr "Entonces" block_actions "Sino" block_actions "Fin" "Si"  */
-#line 257 "CompiParserImpl.y"
-                                                                     { yyval = new IfStmt(yyvsp[-6],yyvsp[-4],yyvsp[-2]); }
+  case 72: /* escriba_list: valores  */
+#line 266 "CompiParserImpl.y"
+                      {yyval = yyvsp[0];}
 #line 1911 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 63: /* si2_statement: expr "Entonces" block_actions "Fin" "Si"  */
-#line 258 "CompiParserImpl.y"
-                                                   { yyval = new IfStmt(yyvsp[-4],yyvsp[-2],new Vacio()); }
+  case 73: /* valores: expr  */
+#line 269 "CompiParserImpl.y"
+              {yyval = yyvsp[0];}
 #line 1917 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 72: /* escriba_list: valores  */
-#line 283 "CompiParserImpl.y"
-                      {yyval = yyvsp[0];}
+  case 74: /* valores: "Verdadero"  */
+#line 270 "CompiParserImpl.y"
+                    {yyval = new BoolExpr(1);}
 #line 1923 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 73: /* valores: expr  */
-#line 286 "CompiParserImpl.y"
-              {yyval = yyvsp[0];}
+  case 75: /* valores: "Falso"  */
+#line 271 "CompiParserImpl.y"
+                  {yyval = new BoolExpr(0);}
 #line 1929 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 74: /* valores: "Verdadero"  */
-#line 287 "CompiParserImpl.y"
-                    {yyval = new BoolExpr(1);}
+  case 76: /* valores: "Character"  */
+#line 272 "CompiParserImpl.y"
+                    {yyval = yyvsp[0];}
 #line 1935 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 75: /* valores: "Falso"  */
-#line 288 "CompiParserImpl.y"
-                  {yyval = new BoolExpr(0);}
+  case 77: /* valores: "String"  */
+#line 273 "CompiParserImpl.y"
+                  {yyval = yyvsp[0];}
 #line 1941 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 76: /* valores: "Character"  */
-#line 289 "CompiParserImpl.y"
-                    {yyval = yyvsp[0];}
+  case 78: /* tipo: "Entero"  */
+#line 276 "CompiParserImpl.y"
+             { yyval = new IdentExpr("Entero"); }
 #line 1947 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 77: /* valores: "String"  */
-#line 290 "CompiParserImpl.y"
-                  {yyval = yyvsp[0];}
+  case 79: /* tipo: "Real"  */
+#line 277 "CompiParserImpl.y"
+              { yyval = new IdentExpr("Real"); }
 #line 1953 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 78: /* tipo: "Entero"  */
-#line 294 "CompiParserImpl.y"
-             { yyval = new IdentExpr("Entero"); }
+  case 81: /* tipo: "Booleano"  */
+#line 279 "CompiParserImpl.y"
+                 { yyval = new IdentExpr("Booleano"); }
 #line 1959 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 79: /* tipo: "Real"  */
-#line 295 "CompiParserImpl.y"
-              { yyval = new IdentExpr("Real"); }
+  case 82: /* tipo: "Caracter"  */
+#line 280 "CompiParserImpl.y"
+                 { yyval = new IdentExpr("Caracter"); }
 #line 1965 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 81: /* tipo: "Booleano"  */
-#line 297 "CompiParserImpl.y"
-                 { yyval = new IdentExpr("Booleano"); }
+  case 83: /* valores_ciclos: enteros  */
+#line 284 "CompiParserImpl.y"
+                        { yyval = yyvsp[0]; }
 #line 1971 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 82: /* tipo: "Caracter"  */
-#line 298 "CompiParserImpl.y"
-                 { yyval = new IdentExpr("Caracter"); }
+  case 84: /* valores_ciclos: expr  */
+#line 285 "CompiParserImpl.y"
+                   { yyval = yyvsp[0]; }
 #line 1977 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 83: /* valores_ciclos: enteros  */
-#line 302 "CompiParserImpl.y"
-                        { yyval = yyvsp[0]; }
+  case 85: /* expr: expr "+" term  */
+#line 289 "CompiParserImpl.y"
+                        { yyval = new AddExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
 #line 1983 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 84: /* valores_ciclos: expr  */
-#line 303 "CompiParserImpl.y"
-                   { yyval = yyvsp[0]; }
+  case 86: /* expr: expr "-" term  */
+#line 290 "CompiParserImpl.y"
+                        { yyval = new SubExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
 #line 1989 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 85: /* expr: expr "+" term  */
-#line 307 "CompiParserImpl.y"
-                        { yyval = new AddExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
+  case 87: /* expr: term  */
+#line 291 "CompiParserImpl.y"
+             { yyval = yyvsp[0]; }
 #line 1995 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 86: /* expr: expr "-" term  */
-#line 308 "CompiParserImpl.y"
-                        { yyval = new SubExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
+  case 88: /* term: term "*" condi  */
+#line 294 "CompiParserImpl.y"
+                          { yyval = new MulExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
 #line 2001 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 87: /* expr: term  */
-#line 309 "CompiParserImpl.y"
-             { yyval = yyvsp[0]; }
+  case 89: /* term: term "div" condi  */
+#line 295 "CompiParserImpl.y"
+                       { yyval = new DivExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
 #line 2007 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 88: /* term: term "*" condi  */
-#line 312 "CompiParserImpl.y"
-                          { yyval = new MulExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
+  case 90: /* term: term "mod" condi  */
+#line 296 "CompiParserImpl.y"
+                       { yyval = new ModExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
 #line 2013 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 89: /* term: term "div" condi  */
-#line 313 "CompiParserImpl.y"
-                       { yyval = new DivExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
+  case 91: /* term: condi  */
+#line 297 "CompiParserImpl.y"
+              { yyval = yyvsp[0];}
 #line 2019 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 90: /* term: term "mod" condi  */
-#line 314 "CompiParserImpl.y"
-                       { yyval = new ModExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
+  case 92: /* condi: condi ">" factor  */
+#line 300 "CompiParserImpl.y"
+                            {yyval = new MayorExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
 #line 2025 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 91: /* term: condi  */
-#line 315 "CompiParserImpl.y"
-              { yyval = yyvsp[0];}
+  case 93: /* condi: condi "<" factor  */
+#line 301 "CompiParserImpl.y"
+                             {yyval = new MenorExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
 #line 2031 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 92: /* condi: condi ">" factor  */
-#line 318 "CompiParserImpl.y"
-                            {yyval = new MayorExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
+  case 94: /* condi: condi ">=" factor  */
+#line 302 "CompiParserImpl.y"
+                              {yyval = new MayorIExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
 #line 2037 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 93: /* condi: condi "<" factor  */
-#line 319 "CompiParserImpl.y"
-                             {yyval = new MenorExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
+  case 95: /* condi: condi "<=" factor  */
+#line 303 "CompiParserImpl.y"
+                              {yyval = new MenorIExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
 #line 2043 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 94: /* condi: condi ">=" factor  */
-#line 320 "CompiParserImpl.y"
-                              {yyval = new MayorIExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
+  case 96: /* condi: condi "<>" factor  */
+#line 304 "CompiParserImpl.y"
+                             {yyval = new DesigualExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
 #line 2049 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 95: /* condi: condi "<=" factor  */
-#line 321 "CompiParserImpl.y"
-                              {yyval = new MenorIExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
+  case 98: /* condi: condi "o" factor  */
+#line 306 "CompiParserImpl.y"
+                         {yyval = new OrExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
 #line 2055 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 96: /* condi: condi "<>" factor  */
-#line 322 "CompiParserImpl.y"
-                             {yyval = new DesigualExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
+  case 99: /* condi: condi "y" factor  */
+#line 307 "CompiParserImpl.y"
+                         {yyval = new AndExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]);}
 #line 2061 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 100: /* condi: condi "=" factor  */
-#line 326 "CompiParserImpl.y"
+#line 308 "CompiParserImpl.y"
                              {yyval = new IgualExpr((Expr*)yyvsp[-2],(Expr*)yyvsp[0]); }
 #line 2067 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
   case 101: /* condi: factor  */
-#line 327 "CompiParserImpl.y"
+#line 309 "CompiParserImpl.y"
                {yyval = yyvsp[0]; }
 #line 2073 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 103: /* factor: enteros  */
-#line 331 "CompiParserImpl.y"
-                 { yyval = yyvsp[0]; }
+  case 102: /* factor: "(" expr ")"  */
+#line 312 "CompiParserImpl.y"
+                              {yyval = yyvsp[-1];}
 #line 2079 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 104: /* factor: "Ident"  */
-#line 332 "CompiParserImpl.y"
-               { yyval = yyvsp[0]; }
+  case 103: /* factor: enteros  */
+#line 313 "CompiParserImpl.y"
+                 { yyval = yyvsp[0]; }
 #line 2085 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 105: /* factor: "no" "Ident"  */
-#line 333 "CompiParserImpl.y"
-                    { }
+  case 104: /* factor: "Ident"  */
+#line 314 "CompiParserImpl.y"
+               { yyval = yyvsp[0]; }
 #line 2091 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 106: /* factor: "Verdadero"  */
-#line 334 "CompiParserImpl.y"
-                  {yyval = new BoolExpr(1);}
+  case 105: /* factor: "no" "Ident"  */
+#line 315 "CompiParserImpl.y"
+                    { }
 #line 2097 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 107: /* factor: "Falso"  */
-#line 335 "CompiParserImpl.y"
-                  {yyval = new BoolExpr(0);}
+  case 106: /* factor: "Verdadero"  */
+#line 316 "CompiParserImpl.y"
+                  {yyval = new BoolExpr(1);}
 #line 2103 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 110: /* enteros: "Number"  */
-#line 340 "CompiParserImpl.y"
-                { yyval = yyvsp[0]; }
+  case 107: /* factor: "Falso"  */
+#line 317 "CompiParserImpl.y"
+                  {yyval = new BoolExpr(0);}
 #line 2109 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
-  case 111: /* enteros: "-" "Number"  */
-#line 341 "CompiParserImpl.y"
-                     { yyval = yyvsp[-1]; }
+  case 110: /* enteros: "Number"  */
+#line 322 "CompiParserImpl.y"
+                { yyval = yyvsp[0]; }
 #line 2115 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
     break;
 
+  case 111: /* enteros: "-" "Number"  */
+#line 323 "CompiParserImpl.y"
+                     { yyval = yyvsp[-1]; }
+#line 2121 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+    break;
 
-#line 2119 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+
+#line 2125 "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
 
       default: break;
     }

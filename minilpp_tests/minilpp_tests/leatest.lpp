@@ -1,5 +1,6 @@
-Entero x, _y, z, i 
+Entero x
 
 Inicio
     lea x
+    escriba x
 Fin

@@ -51,30 +51,21 @@
 %token Repita           "Repita"
 %token Escriba          "Escriba"
 %token Llamar           "Llamar"
-%token Lectura          "Lectura"
-%token Escritura        "Escritura"
-%token Leer             "Leer"
-%token Escribir         "Escribir"
 %token Tipo             "Tipo"
-%token Registro         "Registro"
-%token Cerrar           "Cerrar"
-%token Archivo          "Archivo"
-%token Abrir            "Abrir"
-%token Como             "Como"
 %token Lea              "Lea"
 
 %token Para             "Para"
 %token Mientras         "Mientras"
 %token Haga             "Haga"
 %token Hasta            "Hasta"
-%token Secuencial       "Secuencial"
+
 
 %token Si               "Si"
 %token SiNoSi           "Sino Si"
 %token Entonces         "Entonces"
 %token Sino             "Sino"
 %token Retorne          "Retorne"
-%token Caso             "Caso"
+
 %token C_O              "o"
 %token C_Y              "y"
 %token C_No             "no"
@@ -107,8 +98,6 @@
 %token OpDiple          "<>"
 %token OpMenorI         "<="
 %token OpMayorI         ">="
-%token SemiColon        ";"
-%token Asignar          "=="
 
 %token Number           "Number"
 %token Ident            "Ident"
@@ -116,7 +105,7 @@
 %token String           "String"
 %%
 
-input: program { parse.setRoot($1); }
+input: program { parse.setLpp($1); }
 ;
 
 program: subtypes-section decl_Var block_decl main { $$ = new Program($2,$3,$4);}
@@ -144,8 +133,8 @@ tipos_variables: Arreglo OpenCorch Number CloseCorch De tipo Ident
 ;
 
 //estrucutra para crear mas varibels del mismo tipo
-more_iden: more_iden Coma Ident { $$ = new DeclaracionStmt($1,$3); parse.addTipo("anterior", ((IdentExpr*)($3))->text);}
-      | Coma Ident { $$ = $2; parse.addTipo("anterior", ((IdentExpr*)($2))->text);}
+more_iden: more_iden Coma Ident { $$ = new DeclaracionStmt($1,$3); parse.addTipo("lista", ((IdentExpr*)($3))->text);}
+      | Coma Ident { $$ = $2; parse.addTipo("lista", ((IdentExpr*)($2))->text);}
       |            { $$ = new Vacio();}
 ;
 
@@ -215,19 +204,18 @@ actions: asign_Var { $$ = $1;} //si
 
 
 
-//estructura Lea - sirve para leer un dato del usuario
 struct_lea: Lea asignar { $$ = new LeaStmt($2); }
 ;
 
-//llamado de arreglo
+
 llamar_arreglo: Ident OpenCorch expr CloseCorch { }
 ;
 
-//estructura de funcion llamar
+
 estructura_llamar: Llamar funcion_llamado
 ;
 
-//asignacion de variables
+
 asign_Var: asignar OpPuntero valores {$$ = new AsignarStmt((IdentExpr*)$1,$3); }
 ;
 
@@ -235,18 +223,16 @@ asignar: Ident { $$ = $1; }
       | llamar_arreglo
 ;
 
-//Funcion- Escriba
 f_escriba: Escriba escriba_list {$$ = new EscribaStmt($2); }
 ;
 
-//estructura de un For/Para
 cliclo_for: Para asignar OpPuntero valores_ciclos Hasta expr Haga block_actions Fin Para { $$ = new ForStmt(new AsignarStmt((IdentExpr*)$2,$3),(Expr*)$6,$8 ); }
 ;
 
 cliclo_While: Mientras condi Haga block_actions Fin Mientras { $$ = new WhileStmt($2,$4); }
 ;
 
-cliclo_Repeat: Repita block_actions Hasta condi
+cliclo_Repeat: Repita block_actions Hasta condi { $$ = new RepitaStmt($2,(Expr*)$4); }
 ;
 
 si_statement: Si expr Entonces block_actions SiNoSi si2_statement { $$ = new IfStmt($2,$4,$6); }
@@ -258,11 +244,9 @@ si2_statement: expr Entonces block_actions SiNoSi si2_statement   { $$ = new IfS
             | expr Entonces block_actions Fin Si   { $$ = new IfStmt($1,$3,new Vacio()); }
 ;
 
-//estructura de retorn
 retorne: Retorne valores
 ;
 
-//estructura de llamado de funcion
 funcion_llamado: Ident parametros
 ;
 
@@ -277,7 +261,6 @@ parametros_mult: valores
 
 
 
-//valores para asignar
 
 escriba_list: escriba_list Coma valores
             | valores {$$ = $1;}
@@ -290,7 +273,6 @@ valores: expr {$$ = $1;}
       |   String  {$$ = $1;}
 ;
 
-//tipos de datos 
 tipo: Entero { $$ = new IdentExpr("Entero"); }
       | Real  { $$ = new IdentExpr("Real"); }
       | Cadena
@@ -298,7 +280,7 @@ tipo: Entero { $$ = new IdentExpr("Entero"); }
       | Caracter { $$ = new IdentExpr("Caracter"); }
 ;
 
-//tipo de valores para ciclos 
+
 valores_ciclos: enteros { $$ = $1; }
             | expr { $$ = $1; }
             
@@ -321,13 +303,13 @@ condi: condi OpMayor factor {$$ = new MayorExpr((Expr*)$1,(Expr*)$3); }
       | condi OpMenorI factor {$$ = new MenorIExpr((Expr*)$1,(Expr*)$3); }
       | condi OpDiple factor {$$ = new DesigualExpr((Expr*)$1,(Expr*)$3); }
       | condi OpSombrero factor 
-      | condi C_O factor
-      | condi C_Y factor 
+      | condi C_O factor {$$ = new OrExpr((Expr*)$1,(Expr*)$3);}
+      | condi C_Y factor {$$ = new AndExpr((Expr*)$1,(Expr*)$3);}
       | condi OpIgual factor {$$ = new IgualExpr((Expr*)$1,(Expr*)$3); }
       | factor {$$ = $1; }
 ;
 
-factor: OpenPar expr ClosePar
+factor: OpenPar expr ClosePar {$$ = $2;}
     |   enteros  { $$ = $1; }
     |   Ident  { $$ = $1; }
     |   C_No Ident  { }   

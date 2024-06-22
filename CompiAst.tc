@@ -224,6 +224,13 @@
     AstNode * stmtst;
 }
 
+
+%node RepitaStmt Stmt = {
+    AstNode * stmtst;
+    Expr * condi;
+    
+}
+
 %node EscribaStmt Stmt = {
     AstNode *expr1;
 }
@@ -248,207 +255,8 @@
 }
 
 
-
-//%operation stdstring toString(AstNode *expr) = {""}
-%operation %virtual int semantica(AstNode *this)
 %operation %virtual stdstring Gencode(AstNode *this,Tipos& tipos)
 
-semantica(AddExpr) {
-
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 + v2;
-}
-
-semantica(MulExpr) {
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 * v2;
-}
-
-semantica(SubExpr) {
-    double v1 = expr1->semantica();
-    double v2 = expr2->semantica( );
-
-    return v1 - v2;
-}
-
-semantica(DivExpr) {
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 / v2;
-}
-
-semantica(MayorExpr) {
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 > v2;
-}
-
-semantica(MenorExpr) {
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 < v2;
-}
-
-semantica(MayorIExpr) {
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 >= v2;
-}
-
-semantica(MenorIExpr) {
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 <= v2;
-}
-
-semantica(IgualExpr) {
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 == v2;
-}
-
-semantica(DesigualExpr) {
-    double v1 = expr1->semantica( );
-    double v2 = expr2->semantica( );
-
-    return v1 != v2;
-}
-
-semantica(ModExpr) {
-    
-    return 0;
-}
-
-
-
-semantica(OrExpr) {
-    
-    return 0;
-}
-
-semantica(AndExpr) {
-    
-    return 0;
-}
-
-semantica(NumExpr) {
-    
-    return value;
-}
-
-semantica(IdentExpr) {
-    
-
-    return 0.0;
-}
-
-semantica(AsignarStmt) {
-    var->semantica();
-    var_value->semantica();
-    return 0.0;
-}
-
-semantica(EscribaStmt) {
-    std::ostringstream stream;
-    stream << std::fixed << std::setprecision(2) << expr1->semantica();
-    std::string cadena = stream.str();
-    
-    return 0.0;
-}
-
-semantica(IfStmt) {
-
-   // std::cout<< toString(condi) << " = " <<condi->semantica() << "\n" ;
-    if(condi->semantica() != 0.0)
-    {
-        stmt_tr->semantica();
-    }else
-    {
-        stmt_f->semantica();
-    }
-    
-    return 0.0;
-}
-
-semantica(CaracterExpr) {
-
-   // std::cout<< toString(condi) << " = " <<condi->semantica() << "\n" ;
-    
-    return 0.0;
-}
-
-semantica(CadenaExpr) {
-
-   // std::cout<< toString(condi) << " = " <<condi->semantica() << "\n" ;
-    
-    return 0.0;
-}
-
-semantica(BlockStmts) {
-    stmt1->semantica();
-    stmt2->semantica();
-    return 0.0;
-}
-
-semantica(DeclaracionStmt) {
-    return 0.0;
-}
-
-semantica(Program) {
-    declVar->semantica();
-    declFun->semantica();
-    main->semantica();
-
-    return 0.0;
-}
-
-
-semantica(Declaracionvariable) {
-    //stmts->semantica();
-
-    return 0.0;
-}
-
-semantica(ForStmt) {
-    return 0.0;
-}
-
-
-semantica(BoolExpr) {
-    return 0.0;
-}
-
-
-
-semantica(RetorneStmt) {
-    return 0.0;
-}
-
-semantica(WhileStmt) {
-    return 0.0;
-}
-semantica(ArregloExpr) {
-    return 0.0;
-}
-
-semantica(LeaStmt) {
-    return 0.0;
-}
-
-semantica(Vacio) {
-    return 0.0;
-}
-////////////////////////////////////
 
 Gencode(AddExpr) {
     place = "ebp - " + std::to_string(addOffset_stmt());
@@ -468,7 +276,8 @@ Gencode(MulExpr) {
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-	code += "\tmov eax, " + getPlace(expr1) +"\n\timul eax, " + getPlace(expr2) + "\n";
+	code += "\tmov eax, " + getPlace(expr1) +"\n";
+    code += "\timul eax, " + getPlace(expr2) + "\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
@@ -492,7 +301,10 @@ Gencode(DivExpr) {
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
 
-	code += "\tmov eax, " + getPlace(expr1) +"\n\tcdq\n\tmov ebx, "+ getPlace(expr2) +"\n\tidiv ebx\n";
+	code += "\tmov eax, " + getPlace(expr2) +"\n";
+    code += "\tcdq\n";
+    code += "\tmov ebx, "+ getPlace(expr1) +"\n";
+    code += "\tidiv ebx\n";
 
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
@@ -503,12 +315,15 @@ Gencode(MayorExpr) {
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_mayor = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-    std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tjle "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tjle "+ Etiqueta_mayor +"\n";
+	code += "\tmov eax, 1\n";
+    code += "\tjmp "+Etiqueta_Fin+"\n";
+    code += Etiqueta_mayor + ": \n";
+    code += "\t mov eax, 0\n";
+    code += Etiqueta_Fin + ":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
@@ -518,12 +333,15 @@ Gencode(MenorExpr) {
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_menor = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tjge "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tjge "+ Etiqueta_menor +"\n";
+	code += "\tmov eax, 1\n";
+    code += "\tjmp "+Etiqueta_Fin+"\n";
+    code += Etiqueta_menor + ": \n";
+    code += "\t mov eax, 0\n";
+    code += Etiqueta_Fin+":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
@@ -533,12 +351,15 @@ Gencode(MayorIExpr) {
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_mayor = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tjl "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tjl " + Etiqueta_mayor +"\n";
+	code += "\tmov eax, 1\n";
+    code += "\tjmp " + Etiqueta_Fin + "\n";
+    code += Etiqueta_mayor + ": \n";
+    code += "\t mov eax, 0\n" ;
+    code += Etiqueta_Fin + ":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
@@ -548,12 +369,14 @@ Gencode(MenorIExpr) {
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_menor = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tjg "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tjg "+ Etiqueta_menor +"\n";
+	code += "\tmov eax, 1\n";
+    code += "\tjmp "+Etiqueta_Fin+"\n";
+    code += Etiqueta_menor+": \n";
+    code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
@@ -563,12 +386,14 @@ Gencode(IgualExpr) {
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_igual = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tjne "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tjne "+ Etiqueta_igual +"\n";
+	code += "\tmov eax, 1\n";
+    code += "\tjmp "+Etiqueta_Fin+"\n"; 
+    code += Etiqueta_igual+": \n";
+    code += "\t mov eax, 0\n"+Etiqueta_Fin+":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
@@ -578,12 +403,15 @@ Gencode(DesigualExpr) {
 	expr1->Gencode(tipos);
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
-
+    std::string Etiqueta_desigual = newLabel();
+	std::string Etiqueta_Fin = newLabel();
 	code += "\tmov eax, " + getPlace(expr1) +"\n\tcmp eax, " + getPlace(expr2) + "\n";
-	std::string label = newLabel();
-	std::string final = newLabel();
-	code += "\tje "+ label +"\n";
-	code += "\tmov eax, 1\n\tjmp "+final+"\n"+label+": \n\t mov eax, 0\n"+final+":\n";
+	code += "\tje "+ Etiqueta_desigual +"\n";
+	code += "\tmov eax, 1\n"; 
+    code += "\tjmp "+Etiqueta_Fin+"\n";
+    code += Etiqueta_desigual + ": \n"; 
+    code += "\t mov eax, 0\n";
+    code += Etiqueta_Fin +":\n";
 	code += "\tmov ["+ place + "], eax\n";
 	return code;
 }
@@ -595,7 +423,10 @@ Gencode(ModExpr) {
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
 
-	code += "\tmov eax, " + getPlace(expr1) +"\n\tcdq\n\tmov ebx, "+ getPlace(expr2) +"\n\tidiv ebx\n";
+	code += "\tmov eax, " + getPlace(expr1) +"\n";
+    code += "\tcdq\n";
+    code += "\tmov ebx, "+ getPlace(expr2) +"\n";
+    code += "\tidiv ebx\n";
 
 	code += "\tmov ["+ place + "], edx\n";
 	code += "\tmov eax, edx\n";
@@ -609,7 +440,8 @@ Gencode(OrExpr) {
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
 
-    code += "\tmov eax, " + getPlace(expr1) +"\n\tor eax, " + getPlace(expr2) + "\n";
+    code += "\tmov eax, " + getPlace(expr1) +"\n";
+    code += "\tor eax, " + getPlace(expr2) + "\n";
     code += "\tmov ["+ place + "], eax\n";
     return code;
 }
@@ -621,7 +453,8 @@ Gencode(AndExpr) {
     expr2->Gencode(tipos);
     code += expr1->code + expr2->code;
 
-    code += "\tmov eax, " + getPlace(expr1) +"\n\tand eax, " + getPlace(expr2) + "\n";
+    code += "\tmov eax, " + getPlace(expr1) +"\n";
+    code += "\tand eax, " + getPlace(expr2) + "\n";
     code += "\tmov ["+ place + "], eax\n";
     return code;
 }
@@ -651,7 +484,6 @@ Gencode(IdentExpr) {
     if (!encontrado) {
         place = "ebp + " +std::to_string(addOffset());
         vars.push_back({text, place, 0});
-        //code = "\tpush 0\n";
     }
     return "";
 }
@@ -665,19 +497,17 @@ Gencode(CaracterExpr) {
 }
 
 Gencode(CadenaExpr) {
-    
-    
-    //place = std::to_string(valor_ascii);
+    place = "";
     code = "";
     return "";
 }
 
 Gencode(ArregloExpr) {
-    
-
-   
+    code = "";
+    place ="";
     return "";
 }
+
 
 
 Gencode(AsignarStmt) {
@@ -699,10 +529,7 @@ Gencode(AsignarStmt) {
         throw std::runtime_error(msgcompleto.c_str());\
     }
     
-
     
-
-    //hacer validacion que el valor sea del tipo de numero
     if(var_value->isA(NumExpr_kind))
     {
         
@@ -728,7 +555,7 @@ Gencode(AsignarStmt) {
                     var_value->Gencode(tipos);
                 }else
                 {
-                    std::string msgcompleto = "Error: La Variable " + var->text + " no es de tipo "+tipo ;
+                    std::string msgcompleto = "Error: La Variable " + var->text + " no es de tipo " + tipo ;
                     throw std::runtime_error(msgcompleto.c_str());\
                 }
 
@@ -751,6 +578,7 @@ Gencode(AsignarStmt) {
             std::string msgcompleto = "Error: La Variable " + var->text + " no es de tipo Caracter" ;
             throw std::runtime_error(msgcompleto.c_str());\
         }
+
     }else if(var_value->isA(BoolExpr_kind))
     {
         if(siTipo(tipos, var->text, "Booleano"))
@@ -762,6 +590,7 @@ Gencode(AsignarStmt) {
             std::string msgcompleto = "Error: La Variable " + var->text + " no es de tipo Booleano" ;
             throw std::runtime_error(msgcompleto.c_str());\
         }
+
     }else
     {
         var_value->Gencode(tipos);
@@ -779,8 +608,6 @@ Gencode(AsignarStmt) {
 Gencode(EscribaStmt) {
     bool encontrado = false;
 
-
-    
     if(expr1->isA(NumExpr_kind))
     {
         expr1->Gencode(tipos);
@@ -795,11 +622,8 @@ Gencode(EscribaStmt) {
         for (const auto& vari : vars) {
             if (vari.Identificador == static_cast<IdentExpr *>(expr1)->text) {
                 encontrado = true;
-                
 
                 expr1->Gencode(tipos);
-
-
 
                 break;
             }
@@ -891,27 +715,18 @@ Gencode(EscribaStmt) {
         for (i = 0; static_cast<CadenaExpr *>(expr1)->cadena[i] != '\0'; ++i) {
 
             if (i % 4 == 0) {
-                code += "\n\tmov [ebx + "+std::to_string(i)+"], 0x";
-                std::cout<<"i=" << i<< "\n";
+                code += "\n\tmov [ebx + " + std::to_string(i) + "], 0x";   
             }
-            
-            //code += std::ios_base& << std::_Setw(2) << std::setfill('0') << static_cast<int>(static_cast<CadenaExpr *>(expr1)->cadena[i]);
             ss << std::hex << std::setw(2) << std::setfill('0') << static_cast<int>(static_cast<CadenaExpr *>(expr1)->cadena[i]);
             
            if(i >= 0 && (i-3) % 4 == 0 || i == static_cast<CadenaExpr *>(expr1)->cadena.size() - 1)
             {
                 
                 std::vector<std::string> pares;
-
-                // Dividir la cadena en pares de dos caracteres
                 for (size_t i = 0; i < ss.str().length(); i += 2) {
                     pares.push_back(ss.str().substr(i, 2));
                 }
-
-                // Invertir el vector de pares
                 std::reverse(pares.begin(), pares.end());
-
-                // Construir la cadena resultante
                 std::ostringstream resultado;
                 for (const auto& par : pares) {
                     resultado << par;
@@ -975,12 +790,29 @@ Gencode(Declaracionvariable) {
     return code;
 }
 
+Gencode(RepitaStmt)
+{
+    std::string Etiqueta_repita = newLabel(); 
+    stmtst->Gencode(tipos);
+    condi->Gencode(tipos);
+
+
+    code += Etiqueta_repita + ":\n";
+    code += stmtst->code;
+    code += condi->code;
+    code += "\tmov eax, " + getPlace(condi) + "\n";
+    code += "\tcmp eax, 0\n";
+    code += "\tjne " + Etiqueta_repita + "\n";
+
+
+    return code;
+}
 
 Gencode(ForStmt) {
-    std::string label1 = newLabel(); // label de for
+    std::string label1 = newLabel(); 
     
-    std::string label2 = newLabel(); // finalizacion del for
-    std::string label3 = newLabel(); // label que no entro al for
+    std::string label2 = newLabel(); 
+    std::string label3 = newLabel(); 
    
 
     asignacion->Gencode(tipos);
@@ -1062,7 +894,23 @@ Gencode(Vacio) {
 
 
 Gencode(LeaStmt) {
-    leer->Gencode(tipos);
+    
+    bool encontrado = false;
+    for (const auto& vari : vars) {
+        if (vari.Identificador == static_cast<IdentExpr *>(leer)->text) {
+            encontrado = true;
+            
+           leer->Gencode(tipos);
+
+            break;
+        }
+    }
+
+    if (!encontrado) {
+        
+        std::string msgcompleto = "Error:variable no declarada " + static_cast<IdentExpr *>(leer)->text;
+        throw std::runtime_error(msgcompleto.c_str());\
+    }
 
     code += "\tmov eax, 5\n";
     code += "\tint 0x80\n";
@@ -1072,13 +920,11 @@ Gencode(LeaStmt) {
 }
 
 Gencode(Program) {
-    //stmts->Gencode(tipos);
     declVar->Gencode(tipos);
     declFun->Gencode(tipos);
     main->Gencode(tipos);
-    //code = varia;
     for (const auto& var : vars) {
-        std::cout<< var.Identificador << " = " << var.direccion <<"\n";
+       
         code += "\tpush 0\n";
     }
 

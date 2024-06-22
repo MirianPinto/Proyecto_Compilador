@@ -67,11 +67,12 @@ const int BlockStmts_kind = 26;
 const int Declaracionvariable_kind = 28;
 const int AsignarStmt_kind = 29;
 const int ForStmt_kind = 30;
-const int EscribaStmt_kind = 31;
-const int IfStmt_kind = 32;
-const int WhileStmt_kind = 33;
-const int RetorneStmt_kind = 34;
-const int LeaStmt_kind = 35;
+const int RepitaStmt_kind = 31;
+const int EscribaStmt_kind = 32;
+const int IfStmt_kind = 33;
+const int WhileStmt_kind = 34;
+const int RetorneStmt_kind = 35;
+const int LeaStmt_kind = 36;
 
 class AstNode;
 class Expr;
@@ -103,6 +104,7 @@ class BlockStmts;
 class Declaracionvariable;
 class AsignarStmt;
 class ForStmt;
+class RepitaStmt;
 class EscribaStmt;
 class IfStmt;
 class WhileStmt;
@@ -122,7 +124,7 @@ private:
 	struct YYNODESTATE_block *blocks__;
 	struct YYNODESTATE_push *push_stack__;
 	int used__;
-#line 126 "CompiAst.hpp"
+#line 128 "CompiAst.hpp"
 private:
 
 	static YYNODESTATE *state__;
@@ -177,7 +179,6 @@ public:
 	stdstring place;
 	stdstring code;
 
-	virtual int semantica() = 0;
 	virtual stdstring Gencode(Tipos & tipos) = 0;
 
 	virtual int isA(int kind) const;
@@ -197,7 +198,6 @@ protected:
 
 public:
 
-	virtual int semantica() = 0;
 	virtual stdstring Gencode(Tipos & tipos) = 0;
 
 	virtual int isA(int kind) const;
@@ -221,7 +221,6 @@ public:
 	AstNode * declFun;
 	AstNode * main;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -241,7 +240,6 @@ protected:
 
 public:
 
-	virtual int semantica() = 0;
 	virtual stdstring Gencode(Tipos & tipos) = 0;
 
 	virtual int isA(int kind) const;
@@ -264,7 +262,6 @@ public:
 	Expr * expr1;
 	Expr * expr2;
 
-	virtual int semantica() = 0;
 	virtual stdstring Gencode(Tipos & tipos) = 0;
 
 	virtual int isA(int kind) const;
@@ -286,7 +283,6 @@ public:
 
 	int value;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -308,7 +304,6 @@ public:
 
 	stdstring text;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -330,7 +325,6 @@ public:
 
 	int booleano;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -352,7 +346,6 @@ public:
 
 	char character;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -374,7 +367,6 @@ public:
 
 	stdstring cadena;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -396,7 +388,6 @@ public:
 
 	stdstring txt;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -419,7 +410,6 @@ public:
 	AstNode * ident1;
 	AstNode * ident2;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -439,7 +429,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -459,7 +448,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -479,7 +467,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -499,7 +486,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -519,7 +505,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -539,7 +524,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -559,7 +543,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -579,7 +562,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -599,7 +581,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -619,7 +600,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -639,7 +619,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -659,7 +638,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -679,7 +657,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -699,7 +676,6 @@ public:
 
 public:
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -722,7 +698,6 @@ public:
 	AstNode * stmt1;
 	AstNode * stmt2;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -745,7 +720,6 @@ public:
 	AstNode * ident;
 	AstNode * ident2;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -768,7 +742,6 @@ public:
 	IdentExpr * var;
 	AstNode * var_value;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -792,7 +765,6 @@ public:
 	Expr * hasta;
 	AstNode * stmtst;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -801,6 +773,28 @@ public:
 protected:
 
 	virtual ~ForStmt();
+
+};
+
+class RepitaStmt : public Stmt
+{
+public:
+
+	RepitaStmt(AstNode * stmtst, Expr * condi);
+
+public:
+
+	AstNode * stmtst;
+	Expr * condi;
+
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~RepitaStmt();
 
 };
 
@@ -814,7 +808,6 @@ public:
 
 	AstNode * expr1;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -838,7 +831,6 @@ public:
 	AstNode * stmt_tr;
 	AstNode * stmt_f;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -861,7 +853,6 @@ public:
 	AstNode * condi;
 	AstNode * stmt_tr;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -883,7 +874,6 @@ public:
 
 	AstNode * retorno;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
@@ -905,7 +895,6 @@ public:
 
 	AstNode * leer;
 
-	virtual int semantica();
 	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;

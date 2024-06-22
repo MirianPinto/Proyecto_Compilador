@@ -45,30 +45,19 @@
 "Repita"            { return Token::Repita; }
 "Escriba"           { return Token::Escriba; }
 "Llamar"            { return Token::Llamar; }
-"Lectura"           { return Token::Lectura; }
-"Escritura"         { return Token::Escritura; }
-"Leer"              { return Token::Leer; }
-"Escribir"          { return Token::Escribir; }
 "Tipo"              { return Token::Tipo; }
-"Registro"          { return Token::Registro; }
-"Cerrar"            { return Token::Cerrar; }
-"Archivo"           { return Token::Archivo; }
-"Abrir"             { return Token::Abrir; }
-"Como"              { return Token::Como; }
 "Lea"               { return Token::Lea; }
 
 "Para"              { return Token::Para; }
 "Mientras"          { return Token::Mientras; }
 "Haga"              { return Token::Haga; }
 "Hasta"             { return Token::Hasta; }
-"Secuencial"        { return Token::Secuencial; }
 
 "Si"                { return Token::Si; }
-"Sino Si"              { return Token::SiNoSi; }
+"Sino Si"           { return Token::SiNoSi; }
 "Entonces"          { return Token::Entonces; }
 "Sino"              { return Token::Sino; }
 "Retorne"           { return Token::Retorne; }
-"Caso"              { return Token::Caso; }
 "o"                 { return Token::C_O; }
 "y"                 { return Token::C_Y; }
 "no"                { return Token::C_No; }
@@ -101,11 +90,9 @@
 "<>"		        { return Token::OpDiple; }
 "<="		        { return Token::OpMenorI; }
 ">="		        { return Token::OpMayorI; }
-";"                 { return Token::SemiColon; }
-"="                 { return Token::Asignar; }
 
 \'[^\n]\' {   *lval = new CaracterExpr(yytext[1]); return Token::Character; }
-\"[0-9a-zA-Z_ ]*[^\n]*\" { std::string cadena = std::string(yytext); cadena.erase(std::remove(cadena.begin(), cadena.end(), '\"'), cadena.end()); std::cout<< cadena;*lval = new CadenaExpr(cadena) ;return Token::String; }
+\"[0-9a-zA-Z_ ]*[^\n]*\" { std::string cadena = std::string(yytext); cadena.erase(std::remove(cadena.begin(), cadena.end(), '\"'), cadena.end()); *lval = new CadenaExpr(cadena) ;return Token::String; }
 [0-9]+	            {*lval = new NumExpr(std::atof(yytext)); return Token::Number; }
 [a-zA-Z_][0-9a-zA-Z_]* { *lval = new IdentExpr(std::string(yytext));  return Token::Ident; }
 

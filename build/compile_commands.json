@@ -1,0 +1,32 @@
+[
+{
+  "directory": "/home/mirian/Compiladores_2/Proyecto_Compilador/build",
+  "command": "/usr/bin/c++ -I/home/mirian/Compiladores_2/Proyecto_Compilador/build -I/home/mirian/Compiladores_2/Proyecto_Compilador -g -std=gnu++17 -o CMakeFiles/Compilador.dir/CompiLexerImpl.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp",
+  "file": "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiLexerImpl.cpp"
+},
+{
+  "directory": "/home/mirian/Compiladores_2/Proyecto_Compilador/build",
+  "command": "/usr/bin/c++ -I/home/mirian/Compiladores_2/Proyecto_Compilador/build -I/home/mirian/Compiladores_2/Proyecto_Compilador -g -std=gnu++17 -o CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp",
+  "file": "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.cpp"
+},
+{
+  "directory": "/home/mirian/Compiladores_2/Proyecto_Compilador/build",
+  "command": "/usr/bin/c++ -I/home/mirian/Compiladores_2/Proyecto_Compilador/build -I/home/mirian/Compiladores_2/Proyecto_Compilador -g -std=gnu++17 -o CMakeFiles/Compilador.dir/CompiParser.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/CompiParser.cpp",
+  "file": "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiParser.cpp"
+},
+{
+  "directory": "/home/mirian/Compiladores_2/Proyecto_Compilador/build",
+  "command": "/usr/bin/c++ -I/home/mirian/Compiladores_2/Proyecto_Compilador/build -I/home/mirian/Compiladores_2/Proyecto_Compilador -g -std=gnu++17 -o CMakeFiles/Compilador.dir/CompiLexer.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/CompiLexer.cpp",
+  "file": "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiLexer.cpp"
+},
+{
+  "directory": "/home/mirian/Compiladores_2/Proyecto_Compilador/build",
+  "command": "/usr/bin/c++ -I/home/mirian/Compiladores_2/Proyecto_Compilador/build -I/home/mirian/Compiladores_2/Proyecto_Compilador -g -std=gnu++17 -o CMakeFiles/Compilador.dir/CompiAst.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiAst.cpp",
+  "file": "/home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiAst.cpp"
+},
+{
+  "directory": "/home/mirian/Compiladores_2/Proyecto_Compilador/build",
+  "command": "/usr/bin/c++ -I/home/mirian/Compiladores_2/Proyecto_Compilador/build -I/home/mirian/Compiladores_2/Proyecto_Compilador -g -std=gnu++17 -o CMakeFiles/Compilador.dir/main.cpp.o -c /home/mirian/Compiladores_2/Proyecto_Compilador/main.cpp",
+  "file": "/home/mirian/Compiladores_2/Proyecto_Compilador/main.cpp"
+}
+]

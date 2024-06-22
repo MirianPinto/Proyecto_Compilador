@@ -19,43 +19,58 @@
         valores valor;
     };
 
+    struct variable_Tipo{
+        stdstring Tipo;
+        stdstring variable;
+    };
+
     using Variables = std::vector<variable_valor>;
-    using Tipos = std::vector<std::string>;
+    using Tipos = std::vector<variable_Tipo>;
 
     void resetCodegen();
 	int getOffset();
 	int addOffset();
 	stdstring newLabel();
-	
-	
-    
-#line 33 "CompiAst.hpp"
+    bool siTipo(Tipos& tipo_var, std::string var, std::string tipo);
+    stdstring TipoVar(std::string var);
+#line 37 "CompiAst.hpp"
 
 #include <new>
 
 const int AstNode_kind = 1;
 const int Expr_kind = 2;
 const int Program_kind = 3;
-const int Stmt_kind = 17;
+const int Stmt_kind = 24;
 const int BinaryExpr_kind = 4;
-const int NumExpr_kind = 15;
-const int IdentExpr_kind = 16;
-const int DeclaracionStmt_kind = 19;
+const int NumExpr_kind = 18;
+const int IdentExpr_kind = 19;
+const int BoolExpr_kind = 20;
+const int CaracterExpr_kind = 21;
+const int CadenaExpr_kind = 22;
+const int ArregloExpr_kind = 23;
+const int DeclaracionStmt_kind = 27;
 const int AddExpr_kind = 5;
 const int MulExpr_kind = 6;
 const int DivExpr_kind = 7;
 const int SubExpr_kind = 8;
-const int MayorExpr_kind = 9;
-const int MenorExpr_kind = 10;
-const int MayorIExpr_kind = 11;
-const int MenorIExpr_kind = 12;
-const int IgualExpr_kind = 13;
-const int DesigualExpr_kind = 14;
-const int BlockStmts_kind = 18;
-const int Declaracionvariable_kind = 20;
-const int AsignarStmt_kind = 21;
-const int EscribaStmt_kind = 22;
-const int IfStmt_kind = 23;
+const int ModExpr_kind = 9;
+const int MayorExpr_kind = 10;
+const int MenorExpr_kind = 11;
+const int MayorIExpr_kind = 12;
+const int MenorIExpr_kind = 13;
+const int IgualExpr_kind = 14;
+const int DesigualExpr_kind = 15;
+const int OrExpr_kind = 16;
+const int AndExpr_kind = 17;
+const int Vacio_kind = 25;
+const int BlockStmts_kind = 26;
+const int Declaracionvariable_kind = 28;
+const int AsignarStmt_kind = 29;
+const int ForStmt_kind = 30;
+const int EscribaStmt_kind = 31;
+const int IfStmt_kind = 32;
+const int WhileStmt_kind = 33;
+const int RetorneStmt_kind = 34;
 
 class AstNode;
 class Expr;
@@ -64,22 +79,33 @@ class Stmt;
 class BinaryExpr;
 class NumExpr;
 class IdentExpr;
+class BoolExpr;
+class CaracterExpr;
+class CadenaExpr;
+class ArregloExpr;
 class DeclaracionStmt;
 class AddExpr;
 class MulExpr;
 class DivExpr;
 class SubExpr;
+class ModExpr;
 class MayorExpr;
 class MenorExpr;
 class MayorIExpr;
 class MenorIExpr;
 class IgualExpr;
 class DesigualExpr;
+class OrExpr;
+class AndExpr;
+class Vacio;
 class BlockStmts;
 class Declaracionvariable;
 class AsignarStmt;
+class ForStmt;
 class EscribaStmt;
 class IfStmt;
+class WhileStmt;
+class RetorneStmt;
 
 class YYNODESTATE
 {
@@ -94,7 +120,7 @@ private:
 	struct YYNODESTATE_block *blocks__;
 	struct YYNODESTATE_push *push_stack__;
 	int used__;
-#line 98 "CompiAst.hpp"
+#line 124 "CompiAst.hpp"
 private:
 
 	static YYNODESTATE *state__;
@@ -150,7 +176,7 @@ public:
 	stdstring code;
 
 	virtual int semantica() = 0;
-	virtual stdstring Gencode() = 0;
+	virtual stdstring Gencode(Tipos & tipos) = 0;
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -170,7 +196,7 @@ protected:
 public:
 
 	virtual int semantica() = 0;
-	virtual stdstring Gencode() = 0;
+	virtual stdstring Gencode(Tipos & tipos) = 0;
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -185,14 +211,16 @@ class Program : public AstNode
 {
 public:
 
-	Program(Stmt * stmts);
+	Program(AstNode * declVar, AstNode * declFun, AstNode * main);
 
 public:
 
-	Stmt * stmts;
+	AstNode * declVar;
+	AstNode * declFun;
+	AstNode * main;
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -212,7 +240,7 @@ protected:
 public:
 
 	virtual int semantica() = 0;
-	virtual stdstring Gencode() = 0;
+	virtual stdstring Gencode(Tipos & tipos) = 0;
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -235,7 +263,7 @@ public:
 	Expr * expr2;
 
 	virtual int semantica() = 0;
-	virtual stdstring Gencode() = 0;
+	virtual stdstring Gencode(Tipos & tipos) = 0;
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -257,7 +285,7 @@ public:
 	int value;
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -279,7 +307,7 @@ public:
 	stdstring text;
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -290,19 +318,107 @@ protected:
 
 };
 
+class BoolExpr : public Expr
+{
+public:
+
+	BoolExpr(int booleano);
+
+public:
+
+	int booleano;
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~BoolExpr();
+
+};
+
+class CaracterExpr : public Expr
+{
+public:
+
+	CaracterExpr(char character);
+
+public:
+
+	char character;
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~CaracterExpr();
+
+};
+
+class CadenaExpr : public Expr
+{
+public:
+
+	CadenaExpr(stdstring cadena);
+
+public:
+
+	stdstring cadena;
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~CadenaExpr();
+
+};
+
+class ArregloExpr : public Expr
+{
+public:
+
+	ArregloExpr(stdstring txt);
+
+public:
+
+	stdstring txt;
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~ArregloExpr();
+
+};
+
 class DeclaracionStmt : public Expr
 {
 public:
 
-	DeclaracionStmt(Expr * ident1, Expr * ident2);
+	DeclaracionStmt(AstNode * ident1, AstNode * ident2);
 
 public:
 
-	Expr * ident1;
-	Expr * ident2;
+	AstNode * ident1;
+	AstNode * ident2;
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -322,7 +438,7 @@ public:
 public:
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -342,7 +458,7 @@ public:
 public:
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -362,7 +478,7 @@ public:
 public:
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -382,7 +498,7 @@ public:
 public:
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -390,6 +506,26 @@ public:
 protected:
 
 	virtual ~SubExpr();
+
+};
+
+class ModExpr : public BinaryExpr
+{
+public:
+
+	ModExpr(Expr * expr1, Expr * expr2);
+
+public:
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~ModExpr();
 
 };
 
@@ -402,7 +538,7 @@ public:
 public:
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -422,7 +558,7 @@ public:
 public:
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -442,7 +578,7 @@ public:
 public:
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -462,7 +598,7 @@ public:
 public:
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -482,7 +618,7 @@ public:
 public:
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -502,7 +638,7 @@ public:
 public:
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -510,6 +646,66 @@ public:
 protected:
 
 	virtual ~DesigualExpr();
+
+};
+
+class OrExpr : public BinaryExpr
+{
+public:
+
+	OrExpr(Expr * expr1, Expr * expr2);
+
+public:
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~OrExpr();
+
+};
+
+class AndExpr : public BinaryExpr
+{
+public:
+
+	AndExpr(Expr * expr1, Expr * expr2);
+
+public:
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~AndExpr();
+
+};
+
+class Vacio : public Stmt
+{
+public:
+
+	Vacio();
+
+public:
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~Vacio();
 
 };
 
@@ -525,7 +721,7 @@ public:
 	AstNode * stmt2;
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -540,15 +736,15 @@ class Declaracionvariable : public Stmt
 {
 public:
 
-	Declaracionvariable(Expr * ident, Expr * ident2);
+	Declaracionvariable(AstNode * ident, AstNode * ident2);
 
 public:
 
-	Expr * ident;
-	Expr * ident2;
+	AstNode * ident;
+	AstNode * ident2;
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -563,15 +759,15 @@ class AsignarStmt : public Stmt
 {
 public:
 
-	AsignarStmt(AstNode * var, AstNode * var_value);
+	AsignarStmt(IdentExpr * var, AstNode * var_value);
 
 public:
 
-	AstNode * var;
+	IdentExpr * var;
 	AstNode * var_value;
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -579,6 +775,30 @@ public:
 protected:
 
 	virtual ~AsignarStmt();
+
+};
+
+class ForStmt : public Stmt
+{
+public:
+
+	ForStmt(AsignarStmt * asignacion, Expr * hasta, AstNode * stmtst);
+
+public:
+
+	AsignarStmt * asignacion;
+	Expr * hasta;
+	AstNode * stmtst;
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~ForStmt();
 
 };
 
@@ -593,7 +813,7 @@ public:
 	AstNode * expr1;
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -608,16 +828,16 @@ class IfStmt : public Stmt
 {
 public:
 
-	IfStmt(AstNode * condi, AstNode * stmt_t, AstNode * stmt_f);
+	IfStmt(AstNode * condi, AstNode * stmt_tr, AstNode * stmt_f);
 
 public:
 
 	AstNode * condi;
-	AstNode * stmt_t;
+	AstNode * stmt_tr;
 	AstNode * stmt_f;
 
 	virtual int semantica();
-	virtual stdstring Gencode();
+	virtual stdstring Gencode(Tipos & tipos);
 
 	virtual int isA(int kind) const;
 	virtual const char *getKindName() const;
@@ -625,6 +845,51 @@ public:
 protected:
 
 	virtual ~IfStmt();
+
+};
+
+class WhileStmt : public Stmt
+{
+public:
+
+	WhileStmt(AstNode * condi, AstNode * stmt_tr);
+
+public:
+
+	AstNode * condi;
+	AstNode * stmt_tr;
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~WhileStmt();
+
+};
+
+class RetorneStmt : public Stmt
+{
+public:
+
+	RetorneStmt(AstNode * retorno);
+
+public:
+
+	AstNode * retorno;
+
+	virtual int semantica();
+	virtual stdstring Gencode(Tipos & tipos);
+
+	virtual int isA(int kind) const;
+	virtual const char *getKindName() const;
+
+protected:
+
+	virtual ~RetorneStmt();
 
 };
 

@@ -178,4 +178,8 @@ CMakeFiles/Compilador.dir/CompiParserImpl.cpp.o: \
  /home/mirian/Compiladores_2/Proyecto_Compilador/CompiLexer.hpp \
  /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.hpp \
  /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiAst.hpp \
+ /usr/include/c++/11/fstream \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/basic_file.h \
+ /usr/include/x86_64-linux-gnu/c++/11/bits/c++io.h \
+ /usr/include/c++/11/bits/fstream.tcc \
  /home/mirian/Compiladores_2/Proyecto_Compilador/build/CompiParserImpl.hpp

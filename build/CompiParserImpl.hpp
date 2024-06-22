@@ -45,7 +45,7 @@
 extern int yydebug;
 #endif
 /* "%code requires" blocks.  */
-#line 28 "CompiParserImpl.y"
+#line 27 "CompiParserImpl.y"
 
       
       #include <string>
@@ -128,12 +128,12 @@ extern int yydebug;
     OpSombrero = 314,              /* "^"  */
     OpMenor = 315,                 /* "<"  */
     OpMayor = 316,                 /* ">"  */
-    OpIgual = 317,                 /* "=="  */
+    OpIgual = 317,                 /* "="  */
     OpDiple = 318,                 /* "<>"  */
     OpMenorI = 319,                /* "<="  */
     OpMayorI = 320,                /* ">="  */
     SemiColon = 321,               /* ";"  */
-    Asignar = 322,                 /* "="  */
+    Asignar = 322,                 /* "=="  */
     Number = 323,                  /* "Number"  */
     Ident = 324,                   /* "Ident"  */
     Character = 325,               /* "Character"  */

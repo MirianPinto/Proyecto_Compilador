@@ -21,7 +21,6 @@
 
             throw std::runtime_error(msgcompleto.c_str());\
             }\
-
       }
 
 %code requires
@@ -104,12 +103,12 @@
 %token OpSombrero       "^"
 %token OpMenor          "<"
 %token OpMayor          ">"
-%token OpIgual          "=="
+%token OpIgual          "="
 %token OpDiple          "<>"
 %token OpMenorI         "<="
 %token OpMayorI         ">="
 %token SemiColon        ";"
-%token Asignar          "="
+%token Asignar          "=="
 
 %token Number           "Number"
 %token Ident            "Ident"
@@ -117,10 +116,10 @@
 %token String           "String"
 %%
 
-input: program { parse.setRoot(new Program(new BlockStmts(new Declaracionvariable(new DeclaracionStmt(new IdentExpr("a"), new IdentExpr("y")), new IdentExpr("x")) , new BlockStmts(new AddExpr(new IdentExpr("x"), new IdentExpr("y")), new EscribaStmt(new NumExpr(5)))))); }
+input: program { parse.setRoot($1); }
 ;
 
-program: subtypes-section decl_Var block_decl main {  }
+program: subtypes-section decl_Var block_decl main { $$ = new Program($2,$3,$4);}
 ;
 
 //no generara ningun nodo
@@ -130,9 +129,9 @@ subtypes-section: subtypes-section Tipo Ident Es type-subtypes
 ;
 
 //estructura con recursion de declaracion de variables
-decl_Var: decl_Var tipos_variables { }
-      | tipos_variables { }
-      | 
+decl_Var: decl_Var tipos_variables { $$ = new Declaracionvariable($1,$2); }
+      | tipos_variables { $$ = $1;}
+      | {$$ = new Vacio();}
 ;   
 
 type-subtypes: tipo
@@ -140,20 +139,20 @@ type-subtypes: tipo
 ;
 
 tipos_variables: Arreglo OpenCorch Number CloseCorch De tipo Ident
-            | tipo Ident more_iden {  }
+            | tipo Ident more_iden { $$ = new DeclaracionStmt($2,$3); parse.addTipo(((IdentExpr*)($1))->text, ((IdentExpr*)($2))->text); }
             | Ident Ident {}
 ;
 
 //estrucutra para crear mas varibels del mismo tipo
-more_iden: more_iden Coma Ident { }
-      | Coma Ident { $$ = $2; }
-      |            { }
+more_iden: more_iden Coma Ident { $$ = new DeclaracionStmt($1,$3); parse.addTipo("anterior", ((IdentExpr*)($3))->text);}
+      | Coma Ident { $$ = $2; parse.addTipo("anterior", ((IdentExpr*)($2))->text);}
+      |            { $$ = new Vacio();}
 ;
 
 //block de declaracion de variables
 block_decl: block_decl declaraciones 
           | declaraciones
-          | %empty
+          | %empty {$$ = new Vacio();}
 ;
 
 //declaraciones hantes de inicio
@@ -192,25 +191,25 @@ tipos_paramettros: Var Arreglo OpenCorch Number CloseCorch De tipo Ident
 
 //***************************************************************************************************************
 //estructura del main
-main: Inicio block_actions Fin
+main: Inicio block_actions Fin { $$ = $2; }
 ;
 
 //block de acciones del main
-block_actions: block_actions actions
-            | actions   
+block_actions: block_actions actions {$$ = new BlockStmts($1,$2);}
+            | actions   {$$ = $1; }
 ;
 
 //acciones del main
-actions: asign_Var //ya
-      | f_escriba //ya
-      | cliclo_for 
-      | retorne //retornara por el ecx
-      | estructura_llamar // 
-      | cliclo_While //
-      | cliclo_Repeat // 
-      | struct_lea //
-      | si_statement //
-      | %empty
+actions: asign_Var { $$ = $1;}
+      | f_escriba { $$ = $1;}
+      | cliclo_for { $$ = $1;}
+      | retorne { $$ = $1;}
+      | estructura_llamar { $$ = $1;}
+      | cliclo_While { $$ = $1;}
+      | cliclo_Repeat { $$ = $1;}
+      | struct_lea { $$ = $1;}
+      | si_statement { $$ = $1;}
+      | %empty { $$ = new Vacio();}
 ;
 
 
@@ -229,35 +228,34 @@ estructura_llamar: Llamar funcion_llamado
 ;
 
 //asignacion de variables
-asign_Var: asign_Var asignar OpPuntero valores { }
-        |  asignar OpPuntero valores
+asign_Var: asignar OpPuntero valores {$$ = new AsignarStmt((IdentExpr*)$1,$3); }
 ;
 
-asignar: Ident
+asignar: Ident { $$ = $1; }
       | llamar_arreglo
 ;
 
 //Funcion- Escriba
-f_escriba: Escriba escriba_list
+f_escriba: Escriba escriba_list {$$ = new EscribaStmt($2); }
 ;
 
 //estructura de un For/Para
-cliclo_for: Para asignar OpPuntero valores_ciclos Hasta expr Haga block_actions Fin Para
+cliclo_for: Para asignar OpPuntero valores_ciclos Hasta expr Haga block_actions Fin Para { $$ = new ForStmt(new AsignarStmt((IdentExpr*)$2,$3),(Expr*)$6,$8 ); }
 ;
 
-cliclo_While: Mientras condi Haga block_actions Fin Mientras
+cliclo_While: Mientras condi Haga block_actions Fin Mientras { $$ = new WhileStmt($2,$4); }
 ;
 
 cliclo_Repeat: Repita block_actions Hasta condi
 ;
 
-si_statement: Si expr Entonces block_actions SiNoSi si2_statement 
-            | Si expr Entonces block_actions Sino block_actions Fin Si  
-            | Si expr Entonces block_actions Fin Si  
+si_statement: Si expr Entonces block_actions SiNoSi si2_statement { $$ = new IfStmt($2,$4,$6); }
+            | Si expr Entonces block_actions Sino block_actions Fin Si  { $$ = new IfStmt($2,$4,$6); }
+            | Si expr Entonces block_actions Fin Si  { $$ = new IfStmt($2,$4,new Vacio()); }
 ;
-si2_statement: expr Entonces block_actions SiNoSi si2_statement   
-            | expr Entonces block_actions Sino block_actions Fin Si  
-            | expr Entonces block_actions Fin Si  
+si2_statement: expr Entonces block_actions SiNoSi si2_statement   { $$ = new IfStmt($1,$3,$5); } 
+            | expr Entonces block_actions Sino block_actions Fin Si  { $$ = new IfStmt($1,$3,$5); }
+            | expr Entonces block_actions Fin Si   { $$ = new IfStmt($1,$3,new Vacio()); }
 ;
 
 //estructura de retorn
@@ -282,63 +280,63 @@ parametros_mult: valores
 //valores para asignar
 
 escriba_list: escriba_list Coma valores
-            | valores
+            | valores {$$ = $1;}
 ;
 
-valores: expr 
-      |   Verdadero
-      |   Falso
-      |   Character
-      |   String  
+valores: expr {$$ = $1;}
+      |   Verdadero {$$ = new BoolExpr(1);}
+      |   Falso   {$$ = new BoolExpr(0);}
+      |   Character {$$ = $1;}
+      |   String  {$$ = $1;}
 ;
 
 //tipos de datos 
-tipo: Entero
-      | Real
+tipo: Entero { $$ = new IdentExpr("Entero"); }
+      | Real  { $$ = new IdentExpr("Real"); }
       | Cadena
-      | Booleano
-      | Caracter
+      | Booleano { $$ = new IdentExpr("Booleano"); }
+      | Caracter { $$ = new IdentExpr("Caracter"); }
 ;
 
 //tipo de valores para ciclos 
-valores_ciclos: enteros
-            | expr
+valores_ciclos: enteros { $$ = $1; }
+            | expr { $$ = $1; }
             
 ;
 
-expr:   expr OpAdd term 
-    |   expr OpSub term 
-    |   term      
+expr:   expr OpAdd term { $$ = new AddExpr((Expr*)$1,(Expr*)$3);}
+    |   expr OpSub term { $$ = new SubExpr((Expr*)$1,(Expr*)$3);}
+    |   term { $$ = $1; }
 ;
 
-term:   term OpMult condi 
-    |   term Div condi
-    |   term Mod condi
-    |   condi
+term:   term OpMult condi { $$ = new MulExpr((Expr*)$1,(Expr*)$3);}
+    |   term Div condi { $$ = new DivExpr((Expr*)$1,(Expr*)$3);}
+    |   term Mod condi { $$ = new ModExpr((Expr*)$1,(Expr*)$3);}
+    |   condi { $$ = $1;}
 ;
 
-condi: condi OpMayor factor
-      | condi OpMenor factor
-      | condi OpMayorI factor
-      | condi OpMenorI factor
-      | condi OpDiple factor
-      | condi OpSombrero factor
+condi: condi OpMayor factor {$$ = new MayorExpr((Expr*)$1,(Expr*)$3); }
+      | condi OpMenor factor {$$ = new MenorExpr((Expr*)$1,(Expr*)$3); }
+      | condi OpMayorI factor {$$ = new MayorIExpr((Expr*)$1,(Expr*)$3); }
+      | condi OpMenorI factor {$$ = new MenorIExpr((Expr*)$1,(Expr*)$3); }
+      | condi OpDiple factor {$$ = new DesigualExpr((Expr*)$1,(Expr*)$3); }
+      | condi OpSombrero factor 
       | condi C_O factor
-      | condi C_Y factor
-      | condi OpIgual factor
-      | factor
+      | condi C_Y factor 
+      | condi OpIgual factor {$$ = new IgualExpr((Expr*)$1,(Expr*)$3); }
+      | factor {$$ = $1; }
 ;
 
 factor: OpenPar expr ClosePar
-    |   enteros  {  }
-    |   Ident  { }
-    |   C_No Ident     
-    |   Verdadero {  }
-    |   Falso     { }
+    |   enteros  { $$ = $1; }
+    |   Ident  { $$ = $1; }
+    |   C_No Ident  { }   
+    |   Verdadero {$$ = new BoolExpr(1);}
+    |   Falso     {$$ = new BoolExpr(0);}
     |   llamar_arreglo
     |   funcion_llamado 
 ;
 
-enteros: Number {  }
-      | OpSub Number {  }
+enteros: Number { $$ = $1; }
+      | OpSub Number { $$ = $1; }
 ;

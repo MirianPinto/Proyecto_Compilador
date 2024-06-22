@@ -4,8 +4,6 @@ Inicio
     a <- 10
     Si a < 10 Entonces
         Escriba 0
-    Sino Si a > 10 Entonces
-        Escriba 100
     Sino Si a = 10 Entonces
         Escriba 10
     Fin Si

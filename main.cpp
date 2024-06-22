@@ -25,6 +25,8 @@ int main(int argc, char *argv[])
    try
    {
         parser.parse();
+
+        parser.genArchivo("main.asm", "a");
         
    }
    catch(const std::exception& e)

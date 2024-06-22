@@ -1,5 +1,4 @@
-Tipo carro_t Es Entero
-Entero x, _y, z
+Entero x, _y, z, i
 
 
 Inicio
@@ -7,4 +6,6 @@ Inicio
     _y <- 27
     z <- x + _y
     Escriba z
+    Escriba x - _y
+    
 Fin

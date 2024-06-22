@@ -1,7 +1,9 @@
-Entero a, b
+Entero i
 
 Inicio
-    a <- 567
-    b <- 765
+    i <- 1
+    Mientras i <= 10 Haga
+        Escriba i
+        i <- i + 1
+    Fin Mientras
 Fin
-

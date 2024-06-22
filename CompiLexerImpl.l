@@ -7,6 +7,8 @@
     
     #include <iostream>
     #include <cstdlib>
+    #include <algorithm>
+    #include <string>
     #include "CompiLexer.hpp"
     #include "CompiAst.hpp"
 
@@ -95,17 +97,17 @@
 "^"		            { return Token::OpSombrero; }
 "<"		            { return Token::OpMenor; }
 ">"		            { return Token::OpMayor; }
-"=="		        { return Token::OpIgual; }
+"="		            { return Token::OpIgual; }
 "<>"		        { return Token::OpDiple; }
 "<="		        { return Token::OpMenorI; }
 ">="		        { return Token::OpMayorI; }
 ";"                 { return Token::SemiColon; }
 "="                 { return Token::Asignar; }
 
-\'[^\n]\' {   return Token::Character; }
-\"[0-9a-zA-Z_ ]*[^\n]*\" {  return Token::String; }
-[0-9]+	            { *lval = new NumExpr(std::atof(yytext)); return Token::Number; }
-[a-zA-Z_][0-9a-zA-Z_]* { *lval = new IdentExpr(std::string(yytext)); return Token::Ident; }
+\'[^\n]\' {   *lval = new CaracterExpr(yytext[1]); return Token::Character; }
+\"[0-9a-zA-Z_ ]*[^\n]*\" { std::string cadena = std::string(yytext); cadena.erase(std::remove(cadena.begin(), cadena.end(), '\"'), cadena.end()); std::cout<< cadena;*lval = new CadenaExpr(cadena) ;return Token::String; }
+[0-9]+	            {*lval = new NumExpr(std::atof(yytext)); return Token::Number; }
+[a-zA-Z_][0-9a-zA-Z_]* { *lval = new IdentExpr(std::string(yytext));  return Token::Ident; }
 
 .		{ std::cerr << "Invalid symbol\n"; std::cout<< yytext; return Token::Error; }
 

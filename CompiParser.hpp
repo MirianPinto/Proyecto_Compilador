@@ -40,7 +40,7 @@ public:
     }
     // Función para escribir el código ensamblador en un archivo y ejecutarlo
 
-    void genArchivo(std::string nombre)
+    int genArchivo(std::string nombre)
     {
        
        std::vector<int> posiciones;
@@ -68,13 +68,26 @@ public:
         if (!archivo.is_open()) {
            throw std::runtime_error("Failed to open asm file for writing!");
         }
-        archivo << ast->Gencode(tipos_var);
+
+        try {
+           archivo << ast->Gencode(tipos_var);
+        } catch (const std::runtime_error& e) {
+            std::cerr << e.what() << std::endl;
+            return 1;
+        }
+        
+
+    
         archivo.close();
 
         std::string cmd = EAsm_Path + " --run "+ nombre + " 2>&1";
 
-        
-        std::cout<< "\n"<<runCmd(cmd);
+        std::string final = "\n" + runCmd(cmd);
+
+        std::cout<< final;
+
+
+        return 0;
         
     };
     

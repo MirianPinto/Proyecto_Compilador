@@ -447,7 +447,7 @@ Program::~Program()
 }
 
 stdstring Program::Gencode(Tipos & tipos)
-#line 2092 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 2089 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     declVar->Gencode(tipos);
     declFun->Gencode(tipos);
@@ -766,7 +766,7 @@ DeclaracionStmt::~DeclaracionStmt()
 }
 
 stdstring DeclaracionStmt::Gencode(Tipos & tipos)
-#line 1945 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 1942 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     ident1->Gencode(tipos);
     ident2->Gencode(tipos);
@@ -2525,7 +2525,7 @@ Vacio::~Vacio()
 }
 
 stdstring Vacio::Gencode(Tipos & tipos)
-#line 2059 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 2056 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     place = "";
     code = "";
@@ -2560,7 +2560,7 @@ BlockStmts::~BlockStmts()
 }
 
 stdstring BlockStmts::Gencode(Tipos & tipos)
-#line 1936 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 1933 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     stmt1->Gencode(tipos);
     stmt2->Gencode(tipos);
@@ -2598,7 +2598,7 @@ Declaracionvariable::~Declaracionvariable()
 }
 
 stdstring Declaracionvariable::Gencode(Tipos & tipos)
-#line 1954 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 1951 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     ident->Gencode(tipos);
     ident2->Gencode(tipos);
@@ -2762,7 +2762,7 @@ ForStmt::~ForStmt()
 }
 
 stdstring ForStmt::Gencode(Tipos & tipos)
-#line 1981 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 1978 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     std::string label1 = newLabel(); 
     
@@ -2815,7 +2815,7 @@ RepitaStmt::~RepitaStmt()
 }
 
 stdstring RepitaStmt::Gencode(Tipos & tipos)
-#line 1964 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 1961 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     std::string Etiqueta_repita = newLabel(); 
     stmtst->Gencode(tipos);
@@ -3011,12 +3011,9 @@ stdstring EscribaStmt::Gencode(Tipos & tipos)
    
     code += "\tint 0x80\n";
 
-    code += "\tmov eax, 11\n";
-    code += "\tmov ebx, 10\n"; 
-    code += "\tint 0x80\n";
     return code;
 }
-#line 3020 "CompiAst.cpp"
+#line 3017 "CompiAst.cpp"
 
 int EscribaStmt::isA(int kind) const
 {
@@ -3046,7 +3043,7 @@ IfStmt::~IfStmt()
 }
 
 stdstring IfStmt::Gencode(Tipos & tipos)
-#line 2027 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 2024 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     std::string label1 = newLabel(); // label de for
     std::string label2 = newLabel(); // finalizacion del for
@@ -3068,7 +3065,7 @@ stdstring IfStmt::Gencode(Tipos & tipos)
     code += label4 + ":\n";
     return code;
 }
-#line 3072 "CompiAst.cpp"
+#line 3069 "CompiAst.cpp"
 
 int IfStmt::isA(int kind) const
 {
@@ -3097,7 +3094,7 @@ WhileStmt::~WhileStmt()
 }
 
 stdstring WhileStmt::Gencode(Tipos & tipos)
-#line 2006 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 2003 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     std::string label1 = newLabel(); // label de for
     std::string label2 = newLabel(); // finalizacion del for
@@ -3117,7 +3114,7 @@ stdstring WhileStmt::Gencode(Tipos & tipos)
     code += label3 + ":\n";
     return code;
 }
-#line 3121 "CompiAst.cpp"
+#line 3118 "CompiAst.cpp"
 
 int WhileStmt::isA(int kind) const
 {
@@ -3145,7 +3142,7 @@ RetorneStmt::~RetorneStmt()
 }
 
 stdstring RetorneStmt::Gencode(Tipos & tipos)
-#line 2049 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 2046 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
 
     retorno->Gencode(tipos);
@@ -3154,7 +3151,7 @@ stdstring RetorneStmt::Gencode(Tipos & tipos)
 
     return code;
 }
-#line 3158 "CompiAst.cpp"
+#line 3155 "CompiAst.cpp"
 
 int RetorneStmt::isA(int kind) const
 {
@@ -3182,7 +3179,7 @@ LeaStmt::~LeaStmt()
 }
 
 stdstring LeaStmt::Gencode(Tipos & tipos)
-#line 2066 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
+#line 2063 "/home/mirian/Compiladores_2/Proyecto_Compilador/CompiAst.tc"
 {
     
     bool encontrado = false;
@@ -3208,7 +3205,7 @@ stdstring LeaStmt::Gencode(Tipos & tipos)
 
     return "";
 }
-#line 3212 "CompiAst.cpp"
+#line 3209 "CompiAst.cpp"
 
 int LeaStmt::isA(int kind) const
 {

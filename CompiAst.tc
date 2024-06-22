@@ -1926,9 +1926,6 @@ Gencode(EscribaStmt) {
    
     code += "\tint 0x80\n";
 
-    code += "\tmov eax, 11\n";
-    code += "\tmov ebx, 10\n"; 
-    code += "\tint 0x80\n";
     return code;
 }
 

@@ -30,7 +30,7 @@ int main(int argc, char *argv[])
    {
         parser.parse();
 
-        parser.genArchivo(asm_f);
+        std::cout << parser.genArchivo(asm_f);
    }
    catch(const std::exception& e)
    {
